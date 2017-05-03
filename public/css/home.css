@@ -1,0 +1,141 @@
+html, body {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.4;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+
+	position: relative;
+    height: 100vh;
+    background-image: url(../img/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+}
+
+.basic-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 450px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
+    font-family: "Segoe print", Arial, Helvetica, sans-serif;
+    color: white;
+    line-height: 70px;
+}
+
+@media only screen and (max-width: 500px) {
+
+	.basic-container h1 {
+	    font-size: 1.6em;
+	}
+}
+
+hr {
+    margin: 55px auto;
+    max-width: 150px;
+    border: 2px solid #f05f40;
+
+}
+
+@media only screen and (max-width: 500px) {
+	hr {
+	    margin: 25px auto;
+	}
+}
+
+.bloc {
+    background: #FFFFFF;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 45px;
+}
+
+.basic-input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+.basic-button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+
+.basic-container .message-index {
+    margin: 35px 0 0;
+    color: #b3b3b3;
+    font-size: 15px;
+}
+
+.basic-container .message-index a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.footer-basic-centered {
+    background-color: #292c2f;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    font: normal 18px sans-serif;
+    padding: 45px;
+}
+
+.footer-basic-centered .footer-company-motto {
+    color: #8d9093;
+    font-size: 24px;
+    margin: 0;
+}
+
+.footer-basic-centered .footer-links {
+    list-style: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 35px 0 23px;
+    margin: 0;
+}
+
+.footer-basic-centered .footer-links a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-basic-centered .footer-company-name {
+    color: #8f9296;
+    font-size: 14px;
+    margin: 0;
+}
