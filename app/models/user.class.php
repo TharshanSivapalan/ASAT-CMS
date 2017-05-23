@@ -46,7 +46,7 @@ class User extends BaseSql{
         $this->password=password_hash($pwd, PASSWORD_DEFAULT);
     }
     public function setStatus($status){
-        $this->status= 1;
+        $this->status= $status;
     }
     public function setIdGroupUser($id_groupuser){
         $this->id_groupuser = 1;

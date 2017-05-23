@@ -49,18 +49,20 @@
             }
 
             else {
-                
+
                 $sqlSet = null;
-                
+              
                 foreach ($this->columns as $column => $value) {
 
                     $data[$column] = $this->$column;
                     $sqlSet [] .= $column."=:".$column;
                 }
-
                 $query = $this->db->prepare("UPDATE " .$this->table. " SET date_updated = sysdate() ,".implode("," , $sqlSet)." WHERE id:id ;");
+
                 
                 $query->execute($data);
+
+
             }
 
 
