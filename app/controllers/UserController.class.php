@@ -1,12 +1,23 @@
 <?php
 class UserController{
 
-    public function indexAction($params){
-        echo "tous mes utilisateurs";
+    public function indexAction(){
+
+        $view = new View('user-list');
+        $view->setTemplate('backoffice');
+
+        $user = new User();
+
+        $users = $user->getall();
+
+        var_dump($users);
+        die();
+
     }
 
     public function addAction($params){
-        echo "ajout d'un utilisateur";
+        $view = new View('user-add');
+        $view->setTemplate('backoffice');
     }
 
     public function loginAction () {
@@ -24,16 +35,24 @@ class UserController{
             $login = $_POST['login'];
             $password = $_POST['password'];
 
-            echo $login;
-            
             // Chercher le user associe
-            
-            $user = '';
-            
-            if ($user) {
-                
-                $user->
-                $_SESSION[$user] = $user;
+
+            $user = new User();
+
+            $user = $user->populate(['login' => $login , 'status' => 1]);
+
+            if ($user && password_verify($password , $user->getPassword())) {
+
+                    $_SESSION['user'] = $user;
+                    header('Location: /menu/index');
+            }
+
+            else {
+
+                $messsages [] = "Login ou mot de passe incorrect";
+                $_SESSION["messages"] = $messsages;
+                header('Location: /user/login');
+
             }
         }
 
@@ -98,12 +117,18 @@ class UserController{
                     $result = $mailer->send($message);
 
                     if(!$result) echo "Une erreur s'est produite avec l'envoi de l'email";
+
+                    $messsages [] = "Merci de valider votre compte";
+                    $_SESSION["messages"] = $messsages;
+
+                    $_SESSION["value_form"] = $_POST;
                     
                     header('Location: /user/login');
                 }
             }
 
         } else {
+
             $user = new User();
             $view = new View('signup');
 
@@ -134,17 +159,18 @@ class UserController{
                 $user->setStatus(1);
                 $user->setToken(null);
                 $user->save();
-                echo 'compte active';
-                die();
+
+                $messsages [] = "Votre compte a bien ete activé , vous pouvez vous connecter";
+                $_SESSION["messages"] = $messsages;
 
                 // Compte active
             }
 
             else {
 
-                echo 'erreur activation';
-                die();
-                
+                $messsages [] = "token invalide";
+                $_SESSION["messages"] = $messsages;
+
             }
 
             header('Location: /user/login');
@@ -153,28 +179,30 @@ class UserController{
 
     }
 
-    public function forgotAction () {
+    public function forgetAction () {
 
         if(isset($_POST['email']) && !empty($_POST['email'])){
 
-        $email = $_POST['email'];
+            $email = $_POST['email'];
 
-        $user = new User();
+            $user = new User();
 
-        if(!$user->populate(["email"=>$email]) && !$user->populate(["login"=>$login])){
+            $user = $user->populate(['email' => $email , 'status' => 1]);
 
-            $token = bin2hex(openssl_random_pseudo_bytes(60));
+            if($user) {
 
-                $user->setId($user->getId());
+                $token = bin2hex(openssl_random_pseudo_bytes(60));
+
                 $user->setToken($token);
                 $user->setResetAt();
                 $user->save();
 
-                $user = $user->populate(["email"=>$email]);
-
-                $link = $user->getId() . '-' . $user->getToken();
+                echo $token;
+                die();
 
                 // Envoie email
+
+                $link = $user->getId() . '-' . $user->getToken();
 
                 require_once '../app/lib/SwiftMailer/swift_required.php';
 
@@ -205,6 +233,12 @@ class UserController{
 
                 header('Location: /user/login');
             }
+
+            else {
+
+                $_SESSION["messages"] = "Aucun compte accocie a cette adreese e-mail.";
+                header('Location: /user/forget');
+            }
         }
 
         else {
@@ -231,22 +265,44 @@ class UserController{
         }
 
         else {
-            
-            $view = new View('password');
+
+            $token = explode('-' , $token[0]);
 
             $user = new User();
-            $view->assign("form" , $user->getPasswordForm());
 
-            $view->includeCss("home.css");
-            $view->includeJS("home.js");
+            $user = $user->populate(['id' => $token[0]]);
+
+            if($user && $token[1] == $user->getToken()) {
+
+                $view = new View('password');
+
+                $user = new User();
+                $view->assign("form" , $user->getPasswordForm());
+
+                $view->includeCss("home.css");
+                $view->includeJS("home.js");
+            }
+
+            else {
+
+                echo 'token invalide';
+                die();
+                
+            }
+
+
+            
+
             
         }
     }
 
     public function logoutAction () {
 
-        
+        unset($_SESSION['user']);
+
+        header('Location: /user/login');
     }
-
-
+    
+    
 }

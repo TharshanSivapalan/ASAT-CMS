@@ -39,8 +39,7 @@ class Routing{
     public function setParams(){
         $this->params = array_merge(array_values($this->uriExploded), $_POST);
     }
-
-
+    
     public function checkRoute(){
         //Est ce qu'il existe un fichier du nom de xxxxContoller $this->controllerName
         $pathController = "../app/controllers/".$this->controllerName.".class.php";

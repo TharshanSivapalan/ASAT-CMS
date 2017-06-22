@@ -51,13 +51,15 @@
             else {
 
                 $sqlSet = null;
+
               
                 foreach ($this->columns as $column => $value) {
 
                     $data[$column] = $this->$column;
                     $sqlSet [] .= $column."=:".$column;
                 }
-                $query = $this->db->prepare("UPDATE " .$this->table. " SET date_updated = sysdate() ,".implode("," , $sqlSet)." WHERE id:id ;");
+
+                $query = $this->db->prepare("UPDATE " .$this->table. " SET date_updated = sysdate() ,".implode("," , $sqlSet)." WHERE id=:id ;");
 
                 
                 $query->execute($data);
@@ -69,9 +71,7 @@
         }
 
         public function populate( $search = ["id"=>3] ){
-            //requete SQL
-            //vérification
-            //Alimentation de l'objet
+           
             $query = $this->getOneBy($search, true);
             $query->setFetchMode(PDO::FETCH_CLASS, $this->table);
             $object = $query->fetch();
@@ -95,5 +95,15 @@
             }
 
             return $query->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function getall () {
+
+            $query = $this->db->prepare("SELECT * FROM " .$this->table);
+
+            $query->execute();
+
+            return $query->fetch(PDO::FETCH_ASSOC);
+            
         }
     }

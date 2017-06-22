@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Titre du document</title>
+    <title>ASAT</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descrption" content="ma description">
 
@@ -21,6 +21,15 @@
 
     <div class="site-content">
         <div class="container-fluid">
+            
+            <?php
+            if(isset($_SESSION["messages"])){
+                foreach ($_SESSION["messages"] as $message) {
+                    echo "<li>".$message;
+                }
+            }
+            ?>
+
 
             <div class="content">
 
@@ -49,6 +58,8 @@
     <?php foreach ($js as $script): ?>
         <script src="/<?php echo $script?>"></script>
     <?php endforeach; ?>
+
+    <?php unset($_SESSION["messages"]);  ?>
 
 
 

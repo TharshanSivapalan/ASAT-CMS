@@ -1,0 +1,551 @@
+/********************************************************************************************/
+/********************************************************************************************/
+/***********************************DEBUT DES ELEMENTS DE BASE*******************************/
+/********************************************************************************************/
+/********************************************************************************************/
+
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f8f8f8;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+.container {
+    background-color: #fff;
+    -webkit-box-shadow: 0px 1px 8px #BEBEBE;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding-right: 10%;
+    padding-left:  10%;
+    padding-bottom: 70px;
+    padding-top: 70px;
+}
+
+
+a {
+    text-decoration: none;
+    color: grey;
+}
+
+.col{
+    float: left;
+    padding: 1%;
+    margin-left: 2%;
+}
+
+.quatre .col{
+    width: 21.5%;
+}
+
+.trois .col{
+    width: 30%;
+}
+
+.deux .col{
+    width: 47%;
+}
+
+section .col:first-child{
+    margin-left: 0;
+}
+
+@media(max-width: 600px){
+    .col{
+        margin-top: 30px;
+    }
+
+    .trois .col, .deux .col, .deux .col:first-child{
+        margin-left: 2%;
+        width: 94%;
+    }
+
+}
+
+@media(max-width: 450px){
+    header .header-caption h2 {
+        font-size: 45px;
+    }
+    .quatre .col, .quatre .col:first-child{
+        width: 94%;
+    }
+
+}
+
+/********************************************************************************************/
+/********************************************************************************************/
+/*************************************FIN DES ELEMENTS DE BASE*******************************/
+/********************************************************************************************/
+/********************************************************************************************/
+
+/* DEBUT Page de connexion */
+
+.connexion-contenu{
+    position:relative;
+    height:100vh;
+    overflow:hidden;
+}
+
+
+.video-bg 
+{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    overflow: hidden;
+}
+
+.video-bg video 
+{
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.vid{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100vw;
+}
+.connexion-block{
+  width:45%;
+  height:450px;
+  position:relative;
+  overflow:hidden;
+  margin: 150px auto;
+}
+.vid.block-bg{
+    height: 100vh;
+  top:calc(-50vh + 200px);
+  left:calc(-50vw + 200px);
+  -webkit-filter:blur(10px);
+  -ms-filter: blur(10px);
+  -o-filter: blur(10px);
+  filter:blur(10px);
+}
+.connexion-form{
+  position:absolute;
+  height:100%;
+  width:100%;
+  font-family:Helvetica;
+  color:#fff;
+  background:rgba(0,0,0,0.13);
+  padding:30px 0px;
+}
+.connexion-form h1{
+  text-align:center;
+  margin:30px 0;
+  font-size:30px;
+}
+.connexion-form input[type="text"], .connexion-form input[type="password"]{
+  display:block;
+  width:50%;
+  margin:20px auto;
+  padding:15px;
+  background:rgba(0,0,0,0.2);
+  color:#fff;
+  border:0;
+}
+.connexion-form input:focus,.connexion-form input:active,.connexion-form button:focus,.connexion-form button:active{
+  outline:none;
+}
+.connexion-form input[type="submit"]{
+  background:#2ecc71;
+  border:0;
+  color:#fff;
+  padding:10px;
+  font-size:20px;
+  width:50%;
+  margin:20px auto;
+  display:block;
+  cursor:pointer;
+}
+.connexion-form input[type="submit"]:active, .connexion-form input[type="submit"]:hover{
+  background:#27ae60;
+}
+.connexion-form p{
+  font-size:14px;
+  text-align:center;
+}
+.connexion-form p span{
+  cursor:pointer;
+  color:#666;
+}
+
+/* FIN PAGE DE CONNEXION */
+
+
+
+
+/* DEBUT DE LA SIDEBAR */
+
+.sidenav {
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    background-color: #610B0B; 
+    overflow-x: hidden; 
+    padding-top: 60px; 
+    transition: 0.5s;
+}
+
+.sidenav::-webkit-scrollbar { 
+    display: none;  /*Safari & Chrome*/
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 62px;
+    padding: 0;
+}
+
+#openbtn {
+    position: fixed;
+    top:10px;
+    left: 25px;
+    font-size: 1.5em;
+}
+
+#openbtn .fa-bars:hover {
+  color: #610B0B;
+    cursor: pointer;
+}
+
+ul {
+  z-index: 1;
+  list-style: none;
+  transition: width .5s;
+}
+
+li {
+  line-height: 50px;
+}
+
+li i {
+  margin-left: 10px;
+}
+
+.sidenav a {
+  transition: .3s;
+}
+
+.sidenav a:hover {
+  border-bottom-color: #fff;
+  color: #fff;
+}
+
+.menu-level1>a:hover {
+  letter-spacing: 1px;
+}
+
+.menu-level2 {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .5s;
+}
+
+.menu-level2 > li {
+  background-color: #4E0808;
+}
+
+.menu-level2 > li:hover {
+  background-color: #4C4B4B;
+}
+
+.menu-level2 a {
+  font-size: 16px;
+  padding-left: 25px;
+  color: #fff;
+}
+
+
+
+ul a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  text-decoration: none;
+  color: #D8D8D8;
+}
+
+@media(max-width: 600px){
+    .sidenav a {
+      text-align: center;
+    }
+}
+
+/**  FIN DE LA SIDEBAR  **/
+
+
+/** DEBUT FORMULAIRE **/
+
+.formulaire .onglet-contenu {
+    padding: 1.5em; 
+}
+
+
+.formulaire .titre {
+    overflow: hidden; 
+}
+
+.formulaire .titre h3 {
+    float: left;
+    width: 100%; 
+    background-color: #fff; 
+}
+
+.formulaire .titre h3 {
+    padding: 0.5em 0;
+    text-align: center;
+    font-weight: 400;
+    background-color: #e6e7e8;
+    display: block;
+    color: #666; 
+}
+
+
+.formulaire form {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.formulaire form .input {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    color: inherit;
+    font-family: inherit;
+    padding: .8em 0 10px .8em;
+    border: 1px solid #CFCFCF;
+    outline: 0;
+    display: inline-block;
+    margin: 0 0 .8em 0;
+    padding-right: 2em;
+    width: 100%; 
+}
+
+.formulaire form  #liste {
+    width: 70%;
+}
+
+
+.formulaire form .bouton {
+    display :block;
+    width: 100%;
+    padding: 1.2em 0 1.2em 1em;
+    background-color: #610B0B;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase; 
+    margin-top:30px;
+}
+
+.formulaire form .bouton:hover {
+    background-color: #4E0808; 
+    transition: 0.8s;
+}
+
+.formulaire form label[for] {
+    position: relative;
+    padding-left: 20px;
+    cursor: pointer; 
+}
+
+.deux-col-form .half-form {
+    width: 48%;
+    float: left;
+    
+}
+
+.deux-col-form > .half-form:first-child {
+    margin-right: 4%;
+}
+
+
+/** FIN FORMULAIRE **/
+
+
+
+/** DEBUT TABLE POUR AFFICHER LES LISTES **/
+table {
+    border-collapse: collapse;
+    margin-top: 80px;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+table tbody tr {
+    border-top: 1px solid #ddd;
+    padding: .35em;
+}
+table tbody tr{
+    border-bottom: none!important;
+}
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+.action-button {
+    font-size: 1.4em!important;
+    padding: 4px;
+    color: #aaa;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.edit:hover {
+    color: #0a79df;
+}
+
+.delete:hover {
+    color: #dc2a2a;
+}
+
+table #pagination {
+    margin-top: 50px;
+}
+
+table #pagination .focus {
+    min-width: 35px;
+    font-size: 13px;
+    color: white;
+    font-weight: normal;
+    background: #610b0b;
+}
+table #pagination .pageNumber {
+    padding: 8px 10px;
+}
+
+table #pagination .pageNumber {
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 600px) {
+    table {
+        border: 1px solid #ccc;
+        border: 0;
+    }
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        background-color: #f8f8f8;
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+    table td:before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+        }
+        table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+.ajouter_element_btn {
+    cursor: pointer;
+    padding: 10px 15px;
+    font-weight: bold;
+    color: #fff;
+    background: #610b0b;
+    border-radius: 2px;
+    box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0), 0px 3px 3px 0px transparent;
+    float: right
+}
+
+/** FIN TABLE POUR AFFICHER LES LISTES **/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width: 600px){
+    #main {
+        padding: 0px;
+    }
+    
+    .formulaire form {
+        padding: 0px;
+    }
+    
+    .deux-col-form .half-form {
+        width: 100%;
+    }
+    
+    #openbtn {
+        position: inherit;
+        display: block;
+        background-color: #4E0808;
+        padding: 10px;
+    }
+    .fa-2x {
+        color: #f4f4f4;
+    }
+        
+}

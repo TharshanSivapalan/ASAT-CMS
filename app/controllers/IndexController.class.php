@@ -5,15 +5,20 @@ class IndexController{
 
         $user = new User();
         
-        $view = new View();
-       
-
+        $view = new View('index');
+        $view->setTemplate('template1');
+        
         //$view->assign("form" , $user->getForm());
         
     }
 
-    public function welcomeAction($params){
-        echo "Welcome";
+    public function contact($params){
+        echo "Page contact";
+    }
+
+    public function livredor () {
+
+        echo "Page livredor";
     }
 
 }
