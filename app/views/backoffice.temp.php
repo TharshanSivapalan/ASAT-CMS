@@ -34,7 +34,7 @@ if(isset($_SESSION["messages"])){
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul>
-        <li><a href="/setting/template">DASHBOARD</a></li>
+        <li><a href="/theme">DASHBOARD</a></li>
 
         <li class="menu-level1"><a href="#">MENU<i class="fa fa-caret-down"></i></a>
             <ul class="menu-level2">

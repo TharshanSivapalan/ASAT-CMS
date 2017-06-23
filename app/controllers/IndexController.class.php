@@ -6,7 +6,19 @@ class IndexController{
         $user = new User();
         
         $view = new View('index');
-        $view->setTemplate('template1');
+
+        if (isset($_SESSION['theme']) && !empty($_SESSION['theme'])) {
+
+            $view->setTemplate($_SESSION['theme']);
+        }
+
+        else {
+
+            $view->setTemplate('famous');
+        }
+
+
+
         
         //$view->assign("form" , $user->getForm());
         

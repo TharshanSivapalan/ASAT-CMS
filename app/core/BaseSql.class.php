@@ -100,10 +100,10 @@
         public function getall () {
 
             $query = $this->db->prepare("SELECT * FROM " .$this->table);
-
+            
             $query->execute();
 
-            return $query->fetch(PDO::FETCH_ASSOC);
+            return $query->fetchAll(PDO::FETCH_ASSOC);
             
         }
     }

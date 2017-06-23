@@ -7,12 +7,5 @@ class SettingController{
         $view->setTemplate('backoffice');
         
     }
-
-    public function templateAction (){
-
-        $view = new View('setting-template');
-        $view->setTemplate('backoffice');
-
-    }
-
+    
 }

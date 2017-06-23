@@ -8,13 +8,6 @@ class Theme extends BaseSql{
 	protected $link;
 	
 	public function __construct($id=-1, $name=null, $status=0, $thumbnail=null, $link=null){
-
-		$this->setId($id);
-		$this->setName($name);
-		$this->setStatus($status);
-		$this->setThumbnail($thumbnail);
-		$this->setLink($link);
-
 		
 		parent::__construct();
 		

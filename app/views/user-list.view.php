@@ -11,92 +11,29 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
-                <th scope="col">action</th>
+                <th scope="col">Date inscription</th>
+                <th scope="col">Date modification</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td scope="row" data-label="nom">Nom 1</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 2</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 3</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 4</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 5</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 6</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 7</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 8</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
-            <tr>
-                <td scope="row" data-label="nom">Nom 9</td>
-                <td data-label="Email">adresse@gmail.com</td>
-                <td data-label="Statut">Admin</td>
-                <td data-label="Action">
-                    <i class="action-button edit fa fa-pencil"></i>
-                    <i class="action-button delete fa fa-trash"></i>
-                </td>
-            </tr>
             
+            <?php foreach ($list_user as $user): ?>
+
+                <tr>
+                    <td scope="row" data-label="nom"><?php echo $user['login']?></td>
+                    <td data-label="Email"><?php echo $user['email']?></td>
+                    <td data-label="Statut"><?php echo $user['id_groupuser']?></td>
+                    <td data-label="Statut"><?php echo $user['date_inserted']?></td>
+                    <td data-label="Statut"><?php echo $user['date_updated']?></td>
+                    <td data-label="Action">
+                        <i class="action-button edit fa fa-pencil"></i>
+                        <i class="action-button delete fa fa-trash"></i>
+                    </td>
+                </tr>
+
+            <?php endforeach; ?>
+
             </tbody>
         </table>
         

@@ -8,11 +8,10 @@ class UserController{
 
         $user = new User();
 
-        $users = $user->getall();
-
-        var_dump($users);
-        die();
-
+        $mUser = new User();
+        $list_user = $mUser->getall();
+        $view->assign('list_user'  , $list_user);
+        
     }
 
     public function addAction($params){
@@ -300,7 +299,6 @@ class UserController{
     public function logoutAction () {
 
         unset($_SESSION['user']);
-
         header('Location: /user/login');
     }
     
