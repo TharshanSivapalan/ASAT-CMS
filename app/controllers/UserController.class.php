@@ -43,7 +43,7 @@ class UserController{
             if ($user && password_verify($password , $user->getPassword())) {
 
                     $_SESSION['user'] = $user;
-                    header('Location: /menu/index');
+                    header('Location: /theme');
             }
 
             else {

@@ -12,45 +12,16 @@ class ThemeController{
     }
 
     public function selectAction ($id){
-
-
-
+        
         if (empty($id)) {
 
             header('Location: /theme');
         }
 
         else {
+
+            $mTheme = new Theme();
             
-            $user = new User();
-
-            $user = $user->populate(['id' => $id]);
-
-            die();
-
-            $theme = $theme->populate(['id' => $id]);
-
-            echo $theme->getName();
-            die();
-
-            if($theme) {
-
-
-
-                $_SESSION['theme'] = $theme->getName();
-
-                $messsages [] = "Votre theme a bien ete seletionné";
-                $_SESSION["messages"] = $messsages;
-
-            }
-
-            else {
-
-                $messsages [] = "Ce theme n'existe pas ";
-                $_SESSION["messages"] = $messsages;
-
-            }
-
             header('Location: /theme');
 
         }

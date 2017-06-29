@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ASAT</title>
+    <title>ASAT - Administration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="descrption" content="ma description">
+    <meta name="descrption" content="Espace d'administration d'ASAT">
 
     <link rel="apple-touch-icon-precomposed" href="/img/Apple-icon.png" />
     <link rel="icon" href="favicon.ico">

@@ -2,9 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ASAT</title>
+    <title>ASAT - Connexion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="descrption" content="ma description">
+    <meta name="descrption" content="Connecter vous pour accedder a votre espace de gestion">
 
     <link rel="apple-touch-icon-precomposed" href="img/Apple-icon.png" />
     <link rel="icon" href="favicon.ico">
@@ -46,8 +46,8 @@
         <p class="footer-company-motto">ASAT</p>
 
         <p class="footer-links">
-            <a href="#">Home</a>        ·
-            <a href="#">Contact</a>    </p>
+            <a href="/">Home</a>
+        </p>
 
         <p class="footer-company-name">ASAT © 2017</p>
 

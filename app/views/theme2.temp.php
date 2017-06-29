@@ -12,96 +12,119 @@
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/template1.css">
+    <link rel="stylesheet" href="/css/template2.css">
 
 </head>
 <body>
 
 <nav class="conteneur-colonnes">
-    <img src="favicon.png" class="logo" alt="logo portfolio">
+    <div id="menu-logo-slogan-adresse">
+        <div id="slogan">
+            <span>Slogan : Tout est bon !</span>
+        </div>
+        <div id="logo">
+            <img id="comp-j143wefiimgimage" alt="" data- src="/img/Template2/favicon.png">
+        </div>
+        <div id="adresse">
+            <span>Paris / Athis-mons / Aulnay-sous-bois</span>
+        </div>
+    </div>
+
     <ul class="conteneur-colonnes">
-        <li ><a href="index.html">Accueil</a></li>
-        <li ><a href="cartes.html">La Carte</a></li>
-        <li ><a href="cartes.html">Livre d'or</a></li>
-        <li ><a href="contact.html">Contact</a></li>
+        <li ><a href="/">Accueil</a></li>
+        <li ><a href="/carte">La Carte</a></li>
+        <li ><a href="/livre">Livre d'or</a></li>
+        <li ><a href="/contact">Contact</a></li>
         <li ><a href="/user/login">Connexion</a></li>
     </ul>
 </nav>
 
 
-<header>
-
-    <div class="header-caption">
-        <h2 class="animated fadeInLeft">Bienvenue !</h2>
-        <div class="animated fadeInDown">
-            <p><strong>Notre restaurant, <span class="font-kaushan">Le Famous, </span> vous accueille du lundi au vendredi soir !</strong></p>
-
-        </div>
-    </div>
-
-</header>
-
-
-
 
 <div class="container grey">
-    <h2 class="center">Pour vous accueillir</h2>
-    <hr class="souligne">
+    <h2 class="center">à la une</h2>
 
-    <section class="deux">
+
+    <section class="deux home-menu-block">
         <article class="col center">
-
-            <div class="deux">
-                <div class="col">
-                    <img src="/img/Template1/chef1.jpg" alt="">
-                </div>
-
-                <div class="col">
-                    <img src="/img/Template1/chef2.jpg" alt="">
-                </div>
-            </div>
-
-
+            <img src="/img/Template2/plat3.jpg" alt="">
         </article>
-        <article class="col ">
 
+        <article class="col ">
+            <span class="menu-name"> Le nom du menu 1</span>
+            <span class="menu-price-before">POUR</span>
+            <span class="menu-price">10 €</span>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
+
+            <a href="#" titre="decouvrir" class="btn">MENU</a>
 
         </article>
     </section>
 
 
-    <section class="deux">
+    <section class="deux home-menu-block">
 
         <article class="col ">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis incidunt maxime vitae similique nisi eligendi vel veniam architecto quisquam quibusdam! Saepe rem necessitatibus voluptatem eius, molestias dolor laboriosam voluptatibus eligendi?</p>
-            <br>
+            <span class="menu-name"> Le nom du menu 2</span>
+            <span class="menu-price-before">POUR</span>
+            <span class="menu-price">10 €</span>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
+
+            <a href="#" titre="decouvrir" class="btn">MENU</a>
 
         </article>
 
         <article class="col center">
-
-            <div class="deux">
-                <div class="col">
-                    <img src="/img/Template1/chef3.jpg" alt="">
-                </div>
-
-                <div class="col">
-                    <img src="/img/Template1/chef5.jpg" alt="">
-                </div>
-            </div>
-
-
+            <img src="/img/Template2/plat1.jpg" alt="">
         </article>
 
+    </section>
+
+    <section class="deux home-menu-block">
+        <article class="col center">
+            <img src="/img/Template2/plat2.jpg" alt="">
+        </article>
+
+        <article class="col ">
+            <span class="menu-name"> Le nom du menu 3</span>
+            <span class="menu-price-before">POUR</span>
+            <span class="menu-price">10 €</span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
+
+            <a href="#" titre="decouvrir" class="btn">MENU</a>
+
+        </article>
     </section>
 
 
 </div>
+
+
+<div class="container grey">
+    <h2 class="center">Nos mots d'ordre</h2>
+
+
+    <section class="trois">
+        <a href="#">
+            <article class="col text-hover-img-block">
+                <span class="text-hover">Qualité</span>
+                <img src="https://static.wixstatic.com/media/84770f_0d32a522caea440ea73af1b6f62be51c.png/v1/fill/w_314,h_314,al_c,usm_0.66_1.00_0.01/84770f_0d32a522caea440ea73af1b6f62be51c.png" alt="plat le famous" class="img-responsive">
+            </article></a>
+        <a href="#">
+            <article class="col text-hover-img-block">
+                <span class="text-hover">Rapidité</span>
+                <img src="https://static.wixstatic.com/media/84770f_0d32a522caea440ea73af1b6f62be51c.png/v1/fill/w_314,h_314,al_c,usm_0.66_1.00_0.01/84770f_0d32a522caea440ea73af1b6f62be51c.png" alt="plat le famous" class="img-responsive">
+            </article>
+        </a>
+        <a href="#">
+            <article class="col text-hover-img-block">
+                <span class="text-hover">Quantité</span>
+                <img src="https://static.wixstatic.com/media/84770f_0d32a522caea440ea73af1b6f62be51c.png/v1/fill/w_314,h_314,al_c,usm_0.66_1.00_0.01/84770f_0d32a522caea440ea73af1b6f62be51c.png" alt="plat le famous" class="img-responsive">
+            </article>
+        </a>
+    </section>
+</div>
+
 
 
 <div class="container parallaxe1">
@@ -109,36 +132,10 @@
 </div>
 
 
-<div class="container grey">
-    <h2 class="center">Nos meilleurs plats</h2>
-    <hr class="souligne">
-
-    <section class="trois">
-        <a href="#">
-            <article class="col ">
-                <img src="/img/Template1/plat1.jpg" alt="plat le famous" class="img-responsive">
-            </article></a>
-        <a href="#">
-            <article class="col ">
-                <img src="/img/Template1/plat2.jpg" alt="plat le famous" class="img-responsive">
-            </article>
-        </a>
-        <a href="#">
-            <article class="col ">
-                <img src="/img/Template1/plat3.jpg" alt="plat le famous" class="img-responsive">
-            </article>
-        </a>
-    </section>
-
-    <a href="#" titre="autreplat" class="btn">Afficher plus</a>
-</div>
-
-
-
 
 <div class="container">
     <h2 class="center">Coordonnées</h2>
-    <hr class="souligne">
+
 
     <section class="deux">
         <article class="col">
@@ -191,6 +188,22 @@
 <footer >
     <p class="text-center copyright">&copy;2017 Famous restaurant</p>
 </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

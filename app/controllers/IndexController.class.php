@@ -3,33 +3,26 @@ class IndexController{
 
     public function indexAction($params){
 
-        $user = new User();
-        
+        $theme = new Theme();
+
+        $theme = $theme->populate(['statut' => 1]);
+
         $view = new View('index');
+        $view->setTemplate($theme->getName());
 
-        if (isset($_SESSION['theme']) && !empty($_SESSION['theme'])) {
-
-            $view->setTemplate($_SESSION['theme']);
-        }
-
-        else {
-
-            $view->setTemplate('famous');
-        }
-
-
-
-        
         //$view->assign("form" , $user->getForm());
         
     }
 
-    public function contact($params){
+    public function carteAction($params){
+        echo "Page carte";
+    }
+
+    public function contactAction($params){
         echo "Page contact";
     }
 
-    public function livredor () {
-
+    public function livreAction () {
         echo "Page livredor";
     }
 
