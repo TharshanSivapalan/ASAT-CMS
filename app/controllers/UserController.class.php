@@ -83,28 +83,26 @@ class UserController{
                     $user->setDateUpdated();
                     $user->setToken($token);
                     $user->save();
-
                     $user = $user->populate(["email"=>$email]);
 
                     $link = $user->getId() . '-' . $user->getToken();
-
                     // Envoie email
 
                     require_once '../app/lib/SwiftMailer/swift_required.php';
 
                     // Transport
 
-                    $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL);
+                    $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL, 'tls');
                     $transport->setUsername(USERMAIL);
                     $transport->setPassword(PASSMAIL);
 
                     // Message
 
                     $message = Swift_Message::newInstance();
-                    $message->setFrom(array('no-reply@asat-cms.com' => 'ASAT'));
+                    $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
                     $message->setTo($email);
                     $message->setSubject('Confirmation de votre compte');
-                    $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://asat.local/user/activate/" .$link ."'> Valider mon compte </a>");
+                    $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://www.asat-cms.com/user/activate/" .$link ."'> Valider mon compte </a>");
 
                     $type = $message->getHeaders()->get('Content-Type');
                     $type->setValue('text/html');

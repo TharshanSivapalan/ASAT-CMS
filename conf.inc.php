@@ -16,10 +16,10 @@
 
     // Email
 
-    define("HOSTMAIL", 'localhost');
-    define("USERMAIL", null);
-    define("PASSMAIL", null);
-    define("PORTMAIL", 1025);
+    define("HOSTMAIL", 'smtp.gmail.com');
+    define("USERMAIL", 'noreply@asat-cms.com');
+    define("PASSMAIL", 'asatauto');
+    define("PORTMAIL", 587);
 
     // User status
 
