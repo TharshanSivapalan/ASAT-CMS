@@ -26,9 +26,9 @@
                     <td data-label="Statut"><?php echo $user['id_groupuser']?></td>
                     <td data-label="Statut"><?php echo $user['date_inserted']?></td>
                     <td data-label="Statut"><?php echo $user['date_updated']?></td>
-                    <td data-label="Action">
-                        <i class="action-button edit fa fa-pencil"></i>
-                        <i class="action-button delete fa fa-trash"></i>
+                    <td data-label="Action" class="actions">
+                        <a href=""><i class="action-button edit fa fa-pencil"></i></a>
+                        <a href="" class="delete"><i class="action-button fa fa-trash"></i></a>
                     </td>
                 </tr>
 
