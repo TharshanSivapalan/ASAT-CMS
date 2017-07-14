@@ -92,7 +92,7 @@ class UserController{
 
                     // Transport
 
-                    $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL, 'tls');
+                    $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL);
                     $transport->setUsername(USERMAIL);
                     $transport->setPassword(PASSMAIL);
 
@@ -102,7 +102,7 @@ class UserController{
                     $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
                     $message->setTo($email);
                     $message->setSubject('Confirmation de votre compte');
-                    $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://www.asat-cms.com/user/activate/" .$link ."'> Valider mon compte </a>");
+                    $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a>");
 
                     $type = $message->getHeaders()->get('Content-Type');
                     $type->setValue('text/html');

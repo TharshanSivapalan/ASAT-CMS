@@ -9,6 +9,11 @@ class MenuController {
         $view = new View('menu-list');
         $view->setTemplate('backoffice');
 
+        $mMenu = new Menu();
+        
+        $list_menu = $mMenu->getall();
+        $view->assign('list_menu'  , $list_menu);
+
     }
 
     public function addAction () {

@@ -42,8 +42,6 @@
 </header>
 
 
-
-
 <div class="container grey">
     <h2 class="center">Pour vous accueillir</h2>
     <hr class="souligne">
@@ -114,20 +112,16 @@
     <hr class="souligne">
 
     <section class="trois">
+
+        <?php foreach ($list_menu as $menu): ?>
+
         <a href="#">
             <article class="col ">
-                <img src="/img/Template1/plat1.jpg" alt="plat le famous" class="img-responsive">
+                <img src="/img/Menus/<?php echo $menu['image']; ?>" alt="Menu <?php echo $menu['nom']; ?>" class="img-responsive">
             </article></a>
-        <a href="#">
-            <article class="col ">
-                <img src="/img/Template1/plat2.jpg" alt="plat le famous" class="img-responsive">
-            </article>
-        </a>
-        <a href="#">
-            <article class="col ">
-                <img src="/img/Template1/plat3.jpg" alt="plat le famous" class="img-responsive">
-            </article>
-        </a>
+
+        <?php endforeach; ?>
+
     </section>
 
     <a href="#" titre="autreplat" class="btn">Afficher plus</a>

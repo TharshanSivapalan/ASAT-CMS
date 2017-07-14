@@ -44,57 +44,39 @@
 <div class="container grey">
     <h2 class="center">à la une</h2>
 
+    <?php $i= 0; ?>
 
-    <section class="deux home-menu-block">
-        <article class="col center">
-            <img src="/img/Template2/plat3.jpg" alt="">
-        </article>
+    <?php foreach ($list_menu as $menu): ?>
 
-        <article class="col ">
-            <span class="menu-name"> Le nom du menu 1</span>
-            <span class="menu-price-before">POUR</span>
-            <span class="menu-price">10 €</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
+        <section class="deux home-menu-block">
 
-            <a href="#" titre="decouvrir" class="btn">MENU</a>
+            <?php if ($i % 2 == 0): ?>
+                <article class="col center">
+                    <img src="/img/Menus/<?php echo $menu['image']?>" alt="image menu <?php echo $menu['nom']?>">
+                </article>
+            <?php endif; ?>
 
-        </article>
-    </section>
+            <article class="col ">
+                <span class="menu-name"> <?php echo $menu['nom']?> </span>
+                <span class="menu-price-before">POUR</span>
+                <span class="menu-price"><?php echo $menu['prix']?> €</span>
+                <p><?php echo $menu['description'] ?> </p>
 
+                <a href="#" titre="decouvrir" class="btn">MENU</a>
 
-    <section class="deux home-menu-block">
+            </article>
 
-        <article class="col ">
-            <span class="menu-name"> Le nom du menu 2</span>
-            <span class="menu-price-before">POUR</span>
-            <span class="menu-price">10 €</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
+            <?php if ($i % 2 == 1): ?>
+                <article class="col center">
+                    <img src="/img/Menus/<?php echo $menu['image']?>" alt="image menu <?php echo $menu['nom']?>">
+                </article>
+            <?php endif; ?>
 
-            <a href="#" titre="decouvrir" class="btn">MENU</a>
+        </section>
 
-        </article>
+        <?php $i ++; ?>
 
-        <article class="col center">
-            <img src="/img/Template2/plat1.jpg" alt="">
-        </article>
-
-    </section>
-
-    <section class="deux home-menu-block">
-        <article class="col center">
-            <img src="/img/Template2/plat2.jpg" alt="">
-        </article>
-
-        <article class="col ">
-            <span class="menu-name"> Le nom du menu 3</span>
-            <span class="menu-price-before">POUR</span>
-            <span class="menu-price">10 €</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
-
-            <a href="#" titre="decouvrir" class="btn">MENU</a>
-
-        </article>
-    </section>
+    <?php endforeach; ?>
 
 
 </div>

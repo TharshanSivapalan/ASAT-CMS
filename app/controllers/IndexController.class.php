@@ -3,13 +3,21 @@ class IndexController{
 
     public function indexAction($params){
 
+        // Recuperation du theme
+        
         $theme = new Theme();
-
         $theme = $theme->populate(['statut' => 1]);
 
         $view = new View('index');
         $view->setTemplate($theme->getName());
 
+        // Recuperation des menus
+
+        $menu = new Menu();
+        $list_menu = $menu->getall();
+        $view->assign('list_menu'  , $list_menu);
+        
+        
         //$view->assign("form" , $user->getForm());
         
     }
