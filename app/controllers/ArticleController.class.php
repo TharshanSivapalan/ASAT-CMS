@@ -20,5 +20,24 @@ class RepasController
 
     }
 
-   
+    public function addAction () {
+
+        if (self::checkadmin()) {
+
+            $view = new View('article-add');
+            $view->setTemplate('backoffice');
+
+        }
+
+        else {
+
+            header('Location: /user/login');
+        }
+
+    }
+
+    private function checkadmin () {
+
+        return true;
+    }
 }
