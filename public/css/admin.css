@@ -525,16 +525,6 @@ table #pagination .pageNumber {
 
 
 
-
-
-
-
-
-
-
-
-
-
 @media(max-width: 600px){
     #main {
         padding: 0px;
@@ -544,7 +534,7 @@ table #pagination .pageNumber {
         padding: 0px;
     }
     
-    .multi-col-form .half-form {
+    .multi-col-form .half-form, .multi-col-form  .third-form {
         width: 100%;
     }
     

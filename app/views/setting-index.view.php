@@ -23,6 +23,9 @@
             <label>Logo du site</label>
             <input type="file" class="input" id="" name="" autocomplete="off">
 
+            <label>Iframe Google MAPS</label>
+            <input type="text" class="input" id="" name="" autocomplete="off">
+
             <label>Pays</label>
             <input type="text" class="input" id="" name="" autocomplete="off">
 

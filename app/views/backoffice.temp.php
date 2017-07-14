@@ -34,7 +34,7 @@ if(isset($_SESSION["messages"])){
 <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <ul>
-        <li><a href="/theme">DASHBOARD</a></li>
+        <li><a href="/dashboard">DASHBOARD</a></li>
 
         <li class="menu-level1"><a href="#">MENU<i class="fa fa-caret-down"></i></a>
             <ul class="menu-level2">
@@ -52,6 +52,10 @@ if(isset($_SESSION["messages"])){
             </ul>
         </li>
 
+        <li><a href="/article">ARTICLE</a></li>
+
+        <li><a href="/theme">THEME</a></li>
+
         <li class="menu-level1"><a href="#">UTILISATEUR<i class="fa fa-caret-down"></i></a>
             <ul class="menu-level2">
                 <li><a href="/user">Liste des utilisateurs</a></li>
@@ -60,8 +64,14 @@ if(isset($_SESSION["messages"])){
             </ul>
         </li>
 
-        <li><a href="#">MON PROFIL</a></li>
-        <li><a href="/setting">REGLAGE</a></li>
+        <li class="menu-level1"><a href="#">REGLAGE<i class="fa fa-caret-down"></i></a>
+            <ul class="menu-level2">
+                <li><a href="/setting">Réglage du site</a></li>
+                <li><a href="/user/add">Mon profil</a></li>
+
+            </ul>
+        </li>
+
         <li><a href="/user/logout" >DECONNEXION</a></li>
     </ul>
 </div>
