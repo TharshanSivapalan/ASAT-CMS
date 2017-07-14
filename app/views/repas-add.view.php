@@ -24,7 +24,7 @@
 
             <label>Description du menu</label>
             <br>
-            <textarea class="input" name ="description" id="description" cols="70" rows="15"></textarea>
+            <textarea class="input editor" name ="description" id="description" cols="70" rows="15"></textarea>
 
             <input type="submit" class="bouton" id="bt1" name ="envoyer1" value="Ajouter">
         </form>

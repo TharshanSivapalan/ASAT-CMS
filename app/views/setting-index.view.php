@@ -24,7 +24,7 @@
             <input type="file" class="input" id="" name="" autocomplete="off">
 
             <label>Iframe Google MAPS</label>
-            <input type="text" class="input" id="" name="" autocomplete="off">
+            <textarea class="input" name ="" id=""  rows="5"></textarea>
 
             <label>Pays</label>
             <input type="text" class="input" id="" name="" autocomplete="off">

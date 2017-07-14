@@ -31,7 +31,7 @@ function closeNav() {
 $(document).ready(function() {
 
     tinymce.init({
-        selector: 'textarea'
+        selector: '.editor'
     });
 
     // Pour le menu : lorsqu'il est ouvert et que le visiteur redimentionne la page à < 600px

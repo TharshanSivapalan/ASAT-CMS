@@ -14,7 +14,7 @@
 
             <label>Contenu du premier article</label>
             <br>
-            <textarea class="input" name ="description1" id="description1" cols="70" rows="15"></textarea>
+            <textarea class="input editor" name ="description1" id="description1" cols="70" rows="15"></textarea>
 
             <br><br>
 
@@ -26,7 +26,7 @@
 
             <label>Contenu de l'article</label>
             <br>
-            <textarea class="input" name ="description1" id="description1" cols="70" rows="15"></textarea>
+            <textarea class="input editor" name ="description1" id="description1" cols="70" rows="15"></textarea>
 
             <input type="submit" class="bouton" id="bt1" name ="envoyer1" value="Ajouter">
         </form>
