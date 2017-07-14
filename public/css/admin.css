@@ -377,13 +377,23 @@ ul a {
     cursor: pointer; 
 }
 
-.deux-col-form .half-form {
+.multi-col-form .half-form {
     width: 48%;
     float: left;
     
 }
 
-.deux-col-form > .half-form:first-child {
+.multi-col-form > .half-form:first-child {
+    margin-right: 4%;
+}
+
+.multi-col-form .third-form {
+    width: 30.66%;
+    float: left;
+    
+}
+
+.multi-col-form > .third-form:nth-child(1), .multi-col-form > .third-form:nth-child(2)  {
     margin-right: 4%;
 }
 
@@ -534,7 +544,7 @@ table #pagination .pageNumber {
         padding: 0px;
     }
     
-    .deux-col-form .half-form {
+    .multi-col-form .half-form {
         width: 100%;
     }
     

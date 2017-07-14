@@ -6,7 +6,7 @@
     <div class="onglet-contenu" >
         <form class="" id="" action="action.php" method="post">
 
-            <div class="deux-col-form">
+            <div class="multi-col-form">
                 <div class="half-form">
                     <label>Nom</label>
                     <br>
