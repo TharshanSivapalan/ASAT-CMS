@@ -5,7 +5,20 @@ class SettingController{
 
         $view = new View('setting-index');
         $view->setTemplate('backoffice');
+
+        // Recuperation des reglages du site
+
+        $setting = new Settings();
+        $list_setting = $setting->getall();
+        $view->assign('list_setting'  , $list_setting);
         
     }
+
+    public function editAction()
+    {
+
+    }
+
+
     
 }

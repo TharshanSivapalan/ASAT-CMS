@@ -11,6 +11,14 @@ class IndexController{
         $view = new View('index');
         $view->setTemplate($theme->getName());
 
+
+        // Recuperation des reglages du site
+
+        $setting = new Settings();
+        $list_setting = $setting->getall();
+        $view->assign('list_setting'  , $list_setting);
+
+
         // Recuperation des menus
 
         $menu = new Menu();

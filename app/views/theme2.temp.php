@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Famous Restaurant </title>
+    <title> <?php echo htmlspecialchars($list_setting[0]['valeur']) ?> </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descrption" content="ma description">
 
@@ -20,7 +20,7 @@
 <nav class="conteneur-colonnes">
     <div id="menu-logo-slogan-adresse">
         <div id="slogan">
-            <span>Slogan : Tout est bon !</span>
+            <span>Slogan : <?php echo htmlspecialchars($list_setting[1]['valeur']) ?> </span>
         </div>
         <div id="logo">
             <img id="comp-j143wefiimgimage" alt="" data- src="/img/Template2/favicon.png">
@@ -123,12 +123,12 @@
         <article class="col">
 
             <address>
-                <strong>Famous restaurant</strong><br>
-                21 Rue Erard<br>
-                75008 Paris<br>
-                <abbr title="Phone">+33 1 21 74 36 11</abbr><br><br>
-                <p>Métro Ligne 1, Reully Diderot</p><br>
-                <a href="mailto:contact@lefamous.fr">contact@famousrestaurant.fr</a><br><br>
+                <strong><?php echo htmlspecialchars($list_setting[0]['valeur']) ?></strong><br>
+                <?php echo htmlspecialchars($list_setting[6]['valeur']) ?><br>
+                <?php echo htmlspecialchars($list_setting[7]['valeur']) ?> <?php echo htmlspecialchars($list_setting[5]['valeur']) ?><br>
+                <abbr title="Phone">+<?php echo htmlspecialchars($list_setting[8]['valeur']) ?></abbr><br><br>
+                <p><?php echo htmlspecialchars($list_setting[10]['valeur']) ?></p><br>
+                <a href="mailto:<?php echo htmlspecialchars($list_setting[9]['valeur']) ?>"><?php echo htmlspecialchars($list_setting[9]['valeur']) ?></a><br><br>
                 <br>
             </address>
         </article>
@@ -164,29 +164,12 @@
 
 
 <div class="map-container">
-    <iframe frameborder="0" height="350" marginheight="0" marginwidth="0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.6333748191305!2d2.3854731999999874!3d48.8461315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d997a4b7d%3A0x86fe46d4b5ab876!2s21+Rue+Erard%2C+75012+Paris%2C+France!5e0!3m2!1sfr!2sus!4v1413469977854" width="640"></iframe>
+    <?php echo $list_setting[3]['valeur'] ?>
 </div>
 
 <footer >
-    <p class="text-center copyright">&copy;2017 Famous restaurant</p>
+    <p class="text-center copyright">&copy;<?php echo date("Y"); ?> <?php echo htmlspecialchars($list_setting[0]['valeur']) ?></p>
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
