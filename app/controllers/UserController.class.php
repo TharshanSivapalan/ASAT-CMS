@@ -74,8 +74,30 @@ class UserController{
 
                         $user = new User();
 
-                        if(!$user->populate(["email"=>$email]) ){
-                            
+                        if($user->populate(["email"=>$email]) ){
+                            $messsages [] = "L'adresse mail saisie est déjà utilisé par un compte !";
+                            $error = true;
+                        }
+
+                        //Vérification email
+                        if( !filter_var($email, FILTER_VALIDATE_EMAIL)  ){
+                            $messsages [] = "L'email n'est pas valide";
+                            $error = true;
+                        }
+
+                        //Vérification de la longueur du mpd
+                        if(strlen($password) < 8 || strlen($pwdConfirmation) > 16 ){
+                            $messsages [] = "Le mot de passe doit faire entre 8 et 16 caractères";
+                            $error = true;
+                        }
+
+                        //Vérification confirmation
+                        if($password != $pwdConfirmation){
+                            $messsages [] = "Le mot de passe de confirmation ne correspond";
+                            $error = true;;
+                        }
+                                               
+                        if(!$error) {
                             $token = bin2hex(openssl_random_pseudo_bytes(60));
 
                             if($password == $pwdConfirmation){
@@ -128,10 +150,8 @@ class UserController{
                                 
                                 header('Location: /user/login');
                             }
-                        } else {
-                            $messsages [] = "L'adresse mail saisie est déjà utilisé par un compte !";
-                            $error = true;
                         }
+                        
             }else {
                 if($_POST) {
                     $messsages [] = "Veuillez remplir tous les champs !";

@@ -565,3 +565,14 @@ table #pagination .pageNumber {
 .theme-block-content img{
     width: 100%;
 }
+
+
+.error-message {
+  margin: 20px;
+}
+
+.error-message li{
+    list-style-type: none;
+    color: red;
+    font-weight: bold;
+}

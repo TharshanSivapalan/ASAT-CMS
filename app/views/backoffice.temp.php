@@ -22,13 +22,7 @@
 <body>
 
 
-<?php
-            if(isset($_SESSION["messages"])){
-                foreach ($_SESSION["messages"] as $message) {
-                    echo "<li>".$message;
-                }
-            }
-            ?>
+
 
 
 <div id="mySidenav" class="sidenav">
@@ -82,6 +76,18 @@
     <div class="container grey">
 
         <?php include $this->view; ?>
+
+
+        <div class="error-message">
+            <?php
+                if(isset($_SESSION["messages"])){
+                    foreach ($_SESSION["messages"] as $message) {
+                        echo "<li>".$message;
+                    }
+                }
+            ?>
+        </div>
+        
 
     </div>
 
