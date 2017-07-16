@@ -23,12 +23,12 @@
 
 
 <?php
-if(isset($_SESSION["messages"])){
-    foreach ($_SESSION["messages"] as $message) {
-        echo "<li>".$listOfErrors[$message];
-    }
-}
-?>
+            if(isset($_SESSION["messages"])){
+                foreach ($_SESSION["messages"] as $message) {
+                    echo "<li>".$message;
+                }
+            }
+            ?>
 
 
 <div id="mySidenav" class="sidenav">
@@ -59,7 +59,7 @@ if(isset($_SESSION["messages"])){
         <li class="menu-level1"><a href="#">UTILISATEUR<i class="fa fa-caret-down"></i></a>
             <ul class="menu-level2">
                 <li><a href="/user">Liste des utilisateurs</a></li>
-                <li><a href="/user/add">Ajouter un utilisateur</a></li>
+                <li><a href="/user/signup">Ajouter un utilisateur</a></li>
 
             </ul>
         </li>
@@ -67,7 +67,7 @@ if(isset($_SESSION["messages"])){
         <li class="menu-level1"><a href="#">REGLAGE<i class="fa fa-caret-down"></i></a>
             <ul class="menu-level2">
                 <li><a href="/setting">Réglage du site</a></li>
-                <li><a href="/user/add">Mon profil</a></li>
+                <li><a href="/user/signup">Mon profil</a></li>
 
             </ul>
         </li>

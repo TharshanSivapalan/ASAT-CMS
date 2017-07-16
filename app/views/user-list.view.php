@@ -4,7 +4,7 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
-        <a href="/user/add" class="ajouter_element_btn" >Ajouter un utilisateur +</a>
+        <a href="/user/signup" class="ajouter_element_btn" >Ajouter un utilisateur +</a>
         <table>
             <thead>
             <tr>

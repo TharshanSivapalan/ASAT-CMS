@@ -50,8 +50,6 @@ class UserController{
 
                 $messsages [] = "Login ou mot de passe incorrect";
                 $_SESSION["messages"] = $messsages;
-                header('Location: /user/login');
-
             }
         }
 
@@ -59,81 +57,103 @@ class UserController{
 
     public function signupAction () {
 
-        if(isset($_POST['email']) && !empty($_POST['email'])){
 
-            $email = $_POST['email'];
-            $login = $_POST['login'];
-            $password = $_POST['password'];
-            $pwdConfirmation = $_POST['password_confirm'];
+        $error = false;
 
-            $user = new User();
+        if( $_POST &&
+            count($_POST) == 4 &&
+            !empty($_POST['email']) &&  
+            !empty($_POST['login']) &&  
+            !empty($_POST['password']) && 
+            !empty($_POST['password_confirm'])) {
 
-            if(!$user->populate(["email"=>$email]) && !$user->populate(["login"=>$login])){
-                
-                $token = bin2hex(openssl_random_pseudo_bytes(60));
+                        $email = trim($_POST['email']);
+                        $login = trim($_POST['login']);
+                        $password = $_POST['password'];
+                        $pwdConfirmation = $_POST['password_confirm'];
 
-                if($password == $pwdConfirmation){
-                    $user->setId(-1);
-                    $user->setEmail($email);
-                    $user->setLogin($login);
-                    $user->setPwd($password);
-                    $user->setStatus(0);
-                    $user->setIdGroupUser(1);
-                    $user->setDateInserted();
-                    $user->setDateUpdated();
-                    $user->setToken($token);
-                    $user->save();
-                    $user = $user->populate(["email"=>$email]);
+                        $user = new User();
 
-                    $link = $user->getId() . '-' . $user->getToken();
-                    // Envoie email
+                        if(!$user->populate(["email"=>$email]) ){
+                            
+                            $token = bin2hex(openssl_random_pseudo_bytes(60));
 
-                    require_once '../app/lib/SwiftMailer/swift_required.php';
+                            if($password == $pwdConfirmation){
+                                $user->setId(-1);
+                                $user->setEmail($email);
+                                $user->setLogin($login);
+                                $user->setPwd($password);
+                                $user->setStatus(0);
+                                $user->setIdGroupUser(1);
+                                $user->setDateInserted();
+                                $user->setDateUpdated();
+                                $user->setToken($token);
+                                $user->save();
+                                $user = $user->populate(["email"=>$email]);
 
-                    // Transport
+                                $link = $user->getId() . '-' . $user->getToken();
+                                // Envoie email
 
-                    $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL);
-                    $transport->setUsername(USERMAIL);
-                    $transport->setPassword(PASSMAIL);
+                                require_once '../app/lib/SwiftMailer/swift_required.php';
 
-                    // Message
+                                // Transport
 
-                    $message = Swift_Message::newInstance();
-                    $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
-                    $message->setTo($email);
-                    $message->setSubject('Confirmation de votre compte');
-                    $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a>");
+                                $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL);
+                                $transport->setUsername(USERMAIL);
+                                $transport->setPassword(PASSMAIL);
 
-                    $type = $message->getHeaders()->get('Content-Type');
-                    $type->setValue('text/html');
-                    $type->setParameter('charset', 'utf-8');
+                                // Message
 
-                    // Envoi
+                                $message = Swift_Message::newInstance();
+                                $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
+                                $message->setTo($email);
+                                $message->setSubject('Confirmation de votre compte');
+                                $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a>");
 
-                    $mailer = Swift_Mailer::newInstance($transport);
-                    $result = $mailer->send($message);
+                                $type = $message->getHeaders()->get('Content-Type');
+                                $type->setValue('text/html');
+                                $type->setParameter('charset', 'utf-8');
 
-                    if(!$result) echo "Une erreur s'est produite avec l'envoi de l'email";
+                                // Envoi
 
-                    $messsages [] = "Merci de valider votre compte";
-                    $_SESSION["messages"] = $messsages;
+                                $mailer = Swift_Mailer::newInstance($transport);
+                                $result = $mailer->send($message);
 
-                    $_SESSION["value_form"] = $_POST;
-                    
-                    header('Location: /user/login');
+                                if(!$result) echo "Une erreur s'est produite avec l'envoi de l'email";
+
+                                $messsages [] = "Merci de valider votre compte";
+                                $_SESSION["messages"] = $messsages;
+
+                                $_SESSION["value_form"] = $_POST;
+                                
+                                header('Location: /user/login');
+                            }
+                        } else {
+                            $messsages [] = "L'adresse mail saisie est déjà utilisé par un compte !";
+                            $error = true;
+                        }
+            }else {
+                if($_POST) {
+                    $messsages [] = "Veuillez remplir tous les champs !";
+                    $error = true;
                 }
+                
             }
 
-        } else {
-
             $user = new User();
-            $view = new View('signup');
+            $view = new View('user-add');
+            $view->setTemplate('backoffice');
 
-            $view->includeCss("home.css");
-            $view->includeJS("home.js");
+
+            $view->includeCss("admin.css");
+            $view->includeJS("admin.js");
 
             $view->assign("form" , $user->getInscriptionForm());
-        }
+
+            if($error) {
+                $_SESSION["messages"] = $messsages;
+            } 
+        
     }
 
     public function activateAction ($token = null) {
