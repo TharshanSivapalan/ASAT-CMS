@@ -42,41 +42,60 @@
 
 
 <div class="container grey">
-    <h2 class="center">à la une</h2>
+    <h2 class="center">Carte</h2>
 
-    <?php $i= 0; ?>
 
-    <?php foreach ($list_menu as $menu): ?>
-
-        <section class="deux home-menu-block">
-
-            <?php if ($i % 2 == 0): ?>
-                <article class="col center">
-                    <img src="/img/Menus/<?php echo $menu['image']?>" alt="image menu <?php echo $menu['nom']?>">
-                </article>
-            <?php endif; ?>
-
-            <article class="col ">
-                <span class="menu-name"> <?php echo $menu['nom']?> </span>
-                <span class="menu-price-before">POUR</span>
-                <span class="menu-price"><?php echo $menu['prix']?> €</span>
-                <p><?php echo $menu['description'] ?> </p>
-
-                <a href="#" titre="decouvrir" class="btn">MENU</a>
-
+    
+        <section class="deux carte-menu-block">
+            
+            
+            
+             <article class="col ">
+                <div class="menu-container">
+                 <h3 class="menu-carte-before">Menu 1</h3>
+                    <span>Entrée :</span><br>
+                    <span class="nom-plat">Amus bouche</span>
+                    <br><br>
+                    <span>Plat :</span><br>
+                    <span class="nom-plat">Boeuf bourgignon porvenance d'athis mons</span>
+                    <br><br>
+                    <span>Dessert :</span><br>
+                    <span class="nom-plat">Tarte flan</span>
+             
+                </div>
             </article>
 
-            <?php if ($i % 2 == 1): ?>
-                <article class="col center">
-                    <img src="/img/Menus/<?php echo $menu['image']?>" alt="image menu <?php echo $menu['nom']?>">
-                </article>
-            <?php endif; ?>
+            <article class="col center">
+                    <img src="/img/Menus/plat.jpg" alt="image menu ">
+                    <span> Prix: 20€</span>
+            </article>
 
         </section>
 
-        <?php $i ++; ?>
+        <section class="deux carte-menu-block">
 
-    <?php endforeach; ?>
+            
+             <article class="col ">
+                <div class="menu-container">
+                 <h3 class="menu-carte-before">Menu 2</h3>
+                    <span>Entrée:</span><br>
+                    <span class="nom-plat">Berlin apperitif</span>
+                    <br><br>
+                    <span>Plat:</span><br>
+                    <span class="nom-plat">Steak 300g</span>
+                    <br><br>
+                    <span>Dessert:</span><br>
+                    <span class="nom-plat">Ile flottante</span>
+                </div>
+             </article>
+            
+            
+            <article class="col center">
+                    <img src="/img/Menus/plat.jpg" alt="image menu ">
+                    <span> Prix: 15€</span>
+            </article>
+            
+        </section>
 
 
 </div>

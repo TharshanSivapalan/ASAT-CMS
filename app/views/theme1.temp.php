@@ -18,7 +18,7 @@
 <body>
 
 <nav class="conteneur-colonnes">
-    <img src="/img/Template1/favicon.png" class="logo" alt="logo portfolio">
+    <img src="/img/Template1/favicon.png" class="logo" alt="logo">
     <ul class="conteneur-colonnes">
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>

@@ -31,7 +31,7 @@ p, li{
     color: #424242;
 }
 
-h1,h2, p, a, li, strong, address, span{
+h1,h2,h3, p, a, li, strong, address, span{
     font-family: 'Raleway', sans-serif;
 }
 
@@ -189,7 +189,7 @@ section .col:first-child{
 
 .souligne{
     margin: 20px auto;
-    border: 1.5px solid #e88183;
+    border: 1.5px solid #BA2204;
     width: 50px;
 }
 
@@ -432,6 +432,10 @@ button {
     padding: 15px;
 }
 
+.menu-container{
+    width: 95%;
+}
+
 .text-hover-img-block {
     position: relative;
 }
@@ -444,4 +448,40 @@ button {
     transform: translateX(-50%) translateY(-50%);
     color: white;
     font-size: 2em;
+}
+
+
+.carte-menu-block .menu-carte-before {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+
+}
+
+.carte-menu-block .menu-carte-before:before,
+.carte-menu-block .menu-carte-before:after {
+    content: '';
+    display: inline-block;
+    height: 2px;
+    background: #BA2204;
+    width: 10%;
+    position: relative;
+    vertical-align: middle;
+    margin: 10px;
+
+}
+
+.carte-menu-block span{
+    font-weight: bold;
+}
+
+.carte-menu-block .menu-container{
+    text-align: center;
+}
+
+.nom-plat {
+    color: #BA2204;
 }
