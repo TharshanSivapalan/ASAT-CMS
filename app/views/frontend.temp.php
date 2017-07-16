@@ -23,11 +23,11 @@
         <div class="container-fluid">
             
             <?php
-            if(isset($_SESSION["messages"])){
-                foreach ($_SESSION["messages"] as $message) {
-                    echo "<li>".$message;
+                if(isset($_SESSION["messages"])){
+                    foreach ($_SESSION["messages"] as $message) {
+                        echo "<li>".$message;
+                    }
                 }
-            }
             ?>
 
 

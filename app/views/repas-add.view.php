@@ -9,10 +9,7 @@
             <label>Titre du menu</label>
             <input type="text" class="input" id="" name="" autocomplete="off">
 
-            <label>Image</label>
-            <input type="file" class="input" id="" name="" autocomplete="off">
-
-            <label>Catégorie une entrée </label>
+            <label>Type</label>
             <br>
             <select name="entre" class="input" id="">
                 <option value="" >...</option>

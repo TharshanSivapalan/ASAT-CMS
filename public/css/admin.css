@@ -576,3 +576,12 @@ table #pagination .pageNumber {
     color: red;
     font-weight: bold;
 }
+
+
+.explication-block {
+    margin: 30px;
+}
+
+.explication-block span {
+    color: gray;
+}

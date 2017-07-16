@@ -93,7 +93,7 @@ class UserController{
 
                         //Vérification confirmation
                         if($password != $pwdConfirmation){
-                            $messsages [] = "Le mot de passe de confirmation ne correspond";
+                            $messsages [] = "Les 2 mots de passe saisient ne sont pas identiques";
                             $error = true;;
                         }
                                                
@@ -218,6 +218,8 @@ class UserController{
 
     public function forgetAction () {
 
+        $error = false;
+
         if(isset($_POST['email']) && !empty($_POST['email'])){
 
             $email = $_POST['email'];
@@ -273,12 +275,12 @@ class UserController{
 
             else {
 
-                $_SESSION["messages"] = "Aucun compte accocie a cette adreese e-mail.";
-                header('Location: /user/forget');
+                $error = true;
+                $messsages [] = "Aucun compte n'est accocié à cette adreese e-mail.";
+                $_SESSION["messages"] = $messsages;
             }
         }
 
-        else {
 
             $view = new View('forgot');
 
@@ -288,7 +290,10 @@ class UserController{
             $view->includeCss("home.css");
             $view->includeJS("home.js");
 
-        }
+            if($error) {
+                $_SESSION["messages"] = $messsages;
+            } 
+
 
     }
 
@@ -325,12 +330,7 @@ class UserController{
                 echo 'token invalide';
                 die();
                 
-            }
-
-
-            
-
-            
+            } 
         }
     }
 
