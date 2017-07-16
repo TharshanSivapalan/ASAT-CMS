@@ -10,7 +10,7 @@
 
     define("DATABASE", 'asat-cms');
     define("USERDB", 'root');
-    define("PASSDB", 'Tharshan');
+    define("PASSDB", '');
     define("DBHOST", 'localhost');
     define("DBPORT", '3306');
 
