@@ -4,24 +4,21 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
-        <form class="" id="" action="action.php" method="post">
+        <form class="" id="" action="add" method="post">
 
             <label>Titre du menu</label>
-            <input type="text" class="input" id="" name="" autocomplete="off">
+            <input type="text" class="input" id="" name="nom" autocomplete="off">
 
             <label>Type</label>
             <br>
-            <select name="entre" class="input" id="">
+            <select name="category" class="input" id="">
                 <option value="" >...</option>
-                <option value="" >Entrée</option>
-                <option value="" >Plat</option>
-                <option value="" >Dessert</option>
+                <option value="1" >Entrée</option>
+                <option value="2" >Plat</option>
+                <option value="3" >Dessert</option>
             </select>
             <br>
 
-            <label>Description du menu</label>
-            <br>
-            <textarea class="input editor" name ="description" id="description" cols="70" rows="15"></textarea>
 
             <input type="submit" class="bouton" id="bt1" name ="envoyer1" value="Ajouter">
         </form>
