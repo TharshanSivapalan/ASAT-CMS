@@ -28,7 +28,7 @@ class RepasController
 
             if ($_POST) {
 
-                if(count($_POST) == 4 &&
+                if(count($_POST) == 3 &&
                 !empty($_POST['nom']) &&  
                 !empty($_POST['category'])) {
 

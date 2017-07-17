@@ -20,7 +20,20 @@ class MenuController {
         
         $view = new View('menu-add');
         $view->setTemplate('backoffice');
+
+        $entre = new Repas();
+        $plat = new Repas();
+        $dessert = new Repas();
         
+        $list_entre = $entre->getallBy(['category' => 1]);
+        $view->assign('list_entre'  , $list_entre);
+
+        $list_plat = $plat->getallBy(['category' => 2]);
+        $view->assign('list_plat'  , $list_plat);
+
+        $list_dessert = $dessert->getallBy(['category' => 3]);
+        $view->assign('list_dessert'  , $list_dessert);
+  
     }
     
     private function checkadmin () {

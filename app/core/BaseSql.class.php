@@ -106,4 +106,24 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
             
         }
+
+        public function getallBy ($search = [] , $returnQuery = false) {
+
+            foreach ($search as $key => $value) {
+
+                $where [] = $key. '=:' .$key;
+            }
+
+            $query = $this->db->prepare("SELECT * FROM " .$this->table. " WHERE " .implode(" AND " , $where));
+
+            $query->execute($search);
+
+            if ($returnQuery) {
+
+                return $query;
+            }
+
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+            
+        }
     }
