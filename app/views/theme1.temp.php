@@ -61,26 +61,25 @@
 
 
         </article>
-        <article class="col ">
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
 
-        </article>
+        <?php foreach ($list_article as $article): ?>
+
+            <article class="col ">
+
+                <h2><?php echo htmlspecialchars($article['titre']) ?></h2>
+
+                <?php echo htmlspecialchars($article['content']) ?>
+
+            </article>
+
+        <?php endforeach; ?>
+
     </section>
 
 
     <section class="deux">
-
-        <article class="col ">
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis incidunt maxime vitae similique nisi eligendi vel veniam architecto quisquam quibusdam! Saepe rem necessitatibus voluptatem eius, molestias dolor laboriosam voluptatibus eligendi?</p>
-            <br>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero itaque ratione voluptate excepturi repellendus aliquam recusandae architecto, vero nemo quo doloremque quasi odit consectetur rem magnam, aliquid ea quidem deleniti.</p>
-
-        </article>
-
+        
         <article class="col center">
 
             <div class="deux">

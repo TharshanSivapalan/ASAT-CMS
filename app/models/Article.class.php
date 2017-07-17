@@ -3,41 +3,28 @@
     class Article extends BaseSql{
 
         protected $id;
+        protected $titre;
         protected $content;
-        protected $name;
         protected $statut;
         protected $date_created;
         protected $date_updated;
     
-        public function __construct($id = -1, $content = null , $statut = 0, $name = null, $date_created = date('Y-m-d H:i:s') , $date_updated = null){
-
+        public function __construct(){
             parent::__construct();
-
-            $this->setId($id);
-            $this->setContent($content);
-            $this->setStatut($statut);
-            $this->setName($name);
-            $this->setdateCreated($date_created);
-            $this->setdateUpdated($date_updated);
         }
 
-
         public function getId() {
-
             return $this->id;
         }
 
-        public function getContent()
-        {
+        public function getTitre(){
+            return $this->titre;
+        }
+
+        public function getContent(){
             return $this->content;
         }
         
-        public function getName()
-        {
-            return $this->name;
-        }
-
-    
         public function getStatut()
         {
             return $this->statut;
@@ -45,47 +32,38 @@
 
          public function getdateCreated()
         {
-            return $this->$date_created;
+            return $this->date_created;
         }
 
          public function getdateUpdated()
         {
-            return $this->$date_updated;
+            return $this->date_updated;
         }
 
         /**
          * @param mixed $id
          */
         public function setId($id) {
+            $this->id = $id;
+        }
 
-            $id = (int) $id;
-            if ($id > 0) $this->id = $id;
+        public function setTitre($titre) {
+
+            $this->titre = trim($titre);
         }
 
         /**
          * @param mixed $content
          */
-        public function setContent($content)
-        {
-            if (is_string($content)) $this->content = $content;
+        public function setContent($content){
+            $this->content = trim($content);
         }
-
-    
-        /**
-         * @param mixed $name
-         */
-        public function setName($name)
-        {
-            if (is_string($name)) $this->name = trim($name);
-        }
-
         
         /**
          * @param mixed $statut
          */
-        public function setStatut($statut)
-        {
-            if ($statut == 0 || $statut == 1) $this->statut = $statut;
+        public function setStatut($statut){
+            $this->statut = $statut;
         }
 
         public function setdateCreated ($date_created) {
