@@ -289,15 +289,16 @@ li i {
 
 .logo_cote{
 
-height: 53px;
 min-width: 342px;
 max-width: 312px;
 display: flex;
 padding: 10px;
+position: fixed;
 
 }
 .logo_cote img{
-width: 52%;
+width: 167px;
+display: block;
 position: relative;
 left: -52px;
 border-radius: 5px;
@@ -557,8 +558,16 @@ table #pagination .pageNumber {
 
 
 @media(max-width: 600px){
+
+    .logo_cote{
+        max-width: initial;
+        min-width: initial;
+        width: 100%;
+        background-color: #28090A;
+    }
+
     #main {
-        padding: 0px;
+        padding: 72px 0px 0px 0px;
     }
     
     .formulaire form {
