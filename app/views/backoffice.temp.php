@@ -25,8 +25,10 @@
 
 
 
+
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+ <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
     <ul>
         <li><a href="/dashboard">DASHBOARD</a></li>
 
@@ -69,8 +71,11 @@
         <li><a href="/user/logout" >DECONNEXION</a></li>
     </ul>
 </div>
+    <div class="logo_cote">
+    <span onclick="openNav()" id="openbtn"><i class="fa fa-bars fa-2x"></i></span>
+    <img src="/img/logo_menu.png" class="lg_admin" alt="logo">
+    </div>
 
-<span onclick="openNav()" id="openbtn"><i class="fa fa-bars fa-2x"></i></span>
 
 <div id="main">
     <div class="container grey">

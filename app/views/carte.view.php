@@ -57,7 +57,7 @@
                     <span class="nom-plat">Amus bouche</span>
                     <br><br>
                     <span>Plat :</span><br>
-                    <span class="nom-plat">Boeuf bourgignon porvenance d'athis mons</span>
+                    <span class="nom-plat">Boeuf bourgignon provenance d'athis mons</span>
                     <br><br>
                     <span>Dessert :</span><br>
                     <span class="nom-plat">Tarte flan</span>

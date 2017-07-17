@@ -225,10 +225,14 @@ section .col:first-child{
 }
 
 #openbtn {
-    position: fixed;
-    top:10px;
-    left: 25px;
+    position: relative;
+    width: 63px;
+    height: 50px;
+    right: -171px;
     font-size: 1.5em;
+    bottom: 0px;
+    background-color:#28090A;
+    border-radius: 5px;
 }
 
 #openbtn .fa-bars:hover {
@@ -283,6 +287,30 @@ li i {
   color: #fff;
 }
 
+.logo_cote{
+
+height: 53px;
+min-width: 342px;
+max-width: 312px;
+display: flex;
+padding: 10px;
+
+}
+.logo_cote img{
+width: 52%;
+position: relative;
+left: -52px;
+border-radius: 5px;
+height: 50px;
+
+}
+.fa-2x {
+    color: #f4f4f4;
+    font-size: 2em;
+    padding: 2px;
+    padding-top: 1px;
+    padding-left: 11px;
+}
 
 
 ul a {
@@ -299,6 +327,9 @@ ul a {
       text-align: center;
     }
 }
+
+
+
 
 /**  FIN DE LA SIDEBAR  **/
 
@@ -539,10 +570,10 @@ table #pagination .pageNumber {
     }
     
     #openbtn {
-        position: inherit;
+        position: relative;
         display: block;
-        background-color: #4E0808;
-        padding: 10px;
+        background-color: #28090A;
+        padding: 0px;
     }
     .fa-2x {
         color: #f4f4f4;
