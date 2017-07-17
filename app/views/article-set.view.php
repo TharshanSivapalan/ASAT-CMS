@@ -2,7 +2,7 @@
     <div class="titre">
         <h3>MES ARTICLES</h3>
     </div><!--.onglets-->
-
+    
     <div class="onglet-contenu" >
         <form class="" id="" action="action.php" method="post">
 
@@ -10,33 +10,31 @@
                 <span>*Les articles sont utilisés afin d'être affichés sur la home. Ils permettent ainsi de mettre en valeur votre restaurant. Seul 2 articles peuvent être affichés.</span>
             </div>
 
-            <h4>PREMIER ARTICLE</h4>
-            <br>
+            <?php $i = 1; ?>
 
-            <label>Affiché l'article</label>
-            <input type="checkbox" id="article1" value="article1"><br><br>
+            <?php foreach ($list_article as $article): ?>
 
-            <label>Titre de l'article</label>
-            <input type="text" class="input" id="" name="" autocomplete="off">
 
-            <label>Contenu du premier article</label>
-            <br>
-            <textarea class="input editor" name ="description1" id="description1" cols="70" rows="15"></textarea>
+                <h4>ARTICLE <?php echo $i; ?></h4>
+                <br>
 
-            <br><br>
+                <label>Affiché l'article</label>
+                <input type="checkbox" id="article<?php echo $i; ?>" value="article<?php echo $i; ?>"><br><br>
 
-             <h4>SECOND ARTICLE</h4>
-             <br>
+                <label>Titre de l'article</label>
+                <input type="text" class="input" id="" name="" autocomplete="off" value="<?php echo htmlspecialchars($article['titre']) ?>">
 
-            <label>Affiché l'article</label>
-            <input type="checkbox" id="article2" value="article2"><br><br>
+                <label>Contenu du premier article</label>
+                <br>
+                <textarea class="input editor" name ="description1" id="description1" cols="70" rows="15">
+                    <?php echo htmlspecialchars($article['content']) ?>
+                </textarea>
 
-            <label>Titre de l'article</label>
-            <input type="text" class="input" id="" name="" autocomplete="off">
+                <br><br>
 
-            <label>Contenu de l'article</label>
-            <br>
-            <textarea class="input editor" name ="description1" id="description1" cols="70" rows="15"></textarea>
+                <?php $i ++; ?>
+
+            <?php endforeach; ?>
 
             <input type="submit" class="bouton" id="bt1" name ="envoyer1" value="Mettre à jour">
         </form>

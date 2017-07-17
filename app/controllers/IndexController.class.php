@@ -18,7 +18,12 @@ class IndexController{
         $list_setting = $setting->getall();
         $view->assign('list_setting'  , $list_setting);
 
+        // Recuperation des articles du site
 
+        $articles = new Article();
+        $list_article = $articles->getall();
+        $view->assign('list_article'  , $list_article);
+        
         // Recuperation des menus
 
         $menu = new Menu();
