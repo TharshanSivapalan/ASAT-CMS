@@ -33,6 +33,63 @@ class MenuController {
 
         $list_dessert = $dessert->getallBy(['category' => 3]);
         $view->assign('list_dessert'  , $list_dessert);
+
+
+        $error = false;
+
+        if ($_POST) {
+
+                if(
+                !empty($_POST['nom']) && 
+                !empty($_POST['prix']) ) {
+
+                } else {
+                    $messsages [] = "Veuillez remplir tous les champs !";
+                    $error = true;
+                }
+
+                $menu = new Menu();
+
+                if($_POST['description'] != "") {
+                    $menu->setDescription($_POST["description"]);
+                }
+
+                if(!empty($_POST['image'])) {
+                    $menu->setImage($_POST["image"]);
+                }
+
+                if(!empty($_POST['entre'])) {
+                    $menu->setEntree($_POST["entre"]);
+                }
+
+                if(!empty($_POST['plat'])) {
+                    $menu->setPlat($_POST["plat"]);
+                }
+
+                if(!empty($_POST['dessert'])) {
+                    $menu->setDessert($_POST["dessert"]);
+                }
+
+
+
+                $menu->setId(-1);
+                $menu->setNom($_POST["nom"]);
+   
+                $menu->setPrix($_POST["prix"]);
+
+                var_dump($menu);
+
+
+                $menu->save();
+        }
+
+
+        if($error) {
+            $_SESSION["messages"] = $messsages;
+        }
+ 
+
+            
   
     }
     

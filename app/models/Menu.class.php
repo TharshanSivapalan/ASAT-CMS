@@ -10,7 +10,17 @@ class Menu extends BaseSql{
     protected $dessert;
     protected $prix;
 
-    public function __construct(){
+    public function __construct($id=-1, $nom=null, $description=null, $image=null, $entree=0, $plat=0, $dessert=0, $prix=0 ){
+
+        $this->setId($id)   ; 
+        $this->setNom($nom)   ;
+        $this->setDescription($description)   ;
+        $this->setImage($image)   ;
+        $this->setEntree($entree)   ;
+        $this->setPlat($plat)   ;
+        $this->setDessert($dessert)   ;
+        $this->setPrix($prix)   ;
+
 
         parent::__construct();
     }
@@ -31,6 +41,22 @@ class Menu extends BaseSql{
 
     public function setImage($image){
         $this->image = $image;
+    }  
+
+    public function setEntree($entree){
+        $this->entree = $entree;
+    }  
+
+    public function setPlat($plat){
+        $this->plat = $plat;
+    }  
+
+    public function setDessert($dessert){
+        $this->dessert = $dessert;
+    }  
+
+    public function setPrix($prix){
+        $this->prix = $prix;
     }
 
 
@@ -50,111 +76,22 @@ class Menu extends BaseSql{
     public function getImage(){
         return $this->image;
     }
+
+    public function getEntree(){
+        return $this->image;
+    }
+
+    public function getPlat(){
+        return $this->image;
+    }
+
+    public function getDessert(){
+        return $this->image;
+    }
+
+    public function getPrix(){
+        return $this->image;
+    }
     
-    public function getInscriptionForm(){
-        return [
-            "struct"=>[
-                "method"=>"POST",
-                "action"=>"/user/signup",
-                "submit"=>"Creer un compte",
-                "class" => "basic-button",
-            ],
-            "data"=>[
-                "login"=>[
-                    "type"=>"text",
-                    "class" => "basic-input",
-                    "placeholder"=>"Login",
-                    "required"=>1
-                ],
-                "email"=>[
-                    "type"=>"email",
-                    "class" => "basic-input",
-                    "placeholder"=>"Adresse e-mail",
-                    "required"=>1
-                ],
-                "password"=>[
-                    "type"=>"password",
-                    "class" => "basic-input",
-                    "placeholder"=>"Mot de passe",
-                    "required"=>1
-                ],
-                "password_confirm"=>[
-                    "type"=>"password",
-                    "class" => "basic-input",
-                    "placeholder"=>"Confirmer votre mot de passe",
-                    "required"=>1
-                ]
-            ]
-        ];
-    }
-    public function getConnectionForm(){
-        return [
-            "struct" => [
-                "method"=>"POST",
-                "action"=>"/user/login",
-                "submit"=>"Connexion",
-                "class" => "basic-button",
-            ],
-            "data" => [
-                "login"=>[
-                    "type"=>"text",
-                    "class" => "basic-input",
-                    "placeholder"=>"Login",
-                    "required"=>1
-                ],
-                "password"=>[
-                    "type"=>"password",
-                    "class" => "basic-input",
-                    "placeholder"=>"Mot de passe",
-                    "required"=>1
-                ]
-            ]
-        ];
-    }
-
-    public function getForgetForm(){
-        return [
-            "struct" => [
-                "method"=>"POST",
-                "action"=>"/user/forget",
-                "submit"=>"M'envoyer les instructions par e-mail ",
-                "class" => "basic-button",
-            ],
-
-            "data" => [
-                "email"=>[
-                    "type"=>"email",
-                    "class" => "basic-input",
-                    "placeholder"=>"Adresse e-mail",
-                    "required"=>1
-                ]
-            ]
-        ];
-    }
-
-    public function getPasswordForm(){
-        return [
-            "struct" => [
-                "method"=>"POST",
-                "action"=>"/user/password",
-                "submit"=>"Changer le mot de passe",
-                "class" => "basic-button",
-            ],
-
-            "data" => [
-                "password"=>[
-                    "type"=>"password",
-                    "class" => "basic-input",
-                    "placeholder"=>"Nouveau mot de passe",
-                    "required"=>1
-                ],
-                "password_confirm"=>[
-                    "type"=>"password",
-                    "class" => "basic-input",
-                    "placeholder"=>"Confirmer nouveau mot de passe",
-                    "required"=>1
-                ]
-            ]
-        ];
-    }
+    
 }
