@@ -96,6 +96,13 @@ class UserController{
                             $error = true;
                         }
 
+
+                        //Vérification de la longueur du login
+                        if(strlen($login) < 3 ){
+                            $messsages [] = "Votre login est trop court !";
+                            $error = true;
+                        }
+
                         //Vérification de la longueur du mpd
                         if(strlen($password) < 8 || strlen($pwdConfirmation) > 16 ){
                             $messsages [] = "Le mot de passe doit faire entre 8 et 16 caractères";

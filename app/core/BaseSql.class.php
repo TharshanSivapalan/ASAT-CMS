@@ -126,4 +126,23 @@
             return $query->fetchAll(PDO::FETCH_ASSOC);
             
         }
+
+
+        public function deleteBy ($search = [] , $returnQuery = false) {
+
+            foreach ($search as $key => $value) {
+
+                $where [] = $key. '=:' .$key;
+            }
+
+            $query = $this->db->prepare("DELETE FROM " .$this->table. " WHERE " .implode(" AND " , $where));
+
+            $query->execute($search);
+
+            if ($returnQuery) {
+
+                return $query;
+            }
+            
+        }
     }

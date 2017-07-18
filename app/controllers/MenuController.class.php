@@ -75,7 +75,6 @@ class MenuController {
    
                 $menu->setPrix($_POST["prix"]);
 
-                var_dump($menu);
 
                 $menu->save();
         }
@@ -88,6 +87,33 @@ class MenuController {
 
             
   
+    }
+
+    public function deleteAction () {
+
+        self::checkadmin();
+        
+
+
+        $confirm = false;
+
+        if ($_POST) {
+            $menu = new Menu();
+
+            if($menu->deleteBy(["id"=>$_POST['id']])) {
+                $messsages [] = "Le menu a bien été supprimé !";
+                $confirm = true;
+            }
+        }
+
+        
+        $view = new View('menu-list');
+        $view->setTemplate('backoffice');
+
+        $mMenu = new Menu();
+        
+        $list_menu = $mMenu->getall();
+        $view->assign('list_menu'  , $list_menu);
     }
 
     private function checkadmin () {

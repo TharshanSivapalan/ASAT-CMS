@@ -110,16 +110,16 @@ $(document).ready(function() {
     
     
     
-    $('table td.actions a.delete').click(function(event) {
+    $('table td.actions .delete').click(function(event) {
         
-        confirmDialog();
+        confirmDialog($(this));
         return false;
     });
 
-    function confirmDialog() {
+    function confirmDialog($object) {
         var conf = confirm('L\'élement sélectionné sera supprimé définitivement !');
         if(conf)
-        window.location=this.attr("href");
+            $object.find("form").submit();
     }
     
     

@@ -19,9 +19,13 @@
                 <tr>
                     <td data-label="date"><?php echo htmlspecialchars ($menu['nom']); ?></td>
                     <td data-label="Titre">04/01/2017</td>
-                    <td data-label="Action">
-                        <i class="action-button edit fa fa-pencil"></i>
-                        <i class="action-button delete fa fa-trash"></i>
+                    <td data-label="Action" class="actions">
+                        <a href=""><i class="action-button edit fa fa-pencil"></i></a>
+                        <i class="action-button fa fa-trash delete">
+                            <form action="menu/delete" href="menu/delete" method="POST">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars ($menu['id']); ?>">
+                            </form>
+                        </i>
                     </td>
                 </tr>
             <?php endforeach; ?>
