@@ -60,8 +60,10 @@ class User extends BaseSql{
     public function setToken($token){
         $this->token = $token;
     }
-    public function setResetAt(){
-        $this->reset_at = date("Y-m-d H:i:s");
+    public function setResetAt($date = 0){
+
+        if($date == 0) $this->reset_at = date("Y-m-d H:i:s");
+        else $this->reset_at = NULL;
     }
 
    //----------------
@@ -185,11 +187,11 @@ class User extends BaseSql{
         ];
     }
 
-    public function getPasswordForm(){
+    public function getPasswordForm($id , $token){
         return [
             "struct" => [
                 "method"=>"POST",
-                "action"=>"/user/password",
+                "action"=>"/user/password/".$id."-".$token,
                 "submit"=>"Changer le mot de passe",
                 "class" => "basic-button",
             ],

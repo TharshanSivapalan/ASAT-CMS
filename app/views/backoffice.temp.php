@@ -22,10 +22,6 @@
 <body>
 
 
-
-
-
-
 <div id="mySidenav" class="sidenav">
  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
@@ -92,7 +88,7 @@
                 }
             ?>
         </div>
-        
+
 
     </div>
 
@@ -108,8 +104,6 @@
 <?php foreach ($js as $script): ?>
     <script src="/<?php echo $script?>"></script>
 <?php endforeach; ?>
-
-<?php unset($_SESSION["messages"]);  ?>
 
 </body>
 </html>

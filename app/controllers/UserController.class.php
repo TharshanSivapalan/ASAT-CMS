@@ -3,6 +3,8 @@ class UserController{
 
     public function indexAction(){
 
+        self::checkadmin();
+
         $view = new View('user-list');
         $view->setTemplate('backoffice');
 
@@ -42,14 +44,23 @@ class UserController{
 
             if ($user && password_verify($password , $user->getPassword())) {
 
-                    $_SESSION['user'] = $user;
-                    header('Location: /theme');
+                // Sauvegarde du user dans la session
+
+                    $_SESSION["user"] = array(
+                        'login' => $user->getLogin(),
+                        'email' => $user->getEmail(),
+                        'id' => $user->getId(),
+                        'id_groupe_user' => $user->getIdGroupUser(),
+                    );
+
+                    header("Location: /theme");
+                    exit();
+
             }
 
             else {
 
-                $messsages [] = "Login ou mot de passe incorrect";
-                $_SESSION["messages"] = $messsages;
+                $_SESSION["message"] = "Login ou mot de passe incorrect";
             }
         }
 
@@ -193,24 +204,25 @@ class UserController{
 
             if($user && $token[1] == $user->getToken()) {
 
+                // Compte active
+
                 $user->setStatus(1);
                 $user->setToken(null);
                 $user->save();
 
-                $messsages [] = "Votre compte a bien ete activé , vous pouvez vous connecter";
-                $_SESSION["messages"] = $messsages;
+                $_SESSION["message"] = "Votre compte a bien ete activé , vous pouvez vous connecter";
 
-                // Compte active
+
             }
 
             else {
 
-                $messsages [] = "token invalide";
-                $_SESSION["messages"] = $messsages;
+                $_SESSION["message"] = "Token invalide";
 
             }
 
             header('Location: /user/login');
+            exit(0);
 
         }
 
@@ -218,7 +230,13 @@ class UserController{
 
     public function forgetAction () {
 
-        $error = false;
+        $view = new View('forget');
+
+        $user = new User();
+        $view->assign("form" , $user->getForgetForm());
+
+        $view->includeCss("home.css");
+        $view->includeJS("home.js");
 
         if(isset($_POST['email']) && !empty($_POST['email'])){
 
@@ -230,14 +248,11 @@ class UserController{
 
             if($user) {
 
-                $token = bin2hex(openssl_random_pseudo_bytes(60));
+                $token = bin2hex(openssl_random_pseudo_bytes(30));
 
                 $user->setToken($token);
                 $user->setResetAt();
                 $user->save();
-
-                echo $token;
-                die();
 
                 // Envoie email
 
@@ -256,8 +271,8 @@ class UserController{
                 $message = Swift_Message::newInstance();
                 $message->setFrom(array('no-reply@asat-cms.com' => 'ASAT'));
                 $message->setTo($email);
-                $message->setSubject('Reinisialisation de votre mot de passe');
-                $message->setBody("Merci de cliquer ici pour changer votr mot de passe <a href='http://asat.local/user/password/" .$link ."'> Changer mon mot de passe </a>");
+                $message->setSubject('Réinitialisation de votre mot de passe');
+                $message->setBody("Merci de cliquer ici pour changer votre mot de passe <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/password/" .$link ."'> Changer mon mot de passe </a>");
 
                 $type = $message->getHeaders()->get('Content-Type');
                 $type->setValue('text/html');
@@ -268,76 +283,88 @@ class UserController{
                 $mailer = Swift_Mailer::newInstance($transport);
                 $result = $mailer->send($message);
 
-                if(!$result) echo "Une erreur s'est produite avec l'envoi de l'email";
+                if(!$result) $_SESSION["message"] = "Une erreur s est produite avec l'envoie de l'e-mail";
 
-                header('Location: /user/login');
+                $_SESSION["message"] = "Un e-mail vous a été envoyé pour changer votre mot de passe";
+
             }
 
             else {
 
-                $error = true;
-                $messsages [] = "Aucun compte n'est accocié à cette adreese e-mail.";
-                $_SESSION["messages"] = $messsages;
+                $_SESSION["message"] = "Aucun compte n'est accocié à cette adresse e-mail";
             }
+
+            header('Location: /user/forget');
+            exit(0);
         }
-
-
-            $view = new View('forgot');
-
-            $user = new User();
-            $view->assign("form", $user->getForgetForm());
-
-            $view->includeCss("home.css");
-            $view->includeJS("home.js");
-
-            if($error) {
-                $_SESSION["messages"] = $messsages;
-            } 
-
-
     }
 
     public function passwordAction ($token = null) {
 
 
         if (empty($token)){
-
-            // redirection
-            die('pas de token');
+            header('Location: /user/login');
+            exit(0);
         }
 
         else {
-
+            
             $token = explode('-' , $token[0]);
-
             $user = new User();
 
             $user = $user->populate(['id' => $token[0]]);
 
-            if($user && $token[1] == $user->getToken()) {
+
+            if($user && $token[1] === $user->getToken()) {
 
                 $view = new View('password');
 
-                $user = new User();
-                $view->assign("form" , $user->getPasswordForm());
+                $view->assign("form", $user->getPasswordForm($user->getId(), $user->getToken()));
 
                 $view->includeCss("home.css");
                 $view->includeJS("home.js");
+
+                if ($_POST) {
+
+                    // Ajouter les verification (pwd1 = pwd2 et superier à 8 caracteres)
+
+                    $user->setPwd($_POST['password']);
+                    $user->setToken(NULL);
+                    $user->setResetAt(NULL);
+                    $user->save();
+
+                    $_SESSION["message"] = "Votre mot de passe a été changé avec success";
+                    header('Location: /user/login');
+                    exit(0);
+                }
+
             }
 
             else {
 
-                echo 'token invalide';
-                die();
-                
+                $_SESSION["message"] = "Token invalide";
+                header('Location: /user/login');
+                exit(0);
+
             } 
         }
     }
-
+    
     public function logoutAction () {
 
         unset($_SESSION['user']);
+        $_SESSION["message"] = "Vous etes maintenat decconecté";
         header('Location: /user/login');
+        exit(0);
+    }
+
+    private function checkadmin () {
+
+        if (!isset($_SESSION['user']['id'])){
+
+            header("Location: /user/login");
+            exit(0);
+        }
     }
     
     

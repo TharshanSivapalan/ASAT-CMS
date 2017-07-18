@@ -18,11 +18,10 @@
 <body>
 
 <nav class="conteneur-colonnes">
-    <img src="/img/Template1/favicon.png" class="logo" alt="logo">
+    <img src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?> " class="logo" alt="logo">
     <ul class="conteneur-colonnes">
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>
-        <li ><a href="/index/livre">Livre d'or</a></li>
         <li ><a href="/index/contact">Contact</a></li>
         <li ><a href="/user/login">Connexion</a></li>
     </ul>

@@ -3,6 +3,8 @@ class ThemeController{
 
     public function indexAction() {
 
+        self::checkadmin();
+
         $view = new View('theme-list');
         $view->setTemplate('backoffice');
 
@@ -12,6 +14,8 @@ class ThemeController{
     }
 
     public function selectAction ($id){
+
+        self::checkadmin();
         
         if (empty($id)) {
 
@@ -24,6 +28,15 @@ class ThemeController{
             
             header('Location: /theme');
 
+        }
+    }
+
+    private function checkadmin () {
+
+        if (!isset($_SESSION['user']['id'])){
+
+            header("Location: /user/login");
+            exit(0);
         }
     }
 

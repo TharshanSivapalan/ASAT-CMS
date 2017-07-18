@@ -17,7 +17,7 @@
             
             <?php foreach ($list_menu as $menu): ?>
                 <tr>
-                    <td data-label="date"><?php echo $menu['nom']?></td>
+                    <td data-label="date"><?php echo htmlspecialchars ($menu['nom']); ?></td>
                     <td data-label="Titre">04/01/2017</td>
                     <td data-label="Action">
                         <i class="action-button edit fa fa-pencil"></i>

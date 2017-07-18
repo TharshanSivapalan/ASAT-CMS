@@ -3,6 +3,8 @@ class SettingController{
 
     public function indexAction(){
 
+        self::checkadmin();
+
         $view = new View('setting-index');
         $view->setTemplate('backoffice');
 
@@ -14,11 +16,18 @@ class SettingController{
         
     }
 
-    public function editAction()
-    {
+    public function editAction() {
 
+        self::checkadmin();
     }
 
+    private function checkadmin () {
 
+        if (!isset($_SESSION['user']['id'])){
+
+            header("Location: /user/login");
+            exit(0);
+        }
+    }
     
 }

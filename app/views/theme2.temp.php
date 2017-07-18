@@ -23,7 +23,7 @@
             <span>Slogan : <?php echo htmlspecialchars($list_setting[1]['valeur']) ?> </span>
         </div>
         <div id="logo">
-            <img id="comp-j143wefiimgimage" alt="" data- src="/img/Template2/favicon.png">
+            <img id="comp-j143wefiimgimage" alt="logo" src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?>">
         </div>
         <div id="adresse">
             <span>Paris / Athis-mons / Aulnay-sous-bois / Villepinte</span>
@@ -33,7 +33,6 @@
     <ul class="conteneur-colonnes">
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>
-        <li ><a href="/livre">Livre d'or</a></li>
         <li ><a href="/contact">Contact</a></li>
         <li ><a href="/user/login">Connexion</a></li>
     </ul>

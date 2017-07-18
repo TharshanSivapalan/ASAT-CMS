@@ -4,7 +4,7 @@ class CarteController
 
     public function indexAction() {
 
-        if (self::checkadmin()) {
+            self::checkadmin();
 
             $view = new View('carte');
 
@@ -19,22 +19,15 @@ class CarteController
             $menu = new Menu();
             $list_menu = $menu->getall();
             $view->assign('list_menu'  , $list_menu);
-
-        }
-
-
-        else {
-
-            header('Location: /user/login');
-        }
-
-
-
     }
 
 
-    private function checkadmin () {
+        private function checkadmin () {
 
-        return true;
-    }
+            if (!isset($_SESSION['user']['id'])){
+
+                header("Location: /user/login");
+                exit(0);
+            }
+        }
 }

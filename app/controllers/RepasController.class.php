@@ -1,22 +1,18 @@
 <?php
-class RepasController
-{
+
+class RepasController {
 
     public function indexAction() {
 
-        if (self::checkadmin()) {
+            self::checkadmin();
 
             $view = new View('repas-list');
             $view->setTemplate('backoffice');
-        }
 
+            $mRepas = new Repas();
 
-        else {
-
-            header('Location: /user/login');
-        }
-
-
+            $list_repas = $mRepas->getall();
+            $view->assign('list_repas'  , $list_repas);
 
     }
 
@@ -24,7 +20,7 @@ class RepasController
 
         $error = false;
 
-        if (self::checkadmin()) {
+        self::checkadmin();
 
             if ($_POST) {
 
@@ -54,19 +50,14 @@ class RepasController
             $view = new View('repas-add');
             $view->setTemplate('backoffice');
 
-            
-
         }
-
-        else {
-
-            header('Location: /user/login');
-        }
-
-    }
 
     private function checkadmin () {
 
-        return true;
+        if (!isset($_SESSION['user']['id'])){
+
+            header("Location: /user/login");
+            exit(0);
+        }
     }
 }

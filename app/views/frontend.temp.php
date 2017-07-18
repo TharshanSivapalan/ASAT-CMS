@@ -22,15 +22,14 @@
     <div class="site-content">
         <div class="container-fluid">
             
-            <?php
-                if(isset($_SESSION["messages"])){
-                    foreach ($_SESSION["messages"] as $message) {
-                        echo "<li>".$message;
-                    }
-                }
-            ?>
+            <?php  if(isset($_SESSION["message"])) : ?>
 
+                <p><?php echo $_SESSION["message"] ?></p>
 
+                <?php unset($_SESSION["message"]);  ?>
+
+            <?php endif; ?>
+            
             <div class="content">
 
                 <?php include $this->view; ?>
@@ -58,10 +57,6 @@
     <?php foreach ($js as $script): ?>
         <script src="/<?php echo $script?>"></script>
     <?php endforeach; ?>
-
-    <?php unset($_SESSION["messages"]);  ?>
-
-
 
 </body>
 </html>

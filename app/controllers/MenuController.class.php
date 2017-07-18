@@ -1,8 +1,7 @@
 <?php
 class MenuController {
 
-    public function indexAction()
-    {
+    public function indexAction() {
 
         self::checkadmin();
 
@@ -13,10 +12,11 @@ class MenuController {
         
         $list_menu = $mMenu->getall();
         $view->assign('list_menu'  , $list_menu);
-
     }
 
     public function addAction () {
+
+        self::checkadmin();
         
         $view = new View('menu-add');
         $view->setTemplate('backoffice');
@@ -70,15 +70,12 @@ class MenuController {
                     $menu->setDessert($_POST["dessert"]);
                 }
 
-
-
                 $menu->setId(-1);
                 $menu->setNom($_POST["nom"]);
    
                 $menu->setPrix($_POST["prix"]);
 
                 var_dump($menu);
-
 
                 $menu->save();
         }
@@ -92,10 +89,13 @@ class MenuController {
             
   
     }
-    
+
     private function checkadmin () {
 
+        if (!isset($_SESSION['user']['id'])){
 
-        return true;
+            header("Location: /user/login");
+            exit(0);
+        }
     }
 }

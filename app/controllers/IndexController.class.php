@@ -46,5 +46,13 @@ class IndexController{
     public function livreAction () {
         echo "Page livredor";
     }
+    
+    public function error404Action(){
+
+        $view = new View('404');
+
+        $view->includeCss("home.css");
+        $view->includeJS("home.js");
+    }
 
 }

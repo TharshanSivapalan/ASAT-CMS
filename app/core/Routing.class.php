@@ -45,17 +45,17 @@ class Routing{
         $pathController = "../app/controllers/".$this->controllerName.".class.php";
 
         if( !file_exists($pathController) ){
-            echo "Le fichier du controller n'existe pas";
+            //echo "Le fichier du controller n'existe pas";
             return false;
         }
         include $pathController;
 
         if ( !class_exists($this->controllerName)  ){
-            echo "Le fichier du controller existe mais il n'y a pas de classe";
+            //echo "Le fichier du controller existe mais il n'y a pas de classe";
             return false;
         }
         if(  !method_exists($this->controllerName, $this->actionName) ){
-            echo "L'action n'existe pas";
+            //echo "L'action n'existe pas";
             return false;
         }
         return true;
@@ -74,7 +74,10 @@ class Routing{
     }
 
     public function page404(){
-        die("Erreur 404");
+        $this->controllerName = 'IndexController';
+        $this->actionName = 'error404Action';
+
+        self::runRoute();
     }
 
 
