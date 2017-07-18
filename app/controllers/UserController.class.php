@@ -68,6 +68,7 @@ class UserController{
 
     public function signupAction () {
 
+        self::checkadmin();
 
         $error = false;
 
@@ -360,10 +361,40 @@ class UserController{
     public function logoutAction () {
 
         unset($_SESSION['user']);
-        $_SESSION["message"] = "Vous etes maintenat decconecté";
+        $_SESSION["message"] = "Vous êtes maintenant déconnecté";
         header('Location: /user/login');
         exit(0);
     }
+
+    public function deleteAction () {
+
+        self::checkadmin();
+        
+
+
+        $confirm = false;
+
+        if ($_POST) {
+            $user = new User();
+
+            if($user->deleteBy(["id"=>$_POST['id']])) {
+                $messsages [] = "L'utilisateur a bien été supprimé !";
+                $confirm = true;
+            }
+        }
+
+        
+        if($confirm) {
+            $_SESSION["messages"] = $messsages;
+        }
+        
+        header('Location: /user');
+
+    }
+
+
+
+
 
     private function checkadmin () {
 

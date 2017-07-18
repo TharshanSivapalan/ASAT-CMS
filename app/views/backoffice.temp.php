@@ -105,6 +105,8 @@
     <script src="/<?php echo $script?>"></script>
 <?php endforeach; ?>
 
+<?php unset($_SESSION["messages"]);  ?>
+
 </body>
 </html>
 

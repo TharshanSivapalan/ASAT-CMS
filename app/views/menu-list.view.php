@@ -22,7 +22,7 @@
                     <td data-label="Action" class="actions">
                         <a href=""><i class="action-button edit fa fa-pencil"></i></a>
                         <i class="action-button fa fa-trash delete">
-                            <form action="menu/delete" href="menu/delete" method="POST">
+                            <form action="menu/delete" method="POST">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars ($menu['id']); ?>">
                             </form>
                         </i>

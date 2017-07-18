@@ -19,6 +19,7 @@ class RepasController {
     public function addAction () {
 
         $error = false;
+        $viewToShow = '';
 
         self::checkadmin();
 
@@ -40,17 +41,53 @@ class RepasController {
                 $repas->setCategory($_POST["category"]);
 
                 $repas->save();
+
+                if(!$error ) {
+                    $viewToShow = "list";
+                }
             }
 
 
-            if($error) {
-                $_SESSION["messages"] = $messsages;
+            
+
+            if($viewToShow == "list") {
+                header('Location: /repas');
             }
             
             $view = new View('repas-add');
             $view->setTemplate('backoffice');
 
+            if($error ) {
+                $_SESSION["messages"] = $messsages;
+            }
+
+    }
+
+    public function deleteAction () {
+
+        self::checkadmin();
+        
+
+
+        $confirm = false;
+
+        if ($_POST) {
+            $repas = new Repas();
+
+            if($repas->deleteBy(["id"=>$_POST['id']])) {
+                $messsages [] = "Le repas a bien été supprimé !";
+                $confirm = true;
+            }
         }
+
+        
+        if($confirm) {
+            $_SESSION["messages"] = $messsages;
+        }
+        
+        header('Location: /repas');
+
+    }
 
     private function checkadmin () {
 

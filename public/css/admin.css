@@ -192,10 +192,10 @@ section .col:first-child{
 /* DEBUT DE LA SIDEBAR */
 
 .sidenav {
+    z-index: 10;
     height: 100%; 
     width: 0; 
     position: fixed; 
-    z-index: 1; 
     top: 0;
     left: 0;
     background-color: #610B0B; 
@@ -288,7 +288,7 @@ li i {
 }
 
 .logo_cote{
-
+z-index: 9;
 min-width: 342px;
 max-width: 312px;
 display: flex;

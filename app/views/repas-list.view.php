@@ -9,7 +9,6 @@
             <thead>
             <tr>
                 <th scope="col">titre</th>
-                <th scope="col">date</th>
                 <th scope="col">categorie</th>
                 <th scope="col">action</th>
             </tr>
@@ -21,11 +20,14 @@
 
                 <tr>
                     <td data-label="date"><?php echo htmlspecialchars ($repas['nom']) ?></td>
-                    <td data-label="Titre"><?php echo htmlspecialchars($repas['date']) ?></td>
                     <td data-label="Catégorie"><?php echo REPAS_CATEGORIES[$repas['category']] ?></td>
-                    <td data-label="Action">
-                        <i class="action-button edit fa fa-pencil"></i>
-                        <i class="action-button delete fa fa-trash"></i>
+                    <td data-label="Action" class="actions">
+                        <a href=""><i class="action-button edit fa fa-pencil"></i></a>
+                        <i class="action-button fa fa-trash delete">
+                            <form action="repas/delete" method="POST">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars ($repas['id']); ?>">
+                            </form>
+                        </i>
                     </td>
                 </tr>
 

@@ -18,24 +18,10 @@ class MenuController {
 
         self::checkadmin();
         
-        $view = new View('menu-add');
-        $view->setTemplate('backoffice');
-
-        $entre = new Repas();
-        $plat = new Repas();
-        $dessert = new Repas();
-        
-        $list_entre = $entre->getallBy(['category' => 1]);
-        $view->assign('list_entre'  , $list_entre);
-
-        $list_plat = $plat->getallBy(['category' => 2]);
-        $view->assign('list_plat'  , $list_plat);
-
-        $list_dessert = $dessert->getallBy(['category' => 3]);
-        $view->assign('list_dessert'  , $list_dessert);
-
+        $viewToShow = "";
 
         $error = false;
+        
 
         if ($_POST) {
 
@@ -77,7 +63,32 @@ class MenuController {
 
 
                 $menu->save();
+
+                $viewToShow = "list";
         }
+
+        if($viewToShow == "list") {
+            header('Location: /menu');
+        }
+
+        $view = new View('menu-add');
+        $view->setTemplate('backoffice');
+
+        $entre = new Repas();
+        $plat = new Repas();
+        $dessert = new Repas();
+        
+        $list_entre = $entre->getallBy(['category' => 1]);
+        $view->assign('list_entre'  , $list_entre);
+
+        $list_plat = $plat->getallBy(['category' => 2]);
+        $view->assign('list_plat'  , $list_plat);
+
+        $list_dessert = $dessert->getallBy(['category' => 3]);
+        $view->assign('list_dessert'  , $list_dessert);
+
+
+        
 
 
         if($error) {
@@ -106,14 +117,13 @@ class MenuController {
             }
         }
 
+        if($confirm) {
+            $_SESSION["messages"] = $messsages;
+        }
         
-        $view = new View('menu-list');
-        $view->setTemplate('backoffice');
+        header('Location: /menu');
 
-        $mMenu = new Menu();
         
-        $list_menu = $mMenu->getall();
-        $view->assign('list_menu'  , $list_menu);
     }
 
     private function checkadmin () {

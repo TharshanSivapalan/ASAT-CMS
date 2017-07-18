@@ -28,7 +28,11 @@
                     <td data-label="Statut"><?php echo $user['date_updated']?></td>
                     <td data-label="Action" class="actions">
                         <a href=""><i class="action-button edit fa fa-pencil"></i></a>
-                        <a href="" class="delete"><i class="action-button fa fa-trash"></i></a>
+                        <i class="action-button fa fa-trash delete">
+                            <form action="user/delete" method="POST">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars ($user['id']); ?>">
+                            </form>
+                        </i>
                     </td>
                 </tr>
 
