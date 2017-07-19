@@ -10,12 +10,6 @@
     define("ACTIVE", "1");
     define("BANI", "2");
 
-    // User permission
-
-    define("ADMIN", 1);
-    define("MODERATEUR", 2);
-    define("CLIENT", 0);
-
     // Category repas
 
     const REPAS_CATEGORIES = array( 1 => "Entree" , 2 => "Plat" , 3 => "Dessert");
