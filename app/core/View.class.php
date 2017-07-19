@@ -18,7 +18,7 @@
         public function setView ($view) {
             
             if(file_exists("../app/views/".$view.".view.php") ){
-                $this->view = $view.".view.php";
+                $this->view = "../app/views/".$view.".view.php";
             }
             
             else {
