@@ -7,7 +7,9 @@ class Repas extends BaseSql{
 
 
     public function __construct($id=-1, $nom=null, $category=0){
-
+        $this->setId($id);
+        $this->setNom($nom);
+        $this->setCategory($category);
         parent::__construct();
     }
 
@@ -22,7 +24,7 @@ class Repas extends BaseSql{
         $this->nom=trim($nom);
     }
     public function setCategory($category){
-        $this->category=trim($category);
+        $this->category=$category;
     }
 
 

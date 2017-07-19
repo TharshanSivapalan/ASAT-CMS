@@ -25,8 +25,14 @@ class ThemeController{
         else {
 
             $mTheme = new Theme();
-            
+
+            $mTheme->setId(intval($id[0]));
+            $mTheme->setStatus(1);
+            $mTheme->resetToNull(['statut' => 0]);
+            $mTheme->updateOneBy(['statut' => 1,'id' => $id[0]]);
+
             header('Location: /theme');
+
 
         }
     }

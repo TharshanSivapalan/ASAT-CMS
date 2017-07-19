@@ -48,8 +48,6 @@ class RepasController {
             }
 
 
-            
-
             if($viewToShow == "list") {
                 header('Location: /repas');
             }
@@ -62,6 +60,57 @@ class RepasController {
             }
 
     }
+
+    public function updateAction () {
+
+        self::checkadmin();
+        
+
+        $confirm = false;
+
+        if ($_POST) {
+
+            if (!empty($_POST['id'])) {
+
+                $view = new View('repas-update');
+                $view->setTemplate('backoffice');
+
+                $mRepas = new Repas();
+
+                $repas = $mRepas->getallBy(['id' => $_POST['id']]);
+                $view->assign('repas'  , $repas);
+
+            }
+
+            if (!empty($_POST['category']) && 
+                !empty($_POST['nom']) && 
+                !empty($_POST['id']) ) {
+                $repas = new Repas();
+
+
+                $repas->setId(intval($_POST['id']));
+                $repas->setNom($_POST["nom"]);
+                $repas->setCategory(intval($_POST['category']));
+
+                if($repas->save()) {
+                    echo "yes mec";
+                } else {echo "une re==";};
+
+            } else {
+                echo "chaud";
+            }
+
+        } else {
+            header('Location: /inaccessible');
+        }
+
+
+        if($confirm) {
+            $_SESSION["messages"] = $messsages;
+        }
+
+    }
+
 
     public function deleteAction () {
 
