@@ -113,21 +113,18 @@ class User extends BaseSql{
             "data"=>[
                 "login"=>[
                     "type"=>"text",
-                    "class" => "basic-input",
                     "placeholder"=>"Login",
                     "required"=>1,
                     "class" => "input"
                 ],
                 "email"=>[
                     "type"=>"email",
-                    "class" => "basic-input",
                     "placeholder"=>"Adresse e-mail",
                     "required"=>1,
                     "class" => "input"
                 ],
                 "password"=>[
                     "type"=>"password",
-                    "class" => "basic-input",
                     "placeholder"=>"Mot de passe",
                     "required"=>1,
                     "class" => "input"

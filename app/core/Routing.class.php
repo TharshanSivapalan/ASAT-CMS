@@ -79,7 +79,10 @@ class Routing{
     }
 
     public function page404(){
-        die("Erreur 404");
+        $this->controllerName = 'IndexController';
+        $this->actionName = 'error404Action';
+
+        self::runRoute();
     }
 
 

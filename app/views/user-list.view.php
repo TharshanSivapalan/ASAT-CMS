@@ -11,6 +11,7 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Email</th>
                 <th scope="col">Status</th>
+                <th scope="col">Role</th>
                 <th scope="col">Date inscription</th>
                 <th scope="col">Date modification</th>
                 <th scope="col">Action</th>
@@ -21,11 +22,12 @@
             <?php foreach ($list_user as $user): ?>
 
                 <tr>
-                    <td scope="row" data-label="nom"><?php echo $user['login']?></td>
-                    <td data-label="Email"><?php echo $user['email']?></td>
-                    <td data-label="Statut"><?php echo $user['id_groupuser']?></td>
-                    <td data-label="Statut"><?php echo $user['date_inserted']?></td>
-                    <td data-label="Statut"><?php echo $user['date_updated']?></td>
+                    <td scope="row" data-label="nom"><?php echo htmlspecialchars  ($user['login'])?></td>
+                    <td data-label="email"><?php echo htmlspecialchars ($user['email']) ?></td>
+                    <td data-label="status"><?php echo htmlspecialchars (STATUS[$user['status']])?></td>
+                    <td data-label="role"><?php echo htmlspecialchars(ROLE[$user['id_groupuser']])?></td>
+                    <td data-label="date_inscription"><?php echo htmlspecialchars($user['date_updated'])?></td>
+                    <td data-label="date_modification"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="Action" class="actions">
                         <a href=""><i class="action-button edit fa fa-pencil"></i></a>
                         <i class="action-button fa fa-trash delete">
