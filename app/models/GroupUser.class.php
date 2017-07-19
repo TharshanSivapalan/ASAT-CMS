@@ -4,16 +4,17 @@ class GroupUser extends BaseSql{
 	protected $id;
 	protected $name;
 	protected $permission;
+	protected $date_created;
 	protected $date_updated;
 
 	public function __construct($id=-1, $name=null, $permission=0){
-
+		/*
 		$this->date_updated = date("Y-m-d H:i:s");
 
 		$this->setId($id);
 		$this->setName($name);
 		$this->setPermission($permission);
-				
+		*/		
 		parent::__construct();
 		
 	}
@@ -31,6 +32,12 @@ class GroupUser extends BaseSql{
 	public function setPermission($permission){
 		$this->permission=trim($permission);
 	}
+    public function setDateCreated(){
+        $this->date_created = date("Y-m-d H:i:s");
+    }
+    public function setDateUpdated(){
+        $this->date_updated = date("Y-m-d H:i:s");
+    }
 
 	//----------------
 	//----GETTERS-----

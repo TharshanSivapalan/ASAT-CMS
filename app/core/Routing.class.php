@@ -11,12 +11,17 @@ class Routing{
     private $params;
 
     public function __construct(){
-        //    /projet%20php/user/add
+        //    /user/add
         $uri = $_SERVER["REQUEST_URI"];
         //    user/add
         $uri = preg_replace("#".BASE_PATH_PATTERN."#i", "", $uri, 1);
         //Array ( [0] => user [1] => add )
         $this->uriExploded = explode("/",  trim($uri, "/")   );
+        // Redirection vers l'installer si le fichier config n'est pas validé
+        if(!Helper::checkConfig() && $this->uriExploded[0] != "installer"){
+            $uri = "/installer/index";
+            $this->uriExploded = explode("/",  trim($uri, "/")   );
+        }
         $this->setController();
         $this->setAction();
         $this->setParams();
@@ -74,10 +79,7 @@ class Routing{
     }
 
     public function page404(){
-        $this->controllerName = 'IndexController';
-        $this->actionName = 'error404Action';
-
-        self::runRoute();
+        die("Erreur 404");
     }
 
 

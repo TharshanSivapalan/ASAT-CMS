@@ -139,7 +139,7 @@ class UserController{
 
                                 // Transport
 
-                                $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL);
+                                $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL, 'tls');
                                 $transport->setUsername(USERMAIL);
                                 $transport->setPassword(PASSMAIL);
 
