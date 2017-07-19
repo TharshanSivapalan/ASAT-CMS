@@ -50,6 +50,8 @@
 
             else {
 
+            
+
                 $sqlSet = null;
 
               
@@ -57,18 +59,38 @@
 
                     $data[$column] = $this->$column;
                     $sqlSet [] .= $column."=:".$column;
+
+                    echo $column;
+
+
                 }
 
-                $query = $this->db->prepare("UPDATE " .$this->table. " SET date_updated = sysdate() ,".implode("," , $sqlSet)." WHERE id=:id ;");
+
+                var_dump($data);
+
+
+                $query = $this->db->prepare("UPDATE " .$this->table. " SET ".implode("," , $sqlSet)." WHERE id=:id ;");
+
+
+                var_dump($query);
 
                 
                 $query->execute($data);
+
+                if ($query->execute($data)) {
+
+                return true;
+            }
 
 
             }
 
 
         }
+
+
+
+
 
         public function populate( $search = ["id"=>3] ){
            
@@ -145,4 +167,40 @@
             }
             
         }
+
+        public function resetToNull ($search = []  , $returnQuery = false) {
+            foreach ($search as $key => $value) {
+
+                $set [] = $key. '=:' .$key;
+            }
+
+            $query = $this->db->prepare("UPDATE " .$this->table. " SET ".implode(" , " , $set));
+
+            $query->execute($search);
+
+            if ($returnQuery) {
+
+                return $query;
+            }
+        }
+
+
+        public function updateOneBy($search = []  , $returnQuery = false) {
+            foreach ($search as $key => $value) {
+
+                $set [] = $key. '=:' .$key;
+            }
+
+            $query = $this->db->prepare("UPDATE " .$this->table. " SET ".implode(" , " , $set). " WHERE id=:id ;");
+
+           
+
+            $query->execute($search);
+            
+            if ($returnQuery) {
+
+                return $query;
+            }
+        }
+
     }

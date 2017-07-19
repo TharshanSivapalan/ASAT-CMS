@@ -22,7 +22,11 @@
                     <td data-label="date"><?php echo htmlspecialchars ($repas['nom']) ?></td>
                     <td data-label="Catégorie"><?php echo REPAS_CATEGORIES[$repas['category']] ?></td>
                     <td data-label="Action" class="actions">
-                        <a href=""><i class="action-button edit fa fa-pencil"></i></a>
+                        <i class="action-button edit fa fa-pencil" onclick="$('#updatePage').submit()">
+                            <form action="repas/update" method="POST" id="updatePage">
+                                <input type="hidden" name="id" value="<?php echo htmlspecialchars ($repas['id']); ?>">
+                            </form>
+                        </i>
                         <i class="action-button fa fa-trash delete">
                             <form action="repas/delete" method="POST">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars ($repas['id']); ?>">
