@@ -10,6 +10,16 @@
     define("ACTIVE", "1");
     define("BANI", "2");
 
+    const STATUS = array( 0 => "Non active" , 1 => "Active" , 2 => "Bani");
+
+	// User permission
+
+	define("ADMIN", 1);
+	define("MODERATEUR", 2);
+	define("CLIENT", 0);
+
+	const ROLE = array( 1 => "Admin" , 2 => "Moderateur");
+
     // Category repas
 
     const REPAS_CATEGORIES = array( 1 => "Entree" , 2 => "Plat" , 3 => "Dessert");
