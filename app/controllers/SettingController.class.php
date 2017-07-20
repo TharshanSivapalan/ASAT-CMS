@@ -23,7 +23,7 @@ class SettingController{
 
     private function checkadmin () {
 
-        if (!isset($_SESSION['user']['id'])){
+        if (!isset($_SESSION['user']['id_groupe_user']) || $_SESSION['user']['id_groupe_user'] !=  ADMIN){
 
             header("Location: /user/login");
             exit(0);

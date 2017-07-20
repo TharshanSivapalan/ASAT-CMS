@@ -8,8 +8,11 @@
         <table>
             <thead>
             <tr>
-                <th scope="col">titre</th>
-                <th scope="col">date</th>
+                <th scope="col">nom</th>
+                <th scope="col">entree</th>
+                <th scope="col">plat</th>
+                <th scope="col">dessert</th>
+                <th scope="col">prix</th>
                 <th scope="col">action</th>
             </tr>
             </thead>
@@ -17,9 +20,12 @@
             
             <?php foreach ($list_menu as $menu): ?>
                 <tr>
-                    <td data-label="date"><?php echo htmlspecialchars ($menu['nom']); ?></td>
-                    <td data-label="Titre">04/01/2017</td>
-                    <td data-label="Action" class="actions">
+                    <td data-label="nom"><?php echo htmlspecialchars ($menu['nom']); ?></td>
+                    <td data-label="entree"><?php echo htmlspecialchars ($menu['entree']); ?></td>
+                    <td data-label="plat"><?php echo htmlspecialchars ($menu['plat']); ?></td>
+                    <td data-label="dessert"><?php echo htmlspecialchars ($menu['dessert']); ?></td>
+                    <td data-label="prix"><?php echo htmlspecialchars ($menu['prix']); ?> &euro; </td>
+                    <td data-label="action" class="actions">
                         <a href=""><i class="action-button edit fa fa-pencil"></i></a>
                         <i class="action-button fa fa-trash delete">
                             <form action="menu/delete" method="POST">

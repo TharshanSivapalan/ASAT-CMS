@@ -49,7 +49,7 @@ class User extends BaseSql{
         $this->status= $status;
     }
     public function setIdGroupUser($id_groupuser){
-        $this->id_groupuser = 1;
+        $this->id_groupuser = $id_groupuser;
     }
     public function setDateInserted(){
         $this->date_inserted = date("Y-m-d H:i:s");
@@ -83,10 +83,10 @@ class User extends BaseSql{
         return $this->password;
     }
     public function getStatus(){
-        return 1;
+        return $this->status;
     }
     public function getIdGroupUser(){
-        return 1;
+        return $this->id_groupuser;
     }
     public function getDateCreated(){
         return $this->date_inserted;
@@ -131,9 +131,14 @@ class User extends BaseSql{
                 ],
                 "password_confirm"=>[
                     "type"=>"password",
-                    "class" => "basic-input",
                     "placeholder"=>"Confirmer votre mot de passe",
                     "required"=>1,
+                    "class" => "input"
+                ],
+                
+                "role" => [
+                    "type"=>"select",
+                    "fields" => ROLE,
                     "class" => "input"
                 ]
             ]

@@ -9,8 +9,23 @@ class MenuController {
         $view->setTemplate('backoffice');
 
         $mMenu = new Menu();
-        
+        $mrepas = new Repas();
+
         $list_menu = $mMenu->getall();
+
+        // Recuperation des nom des repas pour chaque menu
+
+        foreach ($list_menu as &$menu) {
+
+            $entree = $mrepas->populate(['id' => $menu['entree']]);
+            $plat = $mrepas->populate(['id' => $menu['plat']]);
+            $dessert = $mrepas->populate(['id' => $menu['dessert']]);
+
+            $menu['entree'] = $entree->getNom();
+            $menu['plat'] = $plat->getNom();
+            $menu['dessert'] = $dessert->getNom();
+        }
+        
         $view->assign('list_menu'  , $list_menu);
     }
 

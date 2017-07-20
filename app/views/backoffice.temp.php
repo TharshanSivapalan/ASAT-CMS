@@ -48,21 +48,29 @@
 
         <li><a href="/theme">THEME</a></li>
 
-        <li class="menu-level1"><a href="#">UTILISATEUR<i class="fa fa-caret-down"></i></a>
-            <ul class="menu-level2">
-                <li><a href="/user">Liste des utilisateurs</a></li>
-                <li><a href="/user/signup">Ajouter un utilisateur</a></li>
+        <?php if ($_SESSION['user']['id_groupe_user'] == ADMIN):  ?>
 
-            </ul>
-        </li>
+            <li class="menu-level1"><a href="#">UTILISATEUR<i class="fa fa-caret-down"></i></a>
+                <ul class="menu-level2">
+                    <li><a href="/user">Liste des utilisateurs</a></li>
+                    <li><a href="/user/signup">Ajouter un utilisateur</a></li>
+    
+                </ul>
+            </li>
 
-        <li class="menu-level1"><a href="#">REGLAGE<i class="fa fa-caret-down"></i></a>
-            <ul class="menu-level2">
-                <li><a href="/setting">Réglage du site</a></li>
-                <li><a href="/user/signup">Mon profil</a></li>
+        <?php endif; ?>
+        
+        <?php if ($_SESSION['user']['id_groupe_user'] == ADMIN):  ?>
 
-            </ul>
-        </li>
+            <li class="menu-level1"><a href="#">REGLAGE<i class="fa fa-caret-down"></i></a>
+                <ul class="menu-level2">
+                    <li><a href="/setting">Réglage du site</a></li>
+                    <li><a href="/user/signup">Mon profil</a></li>
+    
+                </ul>
+            </li>
+        
+        <?php endif; ?>
 
         <li><a href="/user/logout" >DECONNEXION</a></li>
     </ul>
@@ -77,8 +85,7 @@
     <div class="container grey">
 
         <?php include $this->view; ?>
-
-
+        
         <div class="error-message">
             <?php
                 if(isset($_SESSION["messages"])){
