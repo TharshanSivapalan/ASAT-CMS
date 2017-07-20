@@ -4,15 +4,15 @@ class InstallerController{
 	public function __construct(){
 
 		// Vérifier si le fichier config n'est pas configuré sinon rediriger vers l'accueil du site
-		if(Helper::checkConfig()){
+		/*if(Helper::checkConfig()){
 			header("Location: /index");
-		}
+		}*/
 	}
 
 	// Page d'accueil de l'installeur
 	public function indexAction(){
-		$view = new View('installer/welcome');
-        $view->setTemplate('installer/installer');
+		$view = new View('welcome');
+        $view->setTemplate('installer');
 	}
 
 	// Page formulaire de la base de données 
@@ -64,8 +64,8 @@ class InstallerController{
         }
 
         // Création de la page de vue
-        $view = new View('installer/dbconfig');
-        $view->setTemplate('installer/installer');
+        $view = new View('dbconfig');
+        $view->setTemplate('installer');
 
         // Condition si tableau d'erreur existe et qu'il n'est pas vide
         // alors enregistrer dans la variable error pour l'afficher dans la vue
@@ -198,12 +198,12 @@ class InstallerController{
 
 		}
 
-		$view = new View('installer/siteconfig');
-		$view->setTemplate('installer/installer');
+		$view = new View('siteconfig');
+		$view->setTemplate('installer');
 	}
 
 	public function errorAction(){
-		$view = new View('installer/error');
-		$view->setTemplate('installer/installer');
+		$view = new View('error');
+		$view->setTemplate('installer');
 	}
 }
