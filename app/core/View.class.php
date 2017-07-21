@@ -35,17 +35,10 @@
 
         public function setTemplate ($template) {
 
-            $uri = $_SERVER["REQUEST_URI"];
-            $uri = preg_replace("#".BASE_PATH_PATTERN."#i", "", $uri, 1);
-            $uri = (explode("/",  trim($uri, "/")   ));
-
-            if(file_exists("../app/views/".$uri[0]."/".$template.".temp.php") || file_exists("../app/views/".$template.".temp.php")){
-                if(file_exists("../app/views/".$uri[0]."/".$template.".temp.php")){
-                    $this->template = "../app/views/".$uri[0]."/".$template.".temp.php";
-                }else{
-                    $this->template = "../app/views/".$template.".temp.php";
-                } 
-           }else {
+            if(file_exists("../app/views/Templates/".$template.".temp.php")){
+                $this->template = "../app/views/Templates/".$template.".temp.php";
+            }
+            else {
 
                 die("Le template n'existe pas");
             }
