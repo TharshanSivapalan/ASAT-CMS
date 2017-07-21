@@ -195,7 +195,13 @@
 
            
 
+            var_dump($query);
+            var_dump($search);
+
             $query->execute($search);
+
+
+
             
             if ($returnQuery) {
 

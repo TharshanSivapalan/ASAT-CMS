@@ -36,14 +36,17 @@ class RepasController {
 
                 $repas = new Repas();
 
-                $repas->setId(-1);
-                $repas->setNom($_POST["nom"]);
-                $repas->setCategory($_POST["category"]);
+                
+                
 
-                $repas->save();
+                
 
                 if(!$error ) {
                     $viewToShow = "list";
+                    $repas->setId(-1);
+                    $repas->setNom($_POST["nom"]);
+                    $repas->setCategory($_POST["category"]);
+                    $repas->save();
                 }
             }
 
@@ -66,38 +69,41 @@ class RepasController {
         self::checkadmin();
         
 
-        $confirm = false;
+        $error = false;
 
         if ($_POST) {
 
-            if (!empty($_POST['id'])) {
+            $mRepas = new Repas();
+            $view = new View('repas-update');
 
-                $view = new View('repas-update');
-                $view->setTemplate('backoffice');
 
-                $mRepas = new Repas();
+            if (!empty($_POST['id']) ) {
 
-                $repas = $mRepas->getallBy(['id' => $_POST['id']]);
-                $view->assign('repas'  , $repas);
+                if($mRepas->populate(["id"=>$_POST["id"]])) {
+
+                    self::assignement($mRepas, $view);
+
+                } else {
+                    header('Location: /inaccessible');
+                }
 
             }
 
             if (!empty($_POST['category']) && 
                 !empty($_POST['nom']) && 
                 !empty($_POST['id']) ) {
-                $repas = new Repas();
 
 
-                $repas->setId(intval($_POST['id']));
-                $repas->setNom($_POST["nom"]);
-                $repas->setCategory(intval($_POST['category']));
+                $mRepas->setId(intval($_POST['id']));
+                $mRepas->setNom($_POST["nom"]);
+                $mRepas->setCategory(intval($_POST['category']));
 
-                if($repas->save()) {
-                    echo "yes mec";
-                } else {echo "une re==";};
+                $mRepas->save();
+                self::assignement($mRepas, $view);
 
             } else {
-                echo "chaud";
+                    $messsages [] = "Veuillez remplir tous les champs !";
+                    $error = true;
             }
 
         } else {
@@ -105,10 +111,20 @@ class RepasController {
         }
 
 
-        if($confirm) {
+        if($error) {
             $_SESSION["messages"] = $messsages;
         }
 
+    }
+
+    private function assignement($mRepas, $view) {
+
+            $view->setTemplate('backoffice');
+
+            $mRepas = new Repas();
+
+            $repas = $mRepas->getallBy(['id' => $_POST['id']]);
+            $view->assign('repas'  , $repas);
     }
 
 

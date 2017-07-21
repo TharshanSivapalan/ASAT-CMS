@@ -4,13 +4,13 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
-        <form class="" id="" action="add" method="post">
+        <form class="" id="" action="add" method="post" enctype="multipart/form-data" >
 
             <label>Titre du menu*</label>
             <input type="text" class="input" id="" name="nom" autocomplete="off">
 
             <label>Image</label>
-            <input type="file" class="input" id="" name="image" autocomplete="off">
+            <input type="file" class="input" id="" name="image" accept="image/*" autocomplete="off">
 
             <label>Ajouter une entrée </label>
             <br>
@@ -65,11 +65,11 @@
 
             <label>Prix*</label>
             <br>
-            <input type="number" class="input" id="" name="prix" autocomplete="off">
+            <input type="text" class="input" id="" name="prix" autocomplete="off">
             <br>
 
 
-            <label>Description du repas</label>
+            <label>Description du menu</label>
             <br>
             <textarea class="input editor" name ="description" id="description" cols="70" rows="15"></textarea>
 

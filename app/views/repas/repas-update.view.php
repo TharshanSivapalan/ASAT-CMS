@@ -13,9 +13,9 @@
             <br>
             <select name="category" class="input" id="">
                 <option value="" >...</option>
-                <option value="1" <?php if($repas[0]["category"] == 1) echo 'selected="selected"'?> >Entrée</option>
-                <option value="2" <?php if($repas[0]["category"] == 2) echo 'selected="selected"'?> >Plat</option>
-                <option value="3" <?php if($repas[0]["category"] == 3) echo 'selected="selected"'?> >Dessert</option>
+                <option value="1" <?php if($repas[0]["category"] == 1) echo 'selected="selected";'?> >Entrée</option>
+                <option value="2" <?php if($repas[0]["category"] == 2) echo 'selected="selected";'?> >Plat</option>
+                <option value="3" <?php if($repas[0]["category"] == 3) echo 'selected="selected";'?> >Dessert</option>
             </select>
             <input type="hidden" name="id" value="<?php echo $repas[0]["id"]  ?>">
             <br>

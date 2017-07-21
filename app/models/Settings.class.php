@@ -6,7 +6,7 @@ class Settings extends BaseSql{
     protected $value;
 
 
-    public function __construct(){
+    public function __construct($id=-1, $nom=null, $value=null){
 
         parent::__construct();
     }

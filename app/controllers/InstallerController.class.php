@@ -4,9 +4,9 @@ class InstallerController{
 	public function __construct(){
 
 		// Vérifier si le fichier config n'est pas configuré sinon rediriger vers l'accueil du site
-		/*if(Helper::checkConfig()){
+		if(Helper::checkConfig()){
 			header("Location: /index");
-		}*/
+		}
 	}
 
 	// Page d'accueil de l'installeur
