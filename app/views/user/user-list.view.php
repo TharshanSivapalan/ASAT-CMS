@@ -19,7 +19,9 @@
             </thead>
             <tbody>
             
-            <?php foreach ($list_user as $user): ?>
+            <?php foreach ($list_user as $user): 
+                        if($user['login'] != $_SESSION["user"]["login"]) :
+            ?>
 
                 <tr>
                     <td scope="row" data-label="nom"><?php echo htmlspecialchars  ($user['login'])?></td>
@@ -38,7 +40,10 @@
                     </td>
                 </tr>
 
-            <?php endforeach; ?>
+            <?php 
+                        endif;
+                endforeach; 
+            ?>
 
             </tbody>
         </table>
