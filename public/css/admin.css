@@ -460,7 +460,13 @@ table th {
     text-transform: uppercase;
 }
 
+.actions form {
+  display: inline-block;
+  padding: 0px;
+}
+
 .action-button {
+    background-color: initial;
     font-size: 1.4em!important;
     padding: 4px;
     color: #aaa;
