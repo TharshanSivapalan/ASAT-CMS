@@ -65,7 +65,7 @@
             <li class="menu-level1"><a href="#">REGLAGE<i class="fa fa-caret-down"></i></a>
                 <ul class="menu-level2">
                     <li><a href="/setting">Réglage du site</a></li>
-                    <li><a href="/user/signup">Mon profil</a></li>
+                    <li><a href="/user/update">Mon profil</a></li>
     
                 </ul>
             </li>
