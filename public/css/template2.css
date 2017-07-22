@@ -309,6 +309,11 @@ button {
         width: 94%;
     }
 
+    section.home-menu-block {
+    display: block;
+ 
+    }
+
 }
 
 @media(max-width: 450px){
@@ -317,6 +322,10 @@ button {
     }
     .quatre .col, .quatre .col:first-child{
         width: 94%;
+    }
+
+    section.home-menu-block {
+    display: block;
     }
 
 }
