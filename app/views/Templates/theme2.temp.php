@@ -26,7 +26,7 @@
             <img id="comp-j143wefiimgimage" alt="logo" src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?>">
         </div>
         <div id="adresse">
-            <span>Paris / Athis-mons / Aulnay-sous-bois / Villepinte</span>
+            <span><?php echo htmlspecialchars($list_setting[5]['valeur']) ?></span>
         </div>
     </div>
 

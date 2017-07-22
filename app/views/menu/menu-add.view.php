@@ -7,7 +7,7 @@
         <form class="" id="" action="add" method="post" enctype="multipart/form-data" >
 
             <label>Titre du menu*</label>
-            <input type="text" class="input" id="" name="nom" autocomplete="off">
+            <input type="text" class="input" id="" name="nom" autocomplete="off" required="required">
 
             <label>Image</label>
             <input type="file" class="input" id="" name="image" accept="image/*" autocomplete="off">
@@ -65,7 +65,7 @@
 
             <label>Prix*</label>
             <br>
-            <input type="text" class="input" id="" name="prix" autocomplete="off">
+            <input type="number" class="input" id="" name="prix" step="0.01" autocomplete="off" required="required">
             <br>
 
 
