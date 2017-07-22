@@ -59,10 +59,7 @@
 
                     $data[$column] = $this->$column;
                     $sqlSet [] .= $column."=:".$column;
-
-                    echo $column;
-
-
+                    
                 }
 
                 $query = $this->db->prepare("UPDATE " .$this->table. " SET ".implode("," , $sqlSet)." WHERE id=:id ;");

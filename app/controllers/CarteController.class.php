@@ -21,11 +21,33 @@ class CarteController
             $list_setting = $setting->getall();
             $view->assign('list_setting'  , $list_setting);
 
-            // Recuperation des menus
+
+            // Recuperation des menus avec les repas
 
             $menu = new Menu();
+            $mrepas = new Repas();
+
             $list_menu = $menu->getall();
+
+            foreach ($list_menu as &$menu) {
+
+                $entree = $mrepas->populate(['id' => $menu['entree']]);
+                $plat = $mrepas->populate(['id' => $menu['plat']]);
+                $dessert = $mrepas->populate(['id' => $menu['dessert']]);
+
+                if(!empty($menu['entree'])) {
+                    $menu['entree'] = $entree->getNom();
+                }
+                if(!empty($menu['plat'])) {
+                    $menu['plat'] = $plat->getNom();
+                }
+                if(!empty($menu['dessert'])) {
+                    $menu['dessert'] = $dessert->getNom();
+                }
+            }
+
             $view->assign('list_menu'  , $list_menu);
+        
     }
 
 
