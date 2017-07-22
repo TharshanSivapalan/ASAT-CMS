@@ -19,8 +19,7 @@ class Routing{
         $this->uriExploded = explode("/",  trim($uri, "/")   );
         // Redirection vers l'installer si le fichier config n'est pas validé
         if(!Helper::checkConfig() && $this->uriExploded[0] != "installer"){
-            $uri = "/installer/index";
-            $this->uriExploded = explode("/",  trim($uri, "/")   );
+            header('Location: /installer/index');
         }
         $this->setController();
         $this->setAction();
