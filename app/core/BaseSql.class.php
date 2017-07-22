@@ -186,11 +186,6 @@
 
             $query = $this->db->prepare("UPDATE " .$this->table. " SET ".implode(" , " , $set). " WHERE id=:id ;");
 
-           
-
-            var_dump($query);
-            var_dump($search);
-
             $query->execute($search);
 
 
