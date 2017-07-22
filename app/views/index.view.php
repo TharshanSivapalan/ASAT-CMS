@@ -153,8 +153,6 @@
 </div>
 <?php
 	}
-?>
-<?php
 	if($theme_id == "2"){
 ?>
 <div class="container grey">

@@ -6,12 +6,14 @@ class CarteController
 
             self::checkadmin();
 
+            // Recuperation du template actif
+
             $theme = new Theme();
             $theme = $theme->populate(['statut' => 1]);
 
             $view = new View('carte');
-            $view->setTemplate($theme->getName());
-            $view->assign('theme_name', $theme->getName());
+            $view->setTemplate('theme'.$theme->getId());
+            $view->assign('theme_id', $theme->getId());
 
             // Recuperation des reglages du site
 
