@@ -1,39 +1,81 @@
 <div class="formulaire">
     <div class="titre">
-        <h3>MODIFIER MON PROFIL</h3>
+        <h3>MODIFIER LE MENU</h3>
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
-        <form class="" id="form-user-update" action="update" method="post">
+        <form class="" id="" action="update" method="post" enctype="multipart/form-data" >
 
-            <h4>Adresse Mail</h4>
-            <hr>
-            <label>Votre adresse mail actuelle</label>
-            <span><?php echo $_SESSION["user"]['email'];?></span>
-            <label>Changer mon adresse</label>
-            <input type="text" class="input" placeholder="Ex:monadresse@yahoo.fr" id="" name="emailNew" autocomplete="off">
-            <label>Entrez votre mot de passe actuel</label>
-            <input type="password" class="input" placeholder="Ex:monadresse@yahoo.fr" id="" name="mdpConfirm1" autocomplete="off">
+            <label>Titre du menu*</label>
+            <input type="text" class="input" id="" name="nom" value="<?php echo $menu[0]["nom"];?>" autocomplete="off">
+
+            <label>Image</label>
+            <input type="file" class="input" id="" name="image" value="" accept="image/*" autocomplete="off">
+
+            <label>Ajouter une entrée </label>
+            <br>
+            <select name="entre" class="input" id="">
+                <option value="" >...</option>
+                <?php foreach ($list_entre as $entre):
+                    ?>
+                    <option value="<?php  echo $entre['id'] ?>" <?php if($menu[0]["entree"] == $entre['id']) echo 'selected="selected" '?> >
+                        <?php echo $entre['nom']; ?>
+                    </option>
+
+                    <?php
+                endforeach;
+                ?>
+            </select>
+            <br>
+
+            <label>Ajouter un plat</label>
+            <br>
+            <select name="plat" class="input" id="">
+                <option value="" >...</option>
+                <?php foreach ($list_plat as $plat):
+                    ?>
+                    <option value="<?php  echo $plat['id'] ?>" <?php if($menu[0]["plat"] == $plat['id']) echo 'selected="selected" '?> >
+                        <?php echo $plat['nom']; ?>
+                    </option>
+
+                    <?php
+                endforeach;
+                ?>
+            </select>
+
+
+
+            <br>
+
+            <label>Ajouter un dessert</label>
+            <br>
+            <select name="dessert" class="input" id="">
+                <option value="" >...</option>
+                <?php foreach ($list_dessert as $dessert):
+                    ?>
+                    <option value="<?php  echo $dessert['id'] ?>" <?php if($menu[0]["dessert"] == $dessert['id']) echo 'selected="selected" '?> >
+                        <?php echo $dessert['nom']; ?>
+                    </option>
+
+                    <?php
+                endforeach;
+                ?>
+            </select>
+            <br>
+
+            <label>Prix*</label>
+            <br>
+            <input type="text" class="input" id="" name="prix" autocomplete="off" value="<?php echo $menu[0]["prix"];?>">
+            <br>
+
+
+            <label>Description du menu</label>
+            <br>
+            <textarea class="input editor" name ="description"  id="description" cols="70" rows="15"><?php echo $menu[0]["description"];?></textarea>
+
+            <input type="hidden" name="id" value="<?php echo $menu[0]["id"]  ?>">
+
             <input type="submit" class="bouton" id="bt1" name ="envoyer1" value="Ajouter">
         </form>
-
-        <form class="" id="form-user-update" action="update" method="post">
-
-            <h4>Modifier mon mot de passe</h4>
-            <hr>
-
-            <label>Entrez votre mot de passe actuel</label>
-            <input type="password" class="input" placeholder="minimum 8 caractères" id="" name="mdpConfirm2" autocomplete="off">
-
-            <label>Entrez le nouveau mot de passe</label>
-            <input type="password" class="input" placeholder="minimum 8 caractères" id="" name="mdpNew1" autocomplete="off">
-
-            <label>Confirmer le nouveau mot de passe</label>
-            <input type="password" class="input" placeholder="minimum 8 caractères" id="" name="mdpNew2" autocomplete="off">
-            
-            <input type="submit" class="bouton" id="bt1" name ="envoyer2" value="Ajouter">
-
-        </form>
-
     </div>
 </div>

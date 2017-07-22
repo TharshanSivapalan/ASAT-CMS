@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/notification.css">
 
     <?php foreach ($css as $style): ?>
         <link rel="stylesheet" href="/<?php echo $style?>">
@@ -21,14 +22,27 @@
 
     <div class="site-content">
         <div class="container-fluid">
+
+            <div class="notifications">
+
+                <?php  if(isset($_SESSION["flash"])) : ?>
+
+                    <div class="notification notification-<?php echo $_SESSION["flash"]["type"] ?> animated fadeInRight">
+                        <div class="left">
+                            <i style="font-size: 2.0em;margin-top: 6px;" class="fa <?php echo TYPE_MESSAGE [$_SESSION["flash"]["type"]] ?>" aria-hidden="true"></i>
+                        </div>
+                        <div class="right">
+                            <p><?php echo $_SESSION["flash"]["message"] ?></p>
+                        </div>
+                    </div>
+
+                    <?php unset($_SESSION["flash"]);  ?>
+
+                <?php endif; ?>
+
+            </div>
             
-            <?php  if(isset($_SESSION["message"])) : ?>
 
-                <p><?php echo $_SESSION["message"] ?></p>
-
-                <?php unset($_SESSION["message"]);  ?>
-
-            <?php endif; ?>
             
             <div class="content">
 
@@ -53,6 +67,8 @@
     </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="/js/notification.js"></script>
 
     <?php foreach ($js as $script): ?>
         <script src="/<?php echo $script?>"></script>

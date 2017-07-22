@@ -60,7 +60,8 @@ class UserController{
 
             else {
 
-                $_SESSION["message"] = "Login ou mot de passe incorrect";
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Login ou mot de passe incorrect";
             }
         }
 
@@ -105,7 +106,7 @@ class UserController{
                         }
 
                         //Vérification de la longueur du mpd
-                        if(strlen($password) < 8 || strlen($password) > 16 ){
+                        if(strlen($password) < 8 || strlen($pwdConfirmation) > 16 ){
                             $messsages [] = "Le mot de passe doit faire entre 8 et 16 caractères";
                             $error = true;
                         }
@@ -218,14 +219,15 @@ class UserController{
                 $user->setToken(null);
                 $user->save();
 
-                $_SESSION["message"] = "Votre compte a bien ete activé , vous pouvez vous connecter";
-
+                $_SESSION["flash"]["type"] = "success";
+                $_SESSION["flash"]["message"] = "Votre compte a bien ete activé , vous pouvez vous connecter";
 
             }
 
             else {
 
-                $_SESSION["message"] = "Token invalide";
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Token invalide";
 
             }
 
@@ -291,15 +293,22 @@ class UserController{
                 $mailer = Swift_Mailer::newInstance($transport);
                 $result = $mailer->send($message);
 
-                if(!$result) $_SESSION["message"] = "Une erreur s est produite avec l'envoie de l'e-mail";
+                if(!$result) {
 
-                $_SESSION["message"] = "Un e-mail vous a été envoyé pour changer votre mot de passe";
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Une erreur s est produite avec l'envoie de l'e-mail";
+
+                }
+
+                $_SESSION["flash"]["type"] = "success";
+                $_SESSION["flash"]["message"] = "Un e-mail vous a été envoyé pour changer votre mot de passe";
 
             }
 
             else {
 
-                $_SESSION["message"] = "Aucun compte n'est accocié à cette adresse e-mail";
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Aucun compte n'est accocié à cette adresse e-mail";
             }
 
             header('Location: /user/forget');
@@ -321,8 +330,7 @@ class UserController{
             $user = new User();
 
             $user = $user->populate(['id' => $token[0]]);
-
-
+            
             if($user && $token[1] === $user->getToken()) {
 
                 $view = new View('password');
@@ -341,7 +349,8 @@ class UserController{
                     $user->setResetAt(NULL);
                     $user->save();
 
-                    $_SESSION["message"] = "Votre mot de passe a été changé avec success";
+                    $_SESSION["flash"]["type"] = "success";
+                    $_SESSION["flash"]["message"] = "Votre mot de passe a été changé avec success";
                     header('Location: /user/login');
                     exit(0);
                 }
@@ -350,7 +359,8 @@ class UserController{
 
             else {
 
-                $_SESSION["message"] = "Token invalide";
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Token invalide";
                 header('Location: /user/login');
                 exit(0);
 
@@ -361,7 +371,8 @@ class UserController{
     public function logoutAction () {
 
         unset($_SESSION['user']);
-        $_SESSION["message"] = "Vous êtes maintenant déconnecté";
+        $_SESSION["flash"]["type"] = "success";
+        $_SESSION["flash"]["message"] = "Vous êtes maintenant déconnecté";
         header('Location: /user/login');
         exit(0);
     }
@@ -369,148 +380,29 @@ class UserController{
     public function deleteAction () {
 
         self::checkadmin();
-
+        
         $confirm = false;
 
         if ($_POST) {
             $user = new User();
 
-
-            if(($_POST['id'] != $_SESSION["user"]["id"]) && $user->populate(['id' => $_POST['id']]) ) {
-
-                if($user->deleteBy(["id"=>$_POST['id']])) {
-                    $messsages [] = "L'utilisateur a bien été supprimé !";
-                    $confirm = true;
-                }
-
-            }else {
-                 header('Location: /inaccessible');
-            } 
-
-            $this->indexAction();
-            if($confirm) {
-                $_SESSION["messages"] = $messsages;
-            }
-
-
-        } else {
-                 header('Location: /inaccessible');
-        } 
- 
-
-    }
-
-
-    public function updateAction () {
-         self::checkadmin();
-
-        if (
-            $_POST &&     
-            !empty($_POST['emailNew']) && 
-            !empty($_POST['mdpConfirm1']) && 
-            (count($_POST)==3)
-        ) {
-
-            $error = false;
-
-            $emailNew = $_POST['emailNew'] ;
-            $mdpConfirm1 = $_POST['mdpConfirm1'] ;
-
-            // Chercher le user associe
-
-            $user = new User();
-
-            $user = $user->populate(['login' => $_SESSION["user"]['login'] , 'status' => 1]);
-
-           
-            if ($user && password_verify($mdpConfirm1 , $user->getPassword())) {
-                if($user->populate(["email"=>$emailNew]) ){
-                    $messsages [] = "L'adresse mail saisie est déjà utilisé par un compte !";
-                    $error = true;
-                }
-
-          
-                if( !filter_var($emailNew, FILTER_VALIDATE_EMAIL)  ){
-                    $messsages [] = "Email invalide !";
-                    $error = true;                
-                }
-
-                    
-            }  else {
-                $messsages[] = "Le mot de passe est incorrect";
-                $error  = true;
-            }
-
-            if($error ) {
-                $_SESSION["messages"] = $messsages;
-            } else {
-                $user->setId(1);
-                $user->setEmail($emailNew);
-                $user->save();
-                $_SESSION["user"]['email'] = $user->getEmail();
-
+            if($user->deleteBy(["id"=>$_POST['id']])) {
+                $messsages [] = "L'utilisateur a bien été supprimé !";
+                $confirm = true;
             }
         }
 
-
-        if (
-            $_POST &&     
-            !empty($_POST['mdpNew1']) && 
-            !empty($_POST['mdpNew2']) && 
-            !empty($_POST['mdpConfirm2']) && 
-            (count($_POST)==4)
-        ) {
-             $error = false;
-
-            $mdpNew1 = $_POST['mdpNew1'] ;
-            $mdpNew2 = $_POST['mdpNew2'] ;
-            $mdpConfirm2 = $_POST['mdpConfirm2'] ;
-
-            // Chercher le user associe
-
-            $user = new User();
-
-            $user = $user->populate(['login' => $_SESSION["user"]['login'] , 'status' => 1]);
-
-           
-            if ($user && password_verify($mdpConfirm2 , $user->getPassword())) {
-               
-                //Vérification de la longueur du mpd
-                    if(strlen($mdpNew1) < 8 || strlen($mdpNew1) > 16 ){
-                        $messsages [] = "Le mot de passe doit faire entre 8 et 16 caractères";
-                        $error = true;
-                    }
-
-                    //Vérification confirmation
-                    if($mdpNew1 != $mdpNew2){
-                        $messsages [] = "Les 2 mots de passe saisient ne sont pas identiques";
-                        $error = true;;
-                    }
-
-                    
-            }  else {
-                $messsages[] = "Le mot de passe est incorrect";
-                $error  = true;
-            }
-
-            if($error ) {
-                $_SESSION["messages"] = $messsages;
-            } else {
-                $user->setId(intval($user->getId()));
-                $user->setPwd($mdpNew1);
-                $user->save();
-                $_SESSION["user"]['email'] = $user->getEmail();
-
-            }
-        }
-
-       
-        $view = new View('user-update');
-        $view->setTemplate('backoffice');
-
-      
         
+        if($confirm) {
+            $_SESSION["messages"] = $messsages;
+        }
+        
+        header('Location: /user');
+
     }
+
+
+
 
 
     private function checkadmin () {
