@@ -65,14 +65,7 @@
 
                 }
 
-
-                var_dump($data);
-
-
                 $query = $this->db->prepare("UPDATE " .$this->table. " SET ".implode("," , $sqlSet)." WHERE id=:id ;");
-
-
-                var_dump($query);
 
                 
                 $query->execute($data);
