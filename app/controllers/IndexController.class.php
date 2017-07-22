@@ -9,8 +9,8 @@ class IndexController{
         $theme = $theme->populate(['statut' => 1]);
 
         $view = new View('index');
-        $view->setTemplate($theme->getName());
-        $view->assign('theme_name', $theme->getName());
+        $view->setTemplate('theme'.$theme->getId());
+        $view->assign('theme_id', $theme->getId());
 
 
         // Recuperation des reglages du site

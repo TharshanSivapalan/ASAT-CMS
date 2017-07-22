@@ -1,5 +1,5 @@
 <?php
-	if($theme_name == "theme1"){
+	if($theme_id == "1"){
 ?>
 <header>
 
@@ -155,7 +155,7 @@
 	}
 ?>
 <?php
-	if($theme_name == "theme2"){
+	if($theme_id == "2"){
 ?>
 <div class="container grey">
 	<h2 class="center">à la une</h2>
