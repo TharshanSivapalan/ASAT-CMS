@@ -1,3 +1,7 @@
+<?php
+    var_dump($theme_name);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -37,9 +41,6 @@
         <li ><a href="/user/login">Connexion</a></li>
     </ul>
 </nav>
-
-
-
     <?php include $this->view; ?>
 <footer >
     <p class="text-center copyright">&copy;<?php echo date("Y"); ?> <?php echo htmlspecialchars($list_setting[0]['valeur']) ?></p>

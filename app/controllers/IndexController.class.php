@@ -10,6 +10,7 @@ class IndexController{
 
         $view = new View('index');
         $view->setTemplate($theme->getName());
+        $view->assign('theme_name', $theme->getName());
 
 
         // Recuperation des reglages du site
