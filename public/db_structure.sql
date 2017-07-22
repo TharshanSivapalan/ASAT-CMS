@@ -125,7 +125,7 @@ CREATE TABLE `schedule` (
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `valeur` varchar(255) NOT NULL
+  `valeur` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -133,7 +133,7 @@ INSERT INTO `settings` (`id`, `nom`, `valeur`) VALUES
 (1, 'nom du site', 'SITETITLE'),
 (2, 'slogan', 'manger c est manger'),
 (3, 'logo', 'logo.png'),
-(4, 'google maps', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5272.2919181837515!2d2.357604020175256!3d48.64532289769136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1783cf2150f7aaa2!2sBOUCHERIE+HALAL!5e0!3m2!1sfr!2sfr!4v1500120742880\" w'),
+(4, 'google maps', '<iframe frameborder="0" height="350" marginheight="0" marginwidth="0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.6333748191305!2d2.3854731999999874!3d48.8461315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d997a4b7d%3A0x86fe46d4b5ab876!2s21+Rue+Erard%2C+75012+Paris%2C+France!5e0!3m2!1sfr!2sus!4v1413469977854" width="640"></iframe>'),
 (5, 'pays', 'France'),
 (6, 'ville', 'Paris'),
 (7, 'adresse', '22 rue de Picpus'),
