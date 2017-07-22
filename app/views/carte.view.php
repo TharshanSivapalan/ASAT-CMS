@@ -59,8 +59,3 @@
 </div>
 
 
-
-<div class="container parallaxe1">
-
-</div>
-
