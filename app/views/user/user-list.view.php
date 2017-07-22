@@ -31,7 +31,13 @@
                     <td data-label="date_inscription"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="date_modification"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="Action" class="actions">
-                        <a href=""><i class="action-button edit fa fa-pencil"></i></a>
+                        <form action="user/updateperm" id="updateUser" method="POST">
+                            <input type="hidden" name="id" value="<?php echo intval($user['id']); ?>">
+
+                            <button type="submit" class="action-button edit  update">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </form>
                         <i class="action-button fa fa-trash delete">
                             <form action="user/delete" method="POST">
                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars ($user['id']); ?>">

@@ -38,3 +38,13 @@
     // Category repas
 
     const REPAS_CATEGORIES = array( 1 => "Entree" , 2 => "Plat" , 3 => "Dessert");
+
+   // Type message
+
+    const TYPE_MESSAGE = array(
+
+        "success" => "fa-check-circle-o",
+        "warning" => "fa-exclamation-circle",
+        "error" => "fa-exclamation-triangle",
+        "info" => "fa-info-circle"
+    );
