@@ -1,7 +1,3 @@
-<?php
-    var_dump($theme_name);
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
