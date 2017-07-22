@@ -34,7 +34,6 @@
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>
         <li ><a href="/contact">Contact</a></li>
-        <li ><a href="/user/login">Connexion</a></li>
     </ul>
 </nav>
     <?php include $this->view; ?>

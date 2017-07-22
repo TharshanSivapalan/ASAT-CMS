@@ -23,6 +23,15 @@ class UserController{
 
     public function loginAction () {
 
+
+        // Si l'utilisateur est deja connecte on le redirige vers le backoffice
+
+        if (isset($_SESSION['user']['id'])){
+
+            header("Location: /dashboard");
+            exit();
+        }
+
         $view = new View('login');
         $user = new User();
 
@@ -53,7 +62,7 @@ class UserController{
                         'id_groupe_user' => $user->getIdGroupUser(),
                     );
 
-                    header("Location: /theme");
+                    header("Location: /dashboard");
                     exit();
 
             }
@@ -377,32 +386,37 @@ class UserController{
         exit(0);
     }
 
-    public function deleteAction () {
+    public function deleteAction ($params) {
 
         self::checkadmin();
-        
-        $confirm = false;
 
-        if ($_POST) {
-            $user = new User();
-
-            if($user->deleteBy(["id"=>$_POST['id']])) {
-                $messsages [] = "L'utilisateur a bien été supprimé !";
-                $confirm = true;
-            }
+        if (empty($params[0])) {
+            header('Location: /inaccesible');
+            exit(0);
         }
 
-        
-        if($confirm) {
-            $_SESSION["messages"] = $messsages;
+        $id = $params[0];
+
+        // On verifie si le menu existe
+
+        $mUser = new User();
+
+        if($mUser->populate(["id"=> $id])) {
+
+            $mUser->deleteBy(["id"=>$id]);
+            $_SESSION["flash"]["type"] = "success";
+            $_SESSION["flash"]["message"] = "L'utilisateur a bien été supprimé";
         }
-        
+
+        else {
+
+            header('Location: /inaccesible');
+            exit(0);
+        }
+
         header('Location: /user');
 
     }
-
-
-
 
 
     private function checkadmin () {

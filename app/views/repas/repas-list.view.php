@@ -29,11 +29,8 @@
                                 <i class="fa fa-pencil"></i>
                             </button>
                         </form>
-                        <i class="action-button fa fa-trash delete">
-                            <form action="repas/delete" method="POST">
-                                <input type="hidden" name="id" value="<?php echo htmlspecialchars ($repas['id']); ?>">
-                            </form>
-                        </i>
+
+                        <a href="repas/delete/<?php echo htmlspecialchars ($repas['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
                     </td>
                 </tr>
 

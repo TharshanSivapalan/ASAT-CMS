@@ -23,7 +23,6 @@
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>
         <li ><a href="/index/contact">Contact</a></li>
-        <li ><a href="/user/login">Connexion</a></li>
     </ul>
 </nav>
 

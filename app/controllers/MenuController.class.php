@@ -150,30 +150,36 @@ class MenuController {
   
     }
 
-    public function deleteAction () {
+    public function deleteAction ($params) {
 
         self::checkadmin();
-        
 
-
-        $confirm = false;
-
-        if ($_POST) {
-            $menu = new Menu();
-
-            if($menu->deleteBy(["id"=>$_POST['id']])) {
-                $messsages [] = "Le menu a bien été supprimé !";
-                $confirm = true;
-            }
+        if (empty($params[0])) {
+            header('Location: /inaccesible');
+            exit(0);
         }
 
-        if($confirm) {
-            $_SESSION["messages"] = $messsages;
-        }
+        $id = $params[0];
+
+        // On verifie si le menu existe
         
+        $mMenu = new Menu();
+
+        if($mMenu->populate(["id"=> $id])) {
+
+            $mMenu->deleteBy(["id"=>$id]);
+            $_SESSION["flash"]["type"] = "success";
+            $_SESSION["flash"]["message"] = "Le menu a bien été supprimé";
+        }
+
+        else {
+
+            header('Location: /inaccesible');
+            exit(0);
+        }
+
         header('Location: /menu');
 
-        
     }
 
 

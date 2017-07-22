@@ -1,6 +1,6 @@
 var $notifs = $('.notification');
 
-var timeout = 850000;
+var timeout = 8500;
 
 if ($('.notifications').children().length > 0) {
 

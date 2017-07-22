@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="/css/notification.css">
+    
     <?php foreach ($css as $style): ?>
         <link rel="stylesheet" href="/<?php echo $style?>">
     <?php endforeach; ?>
@@ -38,7 +40,7 @@
 
         <li class="menu-level1"><a href="#">REPAS<i class="fa fa-caret-down"></i></a>
             <ul class="menu-level2">
-                <li><a href="/repas">Toutes les repas</a></li>
+                <li><a href="/repas">Tous les repas</a></li>
                 <li><a href="/repas/add">Ajouter un repas</a></li>
 
             </ul>
@@ -87,6 +89,28 @@
 
 
 <div id="main">
+
+    <!-- Notifications -->
+
+    <div class="notifications">
+
+        <?php  if(isset($_SESSION["flash"])) : ?>
+
+            <div class="notification notification-<?php echo $_SESSION["flash"]["type"] ?> animated fadeInRight">
+                <div class="left">
+                    <i style="font-size: 2.0em;margin-top: 6px;" class="fa <?php echo TYPE_MESSAGE [$_SESSION["flash"]["type"]] ?>" aria-hidden="true"></i>
+                </div>
+                <div class="right">
+                    <p><?php echo $_SESSION["flash"]["message"] ?></p>
+                </div>
+            </div>
+
+            <?php unset($_SESSION["flash"]);  ?>
+
+        <?php endif; ?>
+
+    </div>
+
     <div class="container grey">
 
         <?php include $this->view; ?>
@@ -112,6 +136,8 @@
 <!-- tinymce (éditeur textarea) -->
 <script src="/tinymce/tinymce.min.js"></script>
 <script src="/tinymce/langsfr/fr_FR.js"></script>
+
+<script src="/js/notification.js"></script>
 
 <?php foreach ($js as $script): ?>
     <script src="/<?php echo $script?>"></script>

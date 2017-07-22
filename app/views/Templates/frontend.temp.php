@@ -23,6 +23,8 @@
     <div class="site-content">
         <div class="container-fluid">
 
+            <!-- Notifications -->
+
             <div class="notifications">
 
                 <?php  if(isset($_SESSION["flash"])) : ?>

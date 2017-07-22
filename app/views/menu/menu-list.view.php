@@ -30,16 +30,13 @@
                         <form action="menu/update" id="updateMenu" method="POST">
                             <input type="hidden" name="id" value="<?php echo intval($menu['id']); ?>">
 
-                            <button type="submit" class="action-button edit  update">
+                            <button type="submit" class="action-button edit update">
                                 <i class="fa fa-pencil"></i>
                             </button>
                         </form>
 
-                        <i class="action-button fa fa-trash delete">
-                            <form action="menu/delete" method="POST">
-                                <input type="hidden" name="id" value="<?php echo htmlspecialchars ($menu['id']); ?>">
-                            </form>
-                        </i>
+                        <a href="menu/delete/<?php echo htmlspecialchars ($menu['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
+
                     </td>
                 </tr>
             <?php endforeach; ?>

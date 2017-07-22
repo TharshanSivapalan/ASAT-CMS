@@ -107,25 +107,13 @@ $(document).ready(function() {
             $(tr[i]).show();
         }
     });
-    
-    
-    
-    $('table td.actions .delete').click(function(event) {
-        
-        confirmDialog($(this));
-        return false;
+
+    // Confirmation de la suppression
+
+    $('.confirmation').click(function(e) {
+
+        return confirm("L\'élement sélectionné sera supprimé définitivement !");
     });
 
-    function confirmDialog($object) {
-        var conf = confirm('L\'élement sélectionné sera supprimé définitivement !');
-        if(conf)
-            $object.find("form").submit();
-    }
-
-  
-    
-
-    
-    
 });
 

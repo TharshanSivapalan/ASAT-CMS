@@ -128,28 +128,34 @@ class RepasController {
     }
 
 
-    public function deleteAction () {
+    public function deleteAction ($params) {
 
         self::checkadmin();
-        
 
-
-        $confirm = false;
-
-        if ($_POST) {
-            $repas = new Repas();
-
-            if($repas->deleteBy(["id"=>$_POST['id']])) {
-                $messsages [] = "Le repas a bien été supprimé !";
-                $confirm = true;
-            }
+        if (empty($params[0])) {
+            header('Location: /inaccesible1');
+            exit(0);
         }
 
-        
-        if($confirm) {
-            $_SESSION["messages"] = $messsages;
+        $id = $params[0];
+
+        // On verifie si le menu existe
+
+        $mRepas = new Repas();
+
+        if($mRepas->populate(["id"=> $id])) {
+
+            $mRepas->deleteBy(["id"=>$id]);
+            $_SESSION["flash"]["type"] = "success";
+            $_SESSION["flash"]["message"] = "Le repas a bien été supprimé";
         }
-        
+
+        else {
+
+            header('Location: /inaccesible2');
+            exit(0);
+        }
+
         header('Location: /repas');
 
     }
