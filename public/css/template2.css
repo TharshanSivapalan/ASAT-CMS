@@ -35,6 +35,13 @@ h1,h2,h3, p, a, li, strong, address, span{
     font-family: 'Raleway', sans-serif;
 }
 
+
+h3 {
+    font-size: 1.5em;
+    color: #BA2204;
+    padding: 10px;
+}
+
 h2 {
     position: relative;
     background-color: #BA2204;
@@ -97,6 +104,7 @@ img {
 .conteneur-colonnes{
     display: block ;
     overflow: hidden;
+    padding-top: 10px;
 }
 
 nav {
@@ -111,7 +119,7 @@ nav {
     min-height: 280px;
     height: auto;
     background-color: transparent;
-    background-image: url(img/plat.jpg);
+    background-image: url(/img/Template2/plat.jpg);
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -157,7 +165,7 @@ section{
     margin-right: auto;
     display: block;
     overflow: hidden;
-    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .col{
@@ -314,6 +322,12 @@ button {
  
     }
 
+    section.reverse{
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+        display: flex;
+    }
+
 }
 
 @media(max-width: 450px){
@@ -331,6 +345,28 @@ button {
 }
 
 
+header#menu-presentation-header{
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    height: auto;
+    background-color: transparent;
+    background-image: url(/img/Template1/sallerestaurant.jpg);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+header#menu-presentation-header .header-caption {
+    padding: 90px 30px 0;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+}
 
 
 
@@ -396,10 +432,9 @@ button {
 }
 
 .home-menu-block img {
-    width:100%;
-    height:auto;
-    max-height:100%;
-    min-height: 100%;
+    width:325px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .home-menu-block .menu-name {
@@ -459,6 +494,10 @@ button {
     font-size: 2em;
 }
 
+.carte-menu-block .menu-carte-before{
+    color: #BA2204;
+    text-transform: uppercase;
+}
 
 .carte-menu-block .menu-carte-before {
     font-size: 1.3em;
@@ -487,10 +526,32 @@ button {
     font-weight: bold;
 }
 
+.carte-menu-block img {
+    width: 260px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.carte-menu-block {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .carte-menu-block .menu-container{
     text-align: center;
 }
 
 .nom-plat {
     color: #BA2204;
+}
+
+
+.carte-price-menu {
+    color:#BA2204;
+    font-size: 2em;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    display: block;
+    font-style: italic;
 }

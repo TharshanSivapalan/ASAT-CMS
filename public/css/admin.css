@@ -225,6 +225,8 @@ section .col:first-child{
 }
 
 #openbtn {
+    align-items: center;
+    display: flex;
     position: relative;
     width: 63px;
     height: 50px;
@@ -233,6 +235,11 @@ section .col:first-child{
     bottom: 0px;
     background-color:#28090A;
     border-radius: 5px;
+}
+
+
+#openbtn .fa-2x{
+    font-size: 1.5em;
 }
 
 #openbtn .fa-bars:hover {
@@ -593,23 +600,28 @@ table #pagination .pageNumber {
     
     #openbtn {
         position: relative;
-        display: block;
+        display: flex;
         background-color: #28090A;
         padding: 0px;
     }
     .fa-2x {
         color: #f4f4f4;
     }
+
+
+    .theme-block .theme-block-content{
+      width: 100%;
+    }
         
 }
 
 .theme-block {
-    display: flex;
+    display: block;
     flex-wrap:wrap;
 }
 
 .theme-block-content{
-    display: block;
+    display: inline-block;
     margin:10px 0 0 10px;
     flex-grow: 1;
     width: calc(100% * (1/3) - 10px - 1px)

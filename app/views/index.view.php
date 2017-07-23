@@ -18,40 +18,49 @@
     <h2 class="center">Pour vous accueillir</h2>
     <hr class="souligne">
 
-    <section class="deux">
-        <article class="col center">
+    <section >
+        
+            <article class="col center deux">
 
-            <div class="deux">
-                <div class="col">
-                    <img src="/img/Template1/chef1.jpg" alt="">
+                <div class="deux col">
+                    <div class="col">
+                        <img src="/img/Template1/chef1.jpg" alt="">
+                    </div>
+
+                    <div class="col">
+                        <img src="/img/Template1/chef2.jpg" alt="">
+                    </div>
                 </div>
 
-                <div class="col">
-                    <img src="/img/Template1/chef2.jpg" alt="">
-                </div>
-            </div>
+
+                <article class="col center">
+
+                    <h2><?php echo htmlspecialchars($list_article[0]['titre']) ?></h2>
+
+                    <?php echo htmlspecialchars($list_article[0]['content']) ?>
 
 
-        </article>
+                </article>
 
-
-        <?php foreach ($list_article as $article): ?>
-
-            <article class="col ">
-
-                <h2><?php echo htmlspecialchars($article['titre']) ?></h2>
-
-                <?php echo htmlspecialchars($article['content']) ?>
 
             </article>
 
-        <?php endforeach; ?>
+            
+
 
     </section>
 
 
     <section class="deux">
         
+        <article class="col center">
+
+            <h3><?php echo htmlspecialchars($list_article[1]['titre']) ?></h3>
+
+            <?php echo htmlspecialchars($list_article[1]['content']) ?>
+
+        </article>
+
         <article class="col center">
 
             <div class="deux">
@@ -63,7 +72,6 @@
                     <img src="/img/Template1/chef5.jpg" alt="">
                 </div>
             </div>
-
 
         </article>
 
@@ -77,24 +85,37 @@
 
 </div>
 
-<div class="container grey">
-    <h2 class="center">Nos meilleurs plats</h2>
+<div class="container grey nos_meilleurs_plats">
+    <h2 class="center">Nos meilleurs menus</h2>
     <hr class="souligne">
 
     <section class="trois">
 
-        <?php foreach ($list_menu as $menu): ?>
+        <?php foreach (array_slice($list_menu, 0, 3) as $menu): ?>
 
-        <a href="#">
-            <article class="col ">
-                <img src="/img/Menus/<?php echo htmlspecialchars($menu['image']); ?>" alt="Menu <?php echo htmlspecialchars($menu['nom']); ?>" class="img-responsive">
-            </article></a>
+
+            <?php 
+                        if(empty($menu['image'])) {
+                    ?>
+                                <a href="menu/presentation/<?php echo htmlspecialchars($menu['id']); ?>">
+                                    <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                </a>
+                    <?php
+                        } else {
+
+                    ?>
+                                <a href="menu/presentation/<?php echo htmlspecialchars($menu['id']); ?>">
+                                    <img src="/img/Menus/<?php echo htmlspecialchars($menu['image']); ?>" alt="Menu <?php echo htmlspecialchars($menu['nom']); ?>" class="img-responsive">
+                                </a>
+                    <?php
+                        } 
+                    ?>
             
         <?php endforeach; ?>
 
     </section>
 
-    <a href="#" titre="autreplat" class="btn">Afficher plus</a>
+    <a href="carte" titre="autreplat" class="btn">Afficher plus</a>
 </div>
 
 
@@ -156,34 +177,146 @@
 	if($theme_id == "2"){
 ?>
 <div class="container grey">
+
+    <h2 class="center">Pour vous accueillir</h2>
+    <hr class="souligne">
+
+    <section >
+        
+            <article class="col center deux">
+
+                <div class="deux col">
+                    <div class="col">
+                        <img src="/img/Template1/chef1.jpg" alt="">
+                    </div>
+
+                    <div class="col">
+                        <img src="/img/Template1/chef2.jpg" alt="">
+                    </div>
+                </div>
+
+
+                <article class="col center">
+
+                    <h3><?php echo htmlspecialchars($list_article[0]['titre']) ?></h3>
+
+                    <?php echo htmlspecialchars($list_article[0]['content']) ?>
+
+
+                </article>
+
+
+            </article>
+
+            
+
+
+    </section>
+
+
+    <section >
+        
+            <article class="col center deux">
+
+
+                <article class="col center">
+
+                    <h3><?php echo htmlspecialchars($list_article[1]['titre']) ?></h3>
+
+                    <?php echo htmlspecialchars($list_article[1]['content']) ?>
+
+
+                </article>
+
+                <div class="deux col">
+                    <div class="col">
+                        <img src="/img/Template1/chef1.jpg" alt="">
+                    </div>
+
+                    <div class="col">
+                        <img src="/img/Template1/chef2.jpg" alt="">
+                    </div>
+                </div>
+
+            </article>
+
+            
+
+
+    </section>
+
+
+
+
+
+
+
 	<h2 class="center">à la une</h2>
 
     <?php $i= 0; ?>
 
-    <?php foreach ($list_menu as $menu): ?>
+    <?php foreach (array_slice($list_menu, 0, 3)  as $menu): ?>
 
-        <section class="deux home-menu-block">
+        
 
             <?php if ($i % 2 == 0): ?>
+                <section class="deux home-menu-block">
                 <article class="col center">
-                    <img src="/img/Menus/<?php echo $menu['image']?>" alt="image menu <?php echo $menu['nom']?>">
+                    <?php 
+                        if(empty($menu['image'])) {
+                    ?>
+                                <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                    <?php
+                        } else {
+
+                    ?>
+                                <img src="/img/Menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                             
+                    <?php
+                        } 
+                    ?>
                 </article>
+
+                <article class="col ">
+                    <span class="menu-name"> <?php echo $menu['nom']?> </span>
+                    <span class="menu-price-before">POUR</span>
+                    <span class="menu-price"><?php echo $menu['prix']?> €</span>
+                    <p><?php echo $menu['description'] ?> </p>
+
+                    <a href="#" titre="decouvrir" class="btn">MENU</a>
+
+                </article>
+
             <?php endif; ?>
 
-            <article class="col ">
-                <span class="menu-name"> <?php echo $menu['nom']?> </span>
-                <span class="menu-price-before">POUR</span>
-                <span class="menu-price"><?php echo $menu['prix']?> €</span>
-                <p><?php echo $menu['description'] ?> </p>
-
-                <a href="#" titre="decouvrir" class="btn">MENU</a>
-
-            </article>
+            
 
             <?php if ($i % 2 == 1): ?>
-                <article class="col center">
-                    <img src="/img/Menus/<?php echo $menu['image']?>" alt="image menu <?php echo $menu['nom']?>">
+                <section class="deux home-menu-block reverse">
+                <article class="col ">
+                    <span class="menu-name"> <?php echo $menu['nom']?> </span>
+                    <span class="menu-price-before">POUR</span>
+                    <span class="menu-price"><?php echo $menu['prix']?> €</span>
+                    <p><?php echo $menu['description'] ?> </p>
+
+                    <a href="#" titre="decouvrir" class="btn">MENU</a>
+
                 </article>
+                <article class="col center">
+                <?php 
+                        if(empty($menu['image'])) {
+                    ?>
+                                <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                    <?php
+                        } else {
+
+                    ?>
+                                <img src="/img/Menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <span> Prix: <?php echo htmlspecialchars($menu['prix'])?> &euro;</span>
+                    <?php
+                        } 
+                    ?>
+                    </article>
             <?php endif; ?>
 
         </section>
