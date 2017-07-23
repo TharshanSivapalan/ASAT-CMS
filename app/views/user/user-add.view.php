@@ -4,8 +4,7 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
-       
-
+        
             <?php $this->includeModal("form" , $form); ?>
 
     </div>
