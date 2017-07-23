@@ -81,7 +81,7 @@
     <span onclick="openNav()" id="openbtn"><i class="fa fa-bars fa-2x"></i></span>
     <img src="/img/logo_menu.png" class="lg_admin" alt="logo">
     <div class="user-detail">
-        <span> <?php echo $_SESSION["user"]["login"]; ?>
+        <span id="login-user"> <?php echo $_SESSION["user"]["login"]; ?>
         <a href="/user/logout"><i class="action-button fa fa-power-off " style="
     margin-left: 10px;
 "></i></a></span></div>

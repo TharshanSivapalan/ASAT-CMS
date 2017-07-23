@@ -1,16 +1,17 @@
-
-<div class="container grey">
-    <h2 class="center">Carte</h2>
-
-    <?php foreach ($list_menu as $menu): ?>
-        <header  id="menu-presentation-header">
+<header  id="menu-presentation-header">
 
             <div class="header-caption">
-                <h1 class="animated fadeInLeft"><?php echo "nom du menu"; ?></h1>
+                <h1 class="animated fadeInLeft">La carte</h1>
          
             </div>
 
-        </header>
+    </header>
+
+<div class="container grey">
+
+    
+    <?php foreach ($list_menu as $menu): ?>
+
 
         <section class="deux carte-menu-block">
 

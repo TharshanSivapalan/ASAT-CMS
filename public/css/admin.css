@@ -578,6 +578,10 @@ table #pagination .pageNumber {
 
 
 @media(max-width: 600px){
+    #login-user {
+        display: none;
+        visibility: hidden;
+    }
 
     .logo_cote{
         max-width: initial;
@@ -587,7 +591,7 @@ table #pagination .pageNumber {
     }
 
     #main {
-        padding: 72px 0px 0px 0px;
+        padding: 53px 0px 0px 0px
     }
     
     .formulaire form {
