@@ -12,19 +12,36 @@ class User extends BaseSql{
     protected $token;
     protected $reset_at;
 
-   public function __construct(){
+    protected $validation = array(
 
-       /*
-        $this->setId($id);
-        $this->setEmail($email);
-        $this->setLogin($login);
-        $this->setPwd($pwd);
-        $this->setStatus($status);
-        $this->setIdGroupUser($id_groupuser);
-        $this->date_inserted = date("Y-m-d H:i:s");
-        $this->date_updated = date("Y-m-d H:i:s");
-        $this->setToken($token);
-        */
+        'email' => array(
+
+            "empty" => false,
+            "email" => true,
+        ),
+
+        'login' => array(
+
+            "empty" => false,
+            "lenght" => array (3,20),
+            "alphanumeric" => true,
+        ),
+
+        'password' => array(
+
+            "empty" => false,
+            "lenght" => array (8,16),
+        ),
+        
+        'password_confirm' => array (
+
+            "empty" => false,
+            "lenght" => array (8,16),
+        ),
+
+    );
+
+   public function __construct(){
 
        parent::__construct();
    }
@@ -105,7 +122,7 @@ class User extends BaseSql{
         return [
             "struct"=>[
                 "method"=>"POST",
-                "action"=>"/user/signup",
+                "action"=>"/user/add",
                 "submit"=>"Creer un compte",
                  "class" => "bouton",
                  "id" => "bt1",
@@ -115,7 +132,10 @@ class User extends BaseSql{
                     "type"=>"text",
                     "placeholder"=>"Login",
                     "required"=>1,
-                    "class" => "input"
+                    "class" => "input",
+                    "pattern" => "[a-zA-Z0-9]+",
+                    "maxlength" => 20,
+                    "minlength" => 3
                 ],
                 "email"=>[
                     "type"=>"email",
@@ -127,19 +147,17 @@ class User extends BaseSql{
                     "type"=>"password",
                     "placeholder"=>"Mot de passe",
                     "required"=>1,
-                    "class" => "input"
+                    "class" => "input",
+                    "maxlength" => 16,
+                    "minlength" => 8
                 ],
                 "password_confirm"=>[
                     "type"=>"password",
                     "placeholder"=>"Confirmer votre mot de passe",
                     "required"=>1,
-                    "class" => "input"
-                ],
-                
-                "role" => [
-                    "type"=>"select",
-                    "fields" => ROLE,
-                    "class" => "input"
+                    "class" => "input",
+                    "maxlength" => 16,
+                    "minlength" => 8
                 ]
             ]
         ];

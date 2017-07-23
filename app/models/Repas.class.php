@@ -10,7 +10,7 @@ class Repas extends BaseSql{
         'nom' => array(
             
             "empty" => false,
-            "lenght" => array (2,10),
+            "lenght" => array (3,255),
             "alphanumeric" => true
             
         ),

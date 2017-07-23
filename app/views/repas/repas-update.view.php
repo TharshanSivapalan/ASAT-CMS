@@ -7,7 +7,7 @@
         <form class="" id="" action="/repas/update/<?php echo $repas[0]["id"] ?>" method="post" name="updateForm">
 
             <label>Titre du menu</label>
-            <input pattern="[a-zA-Z0-9\s]+" minlength="2" maxlength="10" type="text" class="input" id="" name="nom" autocomplete="off" value="<?php echo htmlspecialchars($repas[0]["nom"]);?>" required="required">
+            <input pattern="[a-zA-Z0-9\s]+" minlength="3" maxlength="255" type="text" class="input" id="" name="nom" autocomplete="off" value="<?php echo htmlspecialchars($repas[0]["nom"]);?>" required="required">
 
             <label>Type</label>
             <br>

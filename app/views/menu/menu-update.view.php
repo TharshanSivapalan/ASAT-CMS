@@ -14,7 +14,7 @@
 
             <label>Ajouter une entrée </label>
             <br>
-            <select name="entre" class="input" id="">
+            <select name="entre" class="input" id="" required="required">
                 <option value="" >...</option>
                 <?php foreach ($list_entre as $entre):
                     ?>
