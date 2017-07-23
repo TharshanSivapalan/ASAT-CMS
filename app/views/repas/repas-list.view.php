@@ -22,14 +22,7 @@
                     <td data-label="date"><?php echo htmlspecialchars ($repas['nom']) ?></td>
                     <td data-label="Catégorie"><?php echo REPAS_CATEGORIES[$repas['category']] ?></td>
                     <td data-label="Action" class="actions">
-                        <form action="repas/update" id="updateMenu" method="POST">
-                            <input type="hidden" name="id" value="<?php echo intval($repas['id']); ?>">
-
-                            <button type="submit" class="action-button edit  update">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </form>
-
+                        <a href="repas/update/<?php echo htmlspecialchars ($repas['id']); ?>"><i class="action-button fa fa-pencil edit"></i>
                         <a href="repas/delete/<?php echo htmlspecialchars ($repas['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
                     </td>
                 </tr>

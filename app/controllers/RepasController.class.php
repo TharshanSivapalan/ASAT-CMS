@@ -18,101 +18,116 @@ class RepasController {
 
     public function addAction () {
 
-        $error = false;
-        $viewToShow = '';
-
         self::checkadmin();
-
-            if ($_POST) {
-
-                if(count($_POST) == 3 &&
-                !empty($_POST['nom']) &&  
-                !empty($_POST['category'])) {
-
-                } else {
-                    $messsages [] = "Veuillez remplir tous les champs !";
-                    $error = true;
-                }
-
-                $repas = new Repas();
-
-                
-                
-
-                
-
-                if(!$error ) {
-                    $viewToShow = "list";
-                    $repas->setId(-1);
-                    $repas->setNom($_POST["nom"]);
-                    $repas->setCategory($_POST["category"]);
-                    $repas->save();
-                }
-            }
-
-
-            if($viewToShow == "list") {
-                header('Location: /repas');
-            }
-            
-            $view = new View('repas-add');
-            $view->setTemplate('backoffice');
-
-            if($error ) {
-                $_SESSION["messages"] = $messsages;
-            }
-
-    }
-
-    public function updateAction () {
-
-        self::checkadmin();
-        
-
-        $error = false;
 
         if ($_POST) {
 
-            $mRepas = new Repas();
+            $repas = new Repas();
+
+            if ($repas->validate($_POST)) {
+
+                // Ajout
+
+                $repas->setId(-1);
+                $repas->setNom($_POST["nom"]);
+                $repas->setCategory($_POST["category"]);
+                $repas->save();
+
+                $_SESSION["flash"]["type"] = "success";
+                $_SESSION["flash"]["message"] = "Le repas a bien été ajouté";
+
+                header('Location: /repas');
+                exit(0);
+            }
+            
+            else {
+
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Champs invalide";
+
+                header('Location: /repas/add');
+                exit(0);
+            }
+
+        }
+
+        else {
+
+            $view = new View('repas-add');
+            $view->setTemplate('backoffice');
+        }
+    }
+
+    public function updateAction ($params) {
+
+        self::checkadmin();
+
+        if (empty($params[0])) {
+            header('Location: /inaccesible');
+            exit(0);
+        }
+
+        $id = $params[0];
+
+        $mRepas = new Repas();
+
+        // Partie vue
+
+        if($mRepas->populate(["id"=> $id])) {
+
             $view = new View('repas-update');
+            $view->setTemplate('backoffice');
 
+            $repas = $mRepas->getallBy(['id' => $id]);
+            $view->assign('repas'  , $repas);
+        }
 
-            if (!empty($_POST['id']) ) {
+        else {
 
-                if($mRepas->populate(["id"=>$_POST["id"]])) {
+            header('Location: /inaccesible');
+            exit(0);
+        }
 
-                    self::assignement($mRepas, $view);
+        // Partie POST
 
-                } else {
-                    header('Location: /inaccessible');
+        if ($_POST) {
+
+            if($mRepas->populate(["id"=> $_POST['id']])) {
+
+                if ($mRepas->validate($_POST)) {
+                    
+                    $mRepas->setId(intval($_POST['id']));
+                    $mRepas->setNom($_POST["nom"]);
+                    $mRepas->setCategory(intval($_POST['category']));
+
+                    $mRepas->save();
+
+                    $_SESSION["flash"]["type"] = "success";
+                    $_SESSION["flash"]["message"] = "Le repas a bien été modifié";
+
+                }
+
+                else {
+
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Champs invalides";
+
+                    header('Location: /repas/update/' .$_POST['id']);
+                    exit(0);
+
                 }
 
             }
 
-            if (!empty($_POST['category']) && 
-                !empty($_POST['nom']) && 
-                !empty($_POST['id']) ) {
+            else {
 
-
-                $mRepas->setId(intval($_POST['id']));
-                $mRepas->setNom($_POST["nom"]);
-                $mRepas->setCategory(intval($_POST['category']));
-
-                $mRepas->save();
-                self::assignement($mRepas, $view);
-
-            } else {
-                    $messsages [] = "Veuillez remplir tous les champs !";
-                    $error = true;
+                header('Location: /inaccesible');
+                exit(0);
             }
 
-        } else {
-            header('Location: /inaccessible');
-        }
+            header('Location: /repas');
+            exit(0);
 
-
-        if($error) {
-            $_SESSION["messages"] = $messsages;
         }
 
     }

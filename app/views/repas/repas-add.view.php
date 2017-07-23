@@ -7,11 +7,11 @@
         <form class="" id="" action="add" method="post">
 
             <label>Titre du menu</label>
-            <input type="text" class="input" id="" name="nom" autocomplete="off">
+            <input pattern="[a-zA-Z0-9\s]+" minlength="2" maxlength="10" type="text" class="input" id="" name="nom" autocomplete="off" required="required">
 
             <label>Type</label>
             <br>
-            <select name="category" class="input" id="">
+            <select name="category" class="input" id="" required="required">
                 <option value="" >...</option>
                 <option value="1" >Entrée</option>
                 <option value="2" >Plat</option>

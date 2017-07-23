@@ -29,22 +29,55 @@ class CarteController
 
             $list_menu = $menu->getall();
 
-            foreach ($list_menu as &$menu) {
+        foreach ($list_menu as &$menu) {
 
-                $entree = $mrepas->populate(['id' => $menu['entree']]);
-                $plat = $mrepas->populate(['id' => $menu['plat']]);
-                $dessert = $mrepas->populate(['id' => $menu['dessert']]);
+            $entree = $mrepas->populate(['id' => $menu['entree']]);
+            $plat = $mrepas->populate(['id' => $menu['plat']]);
+            $dessert = $mrepas->populate(['id' => $menu['dessert']]);
 
+            // Recuperation entree
+
+            if ($entree){
                 if(!empty($menu['entree'])) {
                     $menu['entree'] = $entree->getNom();
                 }
+            }
+
+            else {
+
+                $menu['entree'] = 'Aucun';
+            }
+
+            // Recuperation plat
+
+
+            if ($plat){
+
                 if(!empty($menu['plat'])) {
                     $menu['plat'] = $plat->getNom();
                 }
+            }
+
+            else {
+
+                $menu['plat'] = 'Aucun';
+            }
+
+            // Recuperation dessert
+
+            if ($dessert){
+
                 if(!empty($menu['dessert'])) {
                     $menu['dessert'] = $dessert->getNom();
                 }
             }
+
+            else {
+
+                $menu['dessert'] = 'Aucun';
+            }
+
+        }
 
             $view->assign('list_menu'  , $list_menu);
         

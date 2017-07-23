@@ -5,6 +5,24 @@ class Repas extends BaseSql{
     protected $nom;
     protected $category;
 
+    protected $validation = array(
+        
+        'nom' => array(
+            
+            "empty" => false,
+            "lenght" => array (2,10),
+            "alphanumeric" => true
+            
+        ),
+
+        'category' => array(
+
+            "empty" => false,
+            "in" => array("1","2","3")
+        )
+        
+    );
+
 
     public function __construct($id=-1, $nom=null, $category=0){
       

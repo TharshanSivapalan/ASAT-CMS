@@ -21,11 +21,12 @@
             $sqlVars = get_class_vars(get_class());
 
             $this->columns = array_diff_key($objectVars , $sqlVars);
+            unset($this->columns['validation']);
 
         }
 
         public function save () {
-
+            
             if ($this->id == -1) {
 
                 unset($this->columns['id']);
@@ -44,7 +45,7 @@
                 $sqlKey = ltrim($sqlKey , ",");
 
                 $query = $this->db->prepare("INSERT INTO " .$this->table. " (".$sqlCol.") VALUES (".$sqlKey.") ;");
-                
+
                 $query->execute($data);
             }
 
@@ -192,6 +193,99 @@
 
                 return $query;
             }
+        }
+
+
+        public function validate (array $data) {
+            
+            $validation = get_class_vars($this->table)['validation'];
+            
+            foreach ($validation as $key => $value){
+                
+                // Verification isset
+
+                if (!isset($data[$key])){
+
+                    //echo "NOT DEFINE";
+                    return false;
+                    break;
+                }
+                
+                else {
+
+                    // Verification empty
+
+                    if (!$validation[$key]['empty']){
+
+                        if (empty($data[$key])){
+
+                            //echo "EMPTY";
+                            return false;
+                            break;
+                        }
+                    }
+
+                    // Verification lenght
+
+                    if (isset($validation[$key]['lenght'])){
+
+                        $max = $validation[$key]['lenght'][1];
+                        $min = $validation[$key]['lenght'][0];
+
+                        if (strlen($data[$key]) > $max || strlen($data[$key]) < $min ){
+
+                            //echo "LENGHT PAS VALIDE";
+                            return false;
+                            break;
+                        }
+
+                    }
+
+                    // Verification alphanumeric
+
+                    if (isset($validation[$key]['alphanumeric'])){
+
+                        if (preg_match('/[^a-z_\-0-9]/i', $data[$key]) ){
+
+                            //echo "ALPHANUMERIQUE";
+                            return false;
+                            break;
+                        }
+
+                    }
+
+
+                    // Verification IN
+
+                    if (isset($validation[$key]['in'])){
+
+                        if (!in_array($data[$key] , $validation[$key]['in'] )) {
+
+                            //echo "IN";
+                            return false;
+                            break;
+                        }
+
+                    }
+
+
+                    // Verification Email
+
+                    if (isset($validation[$key]['email'])){
+
+                        if (!filter_var($data[$key], FILTER_VALIDATE_EMAIL)) {
+
+                            //echo "EMAIL";
+                            return false;
+                            break;
+                        }
+
+                    }
+                }
+            }
+
+            return true;
+
         }
 
     }

@@ -15,22 +15,54 @@ class MenuController {
 
         // Recuperation des nom des repas pour chaque menu
 
+
         foreach ($list_menu as &$menu) {
 
             $entree = $mrepas->populate(['id' => $menu['entree']]);
             $plat = $mrepas->populate(['id' => $menu['plat']]);
             $dessert = $mrepas->populate(['id' => $menu['dessert']]);
 
-            if(!empty($menu['entree'])) {
-                $menu['entree'] = $entree->getNom();
+            // Recuperation entree
+
+            if ($entree){
+                if(!empty($menu['entree'])) {
+                    $menu['entree'] = $entree->getNom();
+                }
             }
-            if(!empty($menu['plat'])) {
-                $menu['plat'] = $plat->getNom();
+
+            else {
+
+                $menu['entree'] = 'Aucun';
             }
-            if(!empty($menu['dessert'])) {
-                $menu['dessert'] = $dessert->getNom();
-            }    
-                
+
+            // Recuperation plat
+
+
+            if ($plat){
+
+                if(!empty($menu['plat'])) {
+                    $menu['plat'] = $plat->getNom();
+                }
+            }
+
+            else {
+
+                $menu['plat'] = 'Aucun';
+            }
+
+            // Recuperation dessert
+
+            if ($dessert){
+
+                if(!empty($menu['dessert'])) {
+                    $menu['dessert'] = $dessert->getNom();
+                }
+            }
+
+            else {
+
+                $menu['dessert'] = 'Aucun';
+            }
                 
         }
         
