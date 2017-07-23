@@ -6,7 +6,7 @@
             <?php if (isset($attributes["label"])): ?>
                 <label for="<?php echo $name?>"><?php echo $attributes['label'] ?></label>
             <?php endif; ?>
-                <input class="<?php echo isset($attributes["class"])?$attributes["class"]:''?>" type="<?php echo $attributes["type"];?>" name="<?php echo $name;?>" placeholder="<?php echo $attributes["placeholder"];?>" <?php echo (isset($attributes["required"]))?"required='required'":"";?> autocomplete="off">
+                <input class="<?php echo isset($attributes["class"])?$attributes["class"]:''?>" type="<?php echo $attributes["type"];?>" name="<?php echo $name;?>" placeholder="<?php echo $attributes["placeholder"];?>" <?php echo (isset($attributes["required"]))?"required='required'":"";?> maxlength="<?php echo isset($attributes["maxlength"])?$attributes["maxlength"]:''?>" minlength="<?php echo isset($attributes["minlength"])?$attributes["minlength"]:''?>">
         <?php endif; ?>
 
         <?php if($attributes["type"] == "select") : ?>

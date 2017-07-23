@@ -16,9 +16,130 @@ class UserController{
         
     }
 
-    public function addAction($params){
-        $view = new View('user-add');
-        $view->setTemplate('backoffice');
+    public function addAction(){
+
+        self::checkadmin();
+
+        $user = new User();
+
+        if ($_POST) {
+
+            if ($user->validate($_POST)) {
+
+                $email = trim($_POST['email']);
+                $login = trim($_POST['login']);
+                $password = $_POST['password'];
+                $pwdConfirmation = $_POST['password_confirm'];
+
+
+                // Verification unicite email
+
+                if($user->populate(["email"=>$email]) ){
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "L'adresse mail saisie est déjà utilisé par un compte !";
+
+                    header('Location: /user/add');
+                    exit(0);
+                }
+
+                // Verification unicite login
+
+                if($user->populate(["login"=>$login]) ){
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Le login saisie est déjà utilisé par un compte !";
+
+                    header('Location: /user/add');
+                    exit(0);
+                }
+
+                // Verification pass1 = pass2
+
+                if($password !== $pwdConfirmation ){
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Les 2 mots de passe ne sont pas identiques";
+
+                    header('Location: /user/add');
+                    exit(0);
+                }
+                
+                // Ajout
+
+                $token = bin2hex(openssl_random_pseudo_bytes(60));
+
+                $user->setId(-1);
+                $user->setLogin($login);
+                $user->setEmail($email);
+                $user->setPwd($password);
+                $user->setIdGroupUser(2);
+                $user->setDateInserted();
+                $user->setDateUpdated();
+                $user->setToken($token);
+                $user->setStatus(0);
+                $user->save();
+
+                $user = $user->populate(["email"=>$email]);
+
+                $link = $user->getId() . '-' . $user->getToken();
+
+                // Envoie email
+
+                require_once '../app/lib/SwiftMailer/swift_required.php';
+
+                // Transport
+
+                $transport = Swift_SmtpTransport::newInstance(HOSTMAIL, PORTMAIL);
+                $transport->setUsername(USERMAIL);
+                $transport->setPassword(PASSMAIL);
+
+                // Message
+
+                $message = Swift_Message::newInstance();
+                $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
+                $message->setTo($email);
+                $message->setSubject('Confirmation de votre compte');
+                $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a> <p> Une fois votre compte active connecté vous avec le mot de passe suivant : " . $password . " </p>");
+
+                $type = $message->getHeaders()->get('Content-Type');
+                $type->setValue('text/html');
+                $type->setParameter('charset', 'utf-8');
+
+                // Envoi
+
+                $mailer = Swift_Mailer::newInstance($transport);
+                $result = $mailer->send($message);
+
+                if(!$result) {
+
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Une erreur s'est produite avec l'envoi de l'email";
+                }
+
+                $_SESSION["flash"]["type"] = "success";
+                $_SESSION["flash"]["message"] = "Un email de confirmation a été envoyé à l'utilisateur";
+
+                header('Location: /user');
+                exit(0);
+            }
+
+            else {
+
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Champs invalide";
+
+                header('Location: /user/add');
+                exit(0);
+            }
+
+        }
+
+        else {
+
+            $view = new View('user-add');
+            $view->setTemplate('backoffice');
+
+            $view->assign("form" , $user->getInscriptionForm());
+        }
+
     }
 
     public function loginAction () {
@@ -159,7 +280,7 @@ class UserController{
                                 $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
                                 $message->setTo($email);
                                 $message->setSubject('Confirmation de votre compte');
-                                $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a>");
+                                $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a> <p> Une fois votre compte active connecté vous avec le mot de passe suivant : " . $password . " </p>");
 
                                 $type = $message->getHeaders()->get('Content-Type');
                                 $type->setValue('text/html');
