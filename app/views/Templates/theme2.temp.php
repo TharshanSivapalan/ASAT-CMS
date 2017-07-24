@@ -17,25 +17,33 @@
 </head>
 <body>
 
-<nav class="conteneur-colonnes">
-    <div id="menu-logo-slogan-adresse">
-        <div id="slogan">
-            <span>Slogan : <?php echo htmlspecialchars($list_setting[1]['valeur']) ?> </span>
-        </div>
-        <div id="logo">
-            <img id="comp-j143wefiimgimage" alt="logo" src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?>">
-        </div>
-        <div id="adresse">
-            <span><?php echo htmlspecialchars($list_setting[5]['valeur']) ?></span>
-        </div>
-    </div>
+<div>
+    <input type="checkbox" id="hamburger"/>
+                <label class="menu-mobile" for="hamburger">
+                    <span></span>
+                </label>  
+    <div class="menu">           
+            <nav class="main-nav">
+                <div id="menu-logo-slogan-adresse">
+                    <div id="slogan">
+                        <span>Slogan : manger c est manger </span>
+                    </div>
+                    <div id="logo">
+                        <img src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?> " class="logo" alt="logo">
+                    </div>
+                    <div id="adresse">
+                        <span>Paris</span>
+                    </div>
+                </div>
 
-    <ul class="conteneur-colonnes">
-        <li ><a href="/">Accueil</a></li>
-        <li ><a href="/carte">La Carte</a></li>
-        <li ><a href="/contact">Contact</a></li>
-    </ul>
-</nav>
+                <ul class="conteneur-colonnes">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/carte">La Carte</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+    </div> 
+</div>
     <?php include $this->view; ?>
 <footer >
     <p class="text-center copyright">&copy;<?php echo date("Y"); ?> <?php echo htmlspecialchars($list_setting[0]['valeur']) ?></p>

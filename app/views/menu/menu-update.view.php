@@ -4,6 +4,8 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
+        <a href="/menu" class="back-button"><i class="fa fa-arrow-left faa-horizontal animated-hover back-button-arrow" aria-hidden="true"> <span class="back-button-text">Retour</span>
+        </i></a>
         <form class="" id="" action="update" method="post" enctype="multipart/form-data" >
 
             <label>Titre du menu*</label>

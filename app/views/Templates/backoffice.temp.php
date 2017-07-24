@@ -13,6 +13,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='
+    https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css'>
 
     <link rel="stylesheet" href="/css/notification.css">
     
@@ -28,6 +30,7 @@
  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
     <ul>
+        <li><a href="/">MON SITE</a></li>
         <li><a href="/dashboard">DASHBOARD</a></li>
 
         <li class="menu-level1"><a href="#">MENU<i class="fa fa-caret-down"></i></a>
@@ -82,7 +85,7 @@
     <img src="/img/logo_menu.png" class="lg_admin" alt="logo">
     <div class="user-detail">
         <span id="login-user"> <?php echo $_SESSION["user"]["login"]; ?>
-        <a href="/user/logout"><i class="action-button fa fa-power-off " style="
+        <a href="/user/logout"><i class="action-button fa faa-vertical animated-hover fa-power-off " style="
     margin-left: 10px;
 "></i></a></span></div>
     </div>

@@ -10,18 +10,7 @@ class Menu extends BaseSql{
     protected $dessert;
     protected $prix;
 
-    public function __construct($id=-1, $nom=null, $description=null, $image=null, $entree=0, $plat=0, $dessert=0, $prix=0 ){
-
-        $this->setId($id)   ; 
-        $this->setNom($nom)   ;
-        $this->setDescription($description)   ;
-        $this->setImage($image)   ;
-        $this->setEntree($entree)   ;
-        $this->setPlat($plat)   ;
-        $this->setDessert($dessert)   ;
-        $this->setPrix($prix)   ;
-
-
+    public function __construct(){
         parent::__construct();
     }
 

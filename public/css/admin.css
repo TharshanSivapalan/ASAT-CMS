@@ -479,6 +479,11 @@ table th {
   padding: 0px;
 }
 
+.back-button {
+  display: block;
+  padding-bottom: 20px;
+}
+
 .action-button {
     background-color: initial;
     font-size: 1.4em!important;
@@ -758,4 +763,9 @@ hr {
     border-width: 3px;
     border: solid;
     color: #f05f40;
+}
+
+
+.fa-power-off:hover {
+  color: white;
 }

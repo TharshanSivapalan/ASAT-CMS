@@ -363,18 +363,42 @@ class MenuController {
                 if($mMenu->populate(["id"=> intval($id[0]) ])) {
 
 
-                    
+                    $mMenu = $mMenu->populate(["id"=> intval($id[0]) ]);
+                    $menu = $mMenu->getallBy(['id' => $mMenu->getId()]);
 
-                    $view->assign('mMenu'  , $mMenu);  
+
+                    $entree = $mrepas->populate(['id' => 1]);
+                    $plat = $mrepas->populate(['id' => 7]);
+                    $dessert = $mrepas->populate(['id' => 8]);
+
+                    if ($entree){
+                        $menu[0]['entreeName'] = $entree->getNom();
+                    } else {
+                        $menu[0]['entreeName'] = 'Aucun';
+                    }
+
+                    // Recuperation plat
+                    if ($plat){
+                        $menu[0]['platName'] = $plat->getNom();
+                    } else {
+
+                        $menu[0]['platName'] = 'Aucun';
+                    }
+
+                    // Recuperation dessert
+                    if ($dessert){
+                        $menu[0]['dessertName'] = $dessert->getNom();
+                    } else {
+                        $menu[0]['dessertName'] = 'Aucun';
+                    }
+
+                    $view->assign('menu'  , $menu);  
 
                     // Recuperation des reglages du site
 
                     $setting = new Settings();
                     $list_setting = $setting->getall();
                     $view->assign('list_setting'  , $list_setting);
-
-
-                    
 
 
 
@@ -406,7 +430,7 @@ class MenuController {
                 }
 
                 if(!$error) {
-                    $uploadPath = dirname(__DIR__).DS."upload".DS."illustration";
+                    $uploadPath = dirname(dirname(dirname(__FILE__))).DS."public".DS."img".DS."menus";
                     if( !file_exists($uploadPath) ){
                         mkdir($uploadPath);
                     }

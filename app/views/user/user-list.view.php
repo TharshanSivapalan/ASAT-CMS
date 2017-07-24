@@ -31,7 +31,7 @@
                     <td data-label="date_inscription"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="date_modification"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="Action" class="actions">
-                        <a href="user/delete/<?php echo htmlspecialchars ($user['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
+                        <a href="user/delete/<?php echo htmlspecialchars ($user['id']); ?>" class="confirmation"><i class="action-button fa fa-trash faa-float animated-hover delete"></i>
                     </td>
                 </tr>
 
