@@ -4,7 +4,7 @@
     </div>
 
     <div class="onglet-contenu" >
-        <div class="theme-block text-center">
+        <div class="theme-block ">
             <?php foreach ($list_template as $template) : ?>
                 <div class="theme-block-content">
                     <h2 class="text-center"><?php echo $template['name']?></h2>

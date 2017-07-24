@@ -340,6 +340,52 @@ class MenuController {
     }
 
 
+    public function presentationAction($id) {
+
+        $theme = new Theme();
+        $theme = $theme->populate(['statut' => 1]);
+
+
+        $view = new View('menu-presentation');
+        $view->setTemplate('theme'.$theme->getId());
+        $view->assign('theme_id', $theme->getId());
+
+        $mMenu = new Menu();
+        $mrepas = new Repas();
+
+
+        if (empty($id)) {
+
+            header('Location: /inaccessible');
+        }else {
+                $mMenu = new Menu();
+
+                if($mMenu->populate(["id"=> intval($id[0]) ])) {
+
+
+                    
+
+                    $view->assign('mMenu'  , $mMenu);  
+
+                    // Recuperation des reglages du site
+
+                    $setting = new Settings();
+                    $list_setting = $setting->getall();
+                    $view->assign('list_setting'  , $list_setting);
+
+
+                    
+
+
+
+                } else {
+                    header('Location: /inaccessible');
+                }
+
+        }
+    }
+
+
     private function addImage ($image , $menu, $error = false) {
 
             $ImgExtensionAuthorized = ["png","jpg","jpeg","gif"];

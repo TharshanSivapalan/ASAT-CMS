@@ -40,6 +40,64 @@ h2{
     font-size:30px;
 }
 
+.carte-menu-block .menu-carte-before{
+    font-family: 'Great Vibes', cursive;
+}
+
+.carte-menu-block .menu-carte-before {
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+
+}
+
+.carte-menu-block .menu-carte-before:before,
+.carte-menu-block .menu-carte-before:after {
+    content: '';
+    display: inline-block;
+    height: 2px;
+    background: #000;
+    width: 10%;
+    position: relative;
+    vertical-align: middle;
+    margin: 10px;
+
+}
+
+.carte-menu-block img {
+    width: 260px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.carte-menu-block {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.carte-menu-block .menu-container{
+    text-align: center;
+}
+
+.nom-plat {
+    font-weight: bold;
+}
+
+
+.carte-price-menu {
+    color:#BA2204;
+    font-size: 2em;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    display: block;
+    font-style: italic;
+}
+
+
 img {
     max-width: 100%; /* l'image ne sortira jamais du container (largeur maximale)*/
 }
@@ -103,6 +161,26 @@ header{
     background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+
+header#menu-presentation-header{
+    position: relative;
+    width: 100%;
+    min-height: 240px;
+    height: auto;
+    background-color: transparent;
+    background-image: url(/img/Template1/sallerestaurant.jpg);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+header#menu-presentation-header .header-caption {
+    padding: 90px 30px 0;
+    text-transform: uppercase;
 }
 
 
@@ -184,7 +262,7 @@ section{
     margin-right: auto;
     display: block;
     overflow: hidden;
-    margin-top: 30px;
+    padding-top: 30px;
 }
 
 .col{
@@ -364,3 +442,14 @@ button {
     }
 
 }
+
+.nos_meilleurs_plats img{
+    width: 260px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.nos_meilleurs_plats {
+    text-align: center;
+}
+
