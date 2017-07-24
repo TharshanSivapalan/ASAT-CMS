@@ -78,7 +78,7 @@ class UserController{
                 $user->save();
 
                 $user = $user->populate(["email"=>$email]);
-
+                
                 $link = $user->getId() . '-' . $user->getToken();
 
                 // Envoie email
@@ -163,18 +163,21 @@ class UserController{
 
         if ($_POST) {
 
-            $login = $_POST['login'];
-            $password = $_POST['password'];
+            if (isset($_POST['login']) && isset($_POST['password'])) {
 
-            // Chercher le user associe
 
-            $user = new User();
+                $login = $_POST['login'];
+                $password = $_POST['password'];
 
-            $user = $user->populate(['login' => $login , 'status' => 1]);
+                // Chercher le user associe
 
-            if ($user && password_verify($password , $user->getPassword())) {
+                $user = new User();
 
-                // Sauvegarde du user dans la session
+                $user = $user->populate(['login' => $login, 'status' => 1]);
+
+                if ($user && password_verify($password, $user->getPassword())) {
+
+                    // Sauvegarde du user dans la session
 
                     $_SESSION["user"] = array(
                         'login' => $user->getLogin(),
@@ -186,14 +189,22 @@ class UserController{
                     header("Location: /dashboard");
                     exit();
 
+                } else {
+
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Login ou mot de passe incorrect";
+                }
+
             }
+
 
             else {
 
-                $_SESSION["flash"]["type"] = "error";
-                $_SESSION["flash"]["message"] = "Login ou mot de passe incorrect";
+                    header("Location: /inaccessible");
+                    exit();
+                }
+
             }
-        }
 
     }
 
@@ -472,17 +483,42 @@ class UserController{
 
                 if ($_POST) {
 
-                    // Ajouter les verification (pwd1 = pwd2 et superier à 8 caracteres)
+                    if (isset($_POST['password']) && isset($_POST ['password_confirm'])) {
 
-                    $user->setPwd($_POST['password']);
-                    $user->setToken(NULL);
-                    $user->setResetAt(NULL);
-                    $user->save();
+                        if (strlen($_POST['password']) > 16 || strlen($_POST['password']) < 8 ) {
 
-                    $_SESSION["flash"]["type"] = "success";
-                    $_SESSION["flash"]["message"] = "Votre mot de passe a été changé avec success";
-                    header('Location: /user/login');
-                    exit(0);
+                            $_SESSION["flash"]["type"] = "error";
+                            $_SESSION["flash"]["message"] = "Votre mot de passe doit être compris entre 8 et 16 caracteres";
+                            header("Location: /user/password/$token[0]-$token[1]");
+                            exit(0);
+                        }
+
+                        if ($_POST['password'] !==  $_POST['password_confirm'] ) {
+
+
+                            $_SESSION["flash"]["type"] = "error";
+                            $_SESSION["flash"]["message"] = "Les 2 mots de passes ne sont pas identiques";
+                            header("Location: /user/password/$token[0]-$token[1]");
+                            exit(0);
+                        }
+
+                        $user->setPwd($_POST['password']);
+                        $user->setToken(NULL);
+                        $user->setResetAt(NULL);
+                        $user->save();
+
+                        $_SESSION["flash"]["type"] = "success";
+                        $_SESSION["flash"]["message"] = "Votre mot de passe a été changé avec success";
+                        header('Location: /user/login');
+                        exit(0);
+                }
+
+                    else {
+
+                        header('Location: /inaccesible');
+                        exit(0);
+                    }
+
                 }
 
             }

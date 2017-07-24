@@ -221,13 +221,17 @@ class User extends BaseSql{
                     "type"=>"password",
                     "class" => "basic-input",
                     "placeholder"=>"Nouveau mot de passe",
-                    "required"=>1
+                    "required"=>1,
+                    "maxlength" => 16,
+                    "minlength" => 8
                 ],
                 "password_confirm"=>[
                     "type"=>"password",
                     "class" => "basic-input",
                     "placeholder"=>"Confirmer nouveau mot de passe",
-                    "required"=>1
+                    "required"=>1,
+                    "maxlength" => 16,
+                    "minlength" => 8
                 ]
             ]
         ];

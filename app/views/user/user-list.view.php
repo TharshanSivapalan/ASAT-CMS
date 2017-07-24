@@ -31,14 +31,6 @@
                     <td data-label="date_inscription"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="date_modification"><?php echo htmlspecialchars($user['date_updated'])?></td>
                     <td data-label="Action" class="actions">
-                        <form action="user/updateperm" id="updateUser" method="POST">
-                            <input type="hidden" name="id" value="<?php echo intval($user['id']); ?>">
-
-                            <button type="submit" class="action-button edit  update">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </form>
-
                         <a href="user/delete/<?php echo htmlspecialchars ($user['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
                     </td>
                 </tr>
