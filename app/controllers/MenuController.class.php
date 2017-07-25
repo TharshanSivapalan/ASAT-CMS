@@ -165,6 +165,8 @@ class MenuController {
 
                 // Verifier image
 
+                $menu->setImage('default.jpg');
+                
                 if(!empty($_FILES['image']['name'])){
                     $image = $_FILES['image'];
                     self::addImage($image , $menu);
@@ -176,8 +178,6 @@ class MenuController {
                 $entre = $_POST['entree'];
                 $plat = $_POST['plat'];
                 $dessert = $_POST['dessert'];
-                $image = $_FILES['image']['name'];
-
 
                 // Ajout
 
@@ -187,8 +187,10 @@ class MenuController {
                 $menu->setEntree($entre);
                 $menu->setPlat($plat);
                 $menu->setDessert($dessert);
-                $menu->setPrix($prix);
+                $menu->setPrix(floatval($prix));
+
                 $menu->save();
+
 
                 $_SESSION["flash"]["type"] = "success";
                 $_SESSION["flash"]["message"] = "Le menu a bien été ajouté";

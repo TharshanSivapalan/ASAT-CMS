@@ -36,17 +36,8 @@ class Menu extends BaseSql{
         )
     );
 
-    public function __construct($id=-1, $nom=null, $description=null, $image=null, $entree=0, $plat=0, $dessert=0, $prix=0 ){
+    public function __construct(){
 
-        $this->setId($id)   ; 
-        $this->setNom($nom)   ;
-        $this->setDescription($description)   ;
-        $this->setImage($image)   ;
-        $this->setEntree($entree)   ;
-        $this->setPlat($plat)   ;
-        $this->setDessert($dessert)   ;
-        $this->setPrix($prix)   ;
-        
         parent::__construct();
     }
 
@@ -65,19 +56,51 @@ class Menu extends BaseSql{
     }
 
     public function setImage($image){
-        $this->image = $image;
+
+        if (is_null($image)) {
+            $this->image = 'default.png';
+        }
+
+        else {
+
+            $this->image = $image;
+        }
+
     }  
 
     public function setEntree($entree){
-        $this->entree = $entree;
+
+        if (!empty($entree)) {
+            $this->entree = $entree;
+        }
+
+        else {
+            $this->entree = NULL;
+
+        }
+
     }  
 
     public function setPlat($plat){
-        $this->plat = $plat;
+        if (!empty($plat)) {
+            $this->plat = $plat;
+        }
+
+        else {
+            $this->plat = NULL;
+
+        }
     }  
 
     public function setDessert($dessert){
-        $this->dessert = $dessert;
+        if (!empty($dessert)) {
+            $this->dessert = $dessert;
+        }
+
+        else {
+            $this->dessert = NULL;
+
+        }
     }  
 
     public function setPrix($prix){
