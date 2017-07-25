@@ -41,7 +41,7 @@ class RepasController {
             }
             
             else {
-
+                $_SESSION["value_form"] = $_POST;
                 $_SESSION["flash"]["type"] = "error";
                 $_SESSION["flash"]["message"] = "Champs invalide";
 
@@ -108,7 +108,7 @@ class RepasController {
                 }
 
                 else {
-
+                    $_SESSION["value_form"] = $_POST;
                     $_SESSION["flash"]["type"] = "error";
                     $_SESSION["flash"]["message"] = "Champs invalides";
 
@@ -166,7 +166,6 @@ class RepasController {
         }
 
         else {
-
             header('Location: /inaccesible2');
             exit(0);
         }

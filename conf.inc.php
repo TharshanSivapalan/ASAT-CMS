@@ -1,6 +1,6 @@
 <?php
 
-     define("DS" , DIRECTORY_SEPARATOR);
+        define("DS" , DIRECTORY_SEPARATOR);
     define("BASE_PATH" , "/");
     define("BASE_PATH_PATTERN" , "\/ASAT\/");
 

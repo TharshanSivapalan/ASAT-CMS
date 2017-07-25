@@ -4,10 +4,33 @@
     </div>
 
     <div class="onglet-contenu dashboard-top" >
-	      <div class="dashboard-top-item" ><span class="dashboard-title-item">Nombre de visite total</span><span class="dashboard-nb-item" id="nbVisiteStart" >70</span></div>
-	      <div id="nbVisiteFinish" class="dashboard-top-item"><span class="dashboard-title-item"></span><span class="dashboard-nb-item"  id="nbVisiteFinish"  >70</span></div>
-	      <div id="nbVisiteFinish" class="dashboard-top-item"><span class="dashboard-title-item"></span><span class="dashboard-nb-item" >70</span></div>
+	      <div id="dashboard-top-item-1" class="dashboard-top-item" >
+		      <div class="dashboard-top-item-content">
+		      	<span class="dashboard-title-item">Menu</span>
+		      	<hr class="souligne">
+		      	<span class="dashboard-nb-item" >4</span>
+		      </div>
+	      </div>
+	      <div id="dashboard-top-item-2" class="dashboard-top-item">
+		      <div class="dashboard-top-item-content">
+		      	<span class="dashboard-title-item">Repas</span>
+		      	<hr class="souligne">
+		      	<span class="dashboard-nb-item"  >8</span>
+		      </div>
+	      </div>
+	      <div id="dashboard-top-item-3" class="dashboard-top-item">
+		      <div class="dashboard-top-item-content">
+		      	<span class="dashboard-title-item">Un truc</span>
+		      	<hr class="souligne">
+		      	<span class="dashboard-nb-item" >9</span>
+		      </div>
+	      </div>
     </div>
+
+
+    <div id="nbVisiteFinish"  >112</div>
+    <div id="nbVisiteStart"  >323</div>
+
 
     <div class="onglet-contenu dashboard-bottom" >
 	    <div id="chartdiv" style="width: 100%; height: 355px;">#Donuts</div>
@@ -28,19 +51,21 @@
 		    "type": "pie",
 		    
 		    "dataProvider": [ {
-		      "title": "Nombre de visite par mois",
-		      "value": $nbVisiteFinish
+		      "title": "Nombre de visite ce mois",
+		      "value": $nbVisiteFinish,
+		      "color": "#3e95cd"
+
 		    }, 
 		    {
-		      "title": "Nombre de visite du moins dernier",
-		      "value": $nbVisiteStart
+		      "title": "Nombre de visite du mois dernier",
+		      "value": $nbVisiteStart,
+		      "color": "#656D78"
 		    }
 		    ],
 
 		    "titleField": "title",
 		    "valueField": "value",
-		    "labelRadius": 5,
-
+		    "colorField": "color",
 		    "radius": "42%",
 		    "innerRadius": "60%",
 		    "labelText": "[[title]]",
