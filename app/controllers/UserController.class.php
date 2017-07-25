@@ -533,6 +533,93 @@ class UserController{
             } 
         }
     }
+
+    public function updateAction () {
+        self::checkadmin();
+        if (
+            $_POST &&
+            !empty($_POST['emailNew']) &&
+            !empty($_POST['mdpConfirm1']) &&
+            (count($_POST)==3)
+        ) {
+            $error = false;
+            $emailNew = $_POST['emailNew'] ;
+            $mdpConfirm1 = $_POST['mdpConfirm1'] ;
+            // Chercher le user associe
+            $user = new User();
+            $user = $user->populate(['login' => $_SESSION["user"]['login'] , 'status' => 1]);
+
+            if ($user && password_verify($mdpConfirm1 , $user->getPassword())) {
+                if($user->populate(["email"=>$emailNew]) ){
+                    $messsages [] = "L'adresse mail saisie est déjà utilisé par un compte !";
+                    $error = true;
+                }
+
+                if( !filter_var($emailNew, FILTER_VALIDATE_EMAIL)  ){
+                    $messsages [] = "Email invalide !";
+                    $error = true;
+                }
+
+            }  else {
+                $messsages[] = "Le mot de passe est incorrect";
+                $error  = true;
+            }
+            if($error ) {
+                $_SESSION["messages"] = $messsages;
+            } else {
+                $user->setId(1);
+                $user->setEmail($emailNew);
+                $user->save();
+                $_SESSION["user"]['email'] = $user->getEmail();
+            }
+        }
+        if (
+            $_POST &&
+            !empty($_POST['mdpNew1']) &&
+            !empty($_POST['mdpNew2']) &&
+            !empty($_POST['mdpConfirm2']) &&
+            (count($_POST)==4)
+        ) {
+            $error = false;
+            $mdpNew1 = $_POST['mdpNew1'] ;
+            $mdpNew2 = $_POST['mdpNew2'] ;
+            $mdpConfirm2 = $_POST['mdpConfirm2'] ;
+            // Chercher le user associe
+            $user = new User();
+            $user = $user->populate(['login' => $_SESSION["user"]['login'] , 'status' => 1]);
+
+            if ($user && password_verify($mdpConfirm2 , $user->getPassword())) {
+
+                //Vérification de la longueur du mpd
+                if(strlen($mdpNew1) < 8 || strlen($mdpNew1) > 16 ){
+                    $messsages [] = "Le mot de passe doit faire entre 8 et 16 caractères";
+                    $error = true;
+                }
+                //Vérification confirmation
+                if($mdpNew1 != $mdpNew2){
+                    $messsages [] = "Les 2 mots de passe saisient ne sont pas identiques";
+                    $error = true;;
+                }
+
+            }  else {
+                $messsages[] = "Le mot de passe est incorrect";
+                $error  = true;
+            }
+            if($error ) {
+                $_SESSION["messages"] = $messsages;
+            } else {
+                $user->setId(intval($user->getId()));
+                $user->setPwd($mdpNew1);
+                $user->save();
+                $_SESSION["user"]['email'] = $user->getEmail();
+            }
+        }
+
+        $view = new View('user-update');
+        $view->setTemplate('backoffice');
+
+
+    }
     
     public function logoutAction () {
 

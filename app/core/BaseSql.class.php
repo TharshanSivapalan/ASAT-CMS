@@ -216,7 +216,7 @@
 
                     if (!$validation[$key]['empty']){
 
-                        if (empty($data[$key])){
+                        if (empty(trim($data[$key]))){
 
                             return false;
                             break;
@@ -282,7 +282,7 @@
 
                     if (isset($validation[$key]['number'])){
 
-                        if (!is_numeric($data[$key])) {
+                        if (!is_numeric($data[$key]) || $data[$key] < 0 ) {
 
                             //echo "NUMBER";
                             return false;
@@ -290,7 +290,7 @@
                         }
 
                     }
-                    
+
                 }
             }
 
