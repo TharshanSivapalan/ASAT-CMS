@@ -33,12 +33,15 @@
 
 
     <div class="onglet-contenu dashboard-bottom" >
-	    <div id="chartdiv" style="width: 100%; height: 355px;">#Donuts</div>
+	    <div id="chart1div" style="width: 100%; height: 355px;">#Donuts</div>
+	    <div id="chart2div" style="width: 100%; height: 355px;">#Donuts</div>
+
 		  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
 		  crossorigin="anonymous"></script>
 		  <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 		  <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+		  <script src="https://www.amcharts.com/lib/3/serial.js"></script>
 		  <script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
 	    </div>
 	</div>
@@ -47,7 +50,7 @@
 		$nbVisiteFinish = $("#nbVisiteFinish").text();
 		$nbVisiteStart = $("#nbVisiteStart").text();
 
-		  var chart = AmCharts.makeChart( "chartdiv", {
+		  var chart1 = AmCharts.makeChart( "chart1div", {
 		    "type": "pie",
 		    
 		    "dataProvider": [ {
@@ -73,4 +76,49 @@
 		  } );
 
 	</script>
+	<script>
+	var chart2 = AmCharts.makeChart( "chart2div", {
+	  "type": "serial",
+
+	  "dataProvider": [ {
+	    "month": "Juin",
+	    "visits": 2
+	  }, {
+	    "month": "Juillet",
+	    "visits": 98
+	  }, {
+	    "month": "Aout",
+	    "visits": 0
+	  }],
+	  "valueAxes": [ {
+	  	"title": "Nombre de viste par mois",
+	    "gridColor": "#FFFFFF",
+	    "gridAlpha": 0.2,
+	    "dashLength": 0
+	  } ],
+	  "gridAboveGraphs": true,
+	  "startDuration": 1,
+	  "graphs": [ {
+	    "balloonText": "[[category]]: <b>[[value]]</b>",
+	    "fillAlphas": 0.8,
+	    "lineAlpha": 0.2,
+	    "type": "column",
+	    "valueField": "visits"
+	  } ],
+	  "chartCursor": {
+	    "categoryBalloonEnabled": false,
+	    "cursorAlpha": 0,
+	    "zoomable": false
+	  },
+	  "categoryField": "month",
+	  "categoryAxis": {
+	    "gridPosition": "start",
+	    "gridAlpha": 0,
+	    "tickPosition": "start",
+	    "tickLength": 20
+	  }
+
+	} );
+	</script>
+
 </div>
