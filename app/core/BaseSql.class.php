@@ -206,7 +206,6 @@
 
                 if (!isset($data[$key])){
 
-                    //echo "NOT DEFINE";
                     return false;
                     break;
                 }
@@ -219,7 +218,6 @@
 
                         if (empty($data[$key])){
 
-                            //echo "EMPTY";
                             return false;
                             break;
                         }
@@ -234,7 +232,6 @@
 
                         if (strlen($data[$key]) > $max || strlen($data[$key]) < $min ){
 
-                            //echo "LENGHT PAS VALIDE";
                             return false;
                             break;
                         }
@@ -245,9 +242,8 @@
 
                     if (isset($validation[$key]['alphanumeric'])){
 
-                        if (preg_match('/[^a-z_\-0-9]/i', $data[$key]) ){
+                        if (!preg_match('/^[a-z0-9 .\-]+$/i', $data[$key]) ){
 
-                            //echo "ALPHANUMERIQUE";
                             return false;
                             break;
                         }

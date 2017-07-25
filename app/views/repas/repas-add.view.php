@@ -8,7 +8,7 @@
             </i></a>
         <form class="" id="" action="add" method="post">
 
-            <label>Titre du menu</label>
+            <label>Titre du repas</label>
             <input pattern="[a-zA-Z0-9\s]+" minlength="3" maxlength="255" type="text" class="input" id="" name="nom" autocomplete="off" required="required">
 
             <label>Type</label>

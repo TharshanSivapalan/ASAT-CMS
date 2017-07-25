@@ -3,9 +3,7 @@ class CarteController
 {
 
     public function indexAction() {
-
-            self::checkadmin();
-
+        
             // Recuperation du template actif
 
             $theme = new Theme();
