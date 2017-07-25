@@ -159,6 +159,10 @@ class InstallerController{
 			
 			// Try catch --> Pour finaliser l'installeur
 			$one = 1;
+			$email = $_SESSION['settings']['email'];
+			$login = $_SESSION['settings']['login'];
+			$password = password_hash($_SESSION['settings']['password'], PASSWORD_DEFAULT);
+			$date = date("Y-m-d H:i:s");
 			try {
 			// Connexion à la base de données et installer la base de données
 			$db = new PDO("mysql:host=".$_SESSION['database']['database_address']."; port=".$_SESSION['database']['database_port'].";dbname=".$_SESSION['database']['database_name'].";", $_SESSION['database']['database_login'], $_SESSION['database']['database_password']);
@@ -168,12 +172,12 @@ class InstallerController{
 
 			// Création d'un utilisateur dans la base de données
 			$stmt = $db->prepare ("INSERT INTO user (email, login, password, status, date_inserted, date_updated, id_groupuser) VALUES (:email, :login, :password, :status, :date_inserted, :date_updated, :id_groupuser)");
-			$stmt -> bindParam(':email', $_SESSION['settings']['email']);
-			$stmt -> bindParam(':login', $_SESSION['settings']['login']);
-			$stmt -> bindParam(':password', password_hash($_SESSION['settings']['password'], PASSWORD_DEFAULT));
+			$stmt -> bindParam(':email', $email);
+			$stmt -> bindParam(':login', $login);
+			$stmt -> bindParam(':password', $password);
 			$stmt -> bindParam(':status', $one);
-			$stmt -> bindParam(':date_inserted', date("Y-m-d H:i:s"));
-			$stmt -> bindParam(':date_updated', date("Y-m-d H:i:s"));
+			$stmt -> bindParam(':date_inserted', $date);
+			$stmt -> bindParam(':date_updated', $date);
 			$stmt -> bindParam(':id_groupuser', $one);
 			$stmt -> execute();
 			$db = null;

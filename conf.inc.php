@@ -39,7 +39,7 @@
 	//DATABASE
 	define('DATABASE', 'asat-cms'); 
 	define('USERDB', 'root'); 
-	define('PASSDB', 'asatesgi'); 
+	define('PASSDB', 'root'); 
 	define('DBHOST', 'localhost');
 	define('DBPORT', '3306');
 
