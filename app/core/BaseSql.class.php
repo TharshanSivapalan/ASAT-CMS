@@ -282,7 +282,7 @@
 
                     if (isset($validation[$key]['number'])){
 
-                        if (!is_numeric($data[$key]) || $data[$key] < 0 ) {
+                        if (!is_numeric($data[$key]) || $data[$key] < 0 || $data[$key] > 10000  ) {
 
                             //echo "NUMBER";
                             return false;

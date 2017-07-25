@@ -62,7 +62,7 @@ class RepasController {
 
         self::checkadmin();
 
-        if (empty($params[0])) {
+        if (!isset($params[0])) {
             header('Location: /inaccesible');
             exit(0);
         }
@@ -147,8 +147,8 @@ class RepasController {
 
         self::checkadmin();
 
-        if (empty($params[0])) {
-            header('Location: /inaccesible1');
+        if ( !isset($params[0]) || !isset($params[1]) || $_SESSION['tokenCRSF'] != $params[1] ) {
+            header('Location: /inaccesible');
             exit(0);
         }
 

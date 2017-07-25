@@ -10,7 +10,7 @@
             <input type="text" class="input" id="" name="nom" value="<?php echo $menu[0]["nom"];?>" autocomplete="off">
 
             <label>Image</label>
-            <input type="file" class="input" id="" name="image" value="<?php echo $menu[0]["image"];?>" accept="image/*" autocomplete="off">
+            <input type="file" class="input" id="" name="image" accept="image/*" autocomplete="off">
 
             <label>Ajouter une entrée </label>
             <br>
@@ -57,7 +57,7 @@
 
             <label>Description du menu</label>
             <br>
-            <textarea class="input editor" name ="description"  id="description" cols="70" rows="15"><?php echo $menu[0]["description"];?></textarea>
+            <textarea class="input editor" name ="description"  id="description" cols="70" rows="15"><?php echo strip_tags($menu[0]["description"]);?></textarea>
 
             <input type="hidden" name="id" value="<?php echo $menu[0]["id"] ?>">
 

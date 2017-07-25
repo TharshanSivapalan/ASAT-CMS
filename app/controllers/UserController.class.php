@@ -536,6 +536,7 @@ class UserController{
 
     public function updateAction () {
         self::checkadmin();
+
         if (
             $_POST &&
             !empty($_POST['emailNew']) &&
@@ -624,6 +625,7 @@ class UserController{
     public function logoutAction () {
 
         unset($_SESSION['user']);
+        unset($_SESSION['tokenCRSF']);
         $_SESSION["flash"]["type"] = "success";
         $_SESSION["flash"]["message"] = "Vous êtes maintenant déconnecté";
         header('Location: /user/login');
@@ -634,7 +636,7 @@ class UserController{
 
         self::checkadmin();
 
-        if (empty($params[0])) {
+        if ( !isset($params[0]) || !isset($params[1]) || $_SESSION['tokenCRSF'] != $params[1] ) {
             header('Location: /inaccesible');
             exit(0);
         }

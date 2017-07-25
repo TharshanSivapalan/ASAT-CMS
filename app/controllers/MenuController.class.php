@@ -15,7 +15,6 @@ class MenuController {
 
         // Recuperation des nom des repas pour chaque menu
 
-
         foreach ($list_menu as &$menu) {
 
             $entree = $mrepas->populate(['id' => $menu['entree']]);
@@ -169,7 +168,7 @@ class MenuController {
                 
                 if(!empty($_FILES['image']['name'])){
                     $image = $_FILES['image'];
-                    self::addImage($image , $menu);
+                    self::addImage($image , $menu , 'add');
                 }
 
                 $nom = $_POST['nom'];
@@ -226,10 +225,10 @@ class MenuController {
     }
 
     public function deleteAction ($params) {
-
+        
         self::checkadmin();
 
-        if (empty($params[0])) {
+        if ( !isset($params[0]) || !isset($params[1]) || $_SESSION['tokenCRSF'] != $params[1] ) {
             header('Location: /inaccesible');
             exit(0);
         }
@@ -261,7 +260,7 @@ class MenuController {
 
      public function updateAction ($params) {
 
-         if (empty($params[0])) {
+         if (!isset($params[0])) {
              header('Location: /inaccesible');
              exit(0);
          }
@@ -269,6 +268,8 @@ class MenuController {
          $id = $params[0];
 
          $mMenu = new Menu();
+
+         $menu = $mMenu->getallBy(['id' => $id]);
 
          $entre = new Repas();
          $plat = new Repas();
@@ -285,7 +286,6 @@ class MenuController {
              $view = new View('menu-update');
              $view->setTemplate('backoffice');
 
-             $menu = $mMenu->getallBy(['id' => $id]);
              $view->assign('menu'  , $menu);
 
              $view->assign('list_entre'  , $list_entre);
@@ -328,7 +328,7 @@ class MenuController {
                              $_SESSION["flash"]["type"] = "error";
                              $_SESSION["flash"]["message"] = "Entree invalide";
 
-                             header('Location: /menu/add');
+                             header('Location: /menu/update/'.$_POST['id']);
                              exit(0);
                          }
                      }
@@ -353,7 +353,7 @@ class MenuController {
                              $_SESSION["flash"]["type"] = "error";
                              $_SESSION["flash"]["message"] = "Plat invalide";
 
-                             header('Location: /menu/add');
+                             header('Location: /menu/update/'.$_POST['id']);
                              exit(0);
                          }
                      }
@@ -378,18 +378,20 @@ class MenuController {
                              $_SESSION["flash"]["type"] = "error";
                              $_SESSION["flash"]["message"] = "Dessert invalide";
 
-                             header('Location: /menu/add');
+                             header('Location: /menu/update/'.$_POST['id']);
                              exit(0);
                          }
                      }
 
                      // Verifier image
 
+                     $mMenu->setImage($menu[0]['image']);
+
                      if(!empty($_FILES['image']['name'])){
                          $image = $_FILES['image'];
-                         self::addImage($image , $menu);
+                         self::addImage($image , $mMenu , 'update/'.$_POST['id']);
                      }
-                     
+
                      $nom = $_POST['nom'];
                      $prix = $_POST['prix'];
                      $description = $_POST['description'];
@@ -405,7 +407,7 @@ class MenuController {
                      $mMenu->setEntree($entre);
                      $mMenu->setPlat($plat);
                      $mMenu->setDessert($dessert);
-                     $mMenu->setPrix($prix);
+                     $mMenu->setPrix(floatval($prix));
                      $mMenu->save();
 
                      $_SESSION["flash"]["type"] = "success";
@@ -462,51 +464,99 @@ class MenuController {
 
     public function presentationAction($id) {
 
+        // Recuperation du theme
+
         $theme = new Theme();
         $theme = $theme->populate(['statut' => 1]);
-
-
         $view = new View('menu-presentation');
         $view->setTemplate('theme'.$theme->getId());
         $view->assign('theme_id', $theme->getId());
+
+        // Recuperation du menu
 
         $mMenu = new Menu();
         $mrepas = new Repas();
 
 
         if (empty($id)) {
-
             header('Location: /inaccessible');
-        }else {
-                $mMenu = new Menu();
+        }
 
-                if($mMenu->populate(["id"=> intval($id[0]) ])) {
+        else {
 
+            $mMenu = new Menu();
 
-                    
+            if($mMenu->populate(["id"=> intval($id[0]) ])) {
 
-                    $view->assign('mMenu'  , $mMenu);  
+                $menu = $mMenu->getallBy(['id' => $id[0]]);
 
-                    // Recuperation des reglages du site
+                $menu = $menu[0];
 
-                    $setting = new Settings();
-                    $list_setting = $setting->getall();
-                    $view->assign('list_setting'  , $list_setting);
+                $entree = $mrepas->populate(['id' => $menu['entree']]);
+                $plat = $mrepas->populate(['id' => $menu['plat']]);
+                $dessert = $mrepas->populate(['id' => $menu['dessert']]);
 
+                // Recuperation entree
 
-                    
-
-
-
-                } else {
-                    header('Location: /inaccessible');
+                if ($entree){
+                    if(!empty($menu['entree'])) {
+                        $menu['entree'] = $entree->getNom();
+                    }
                 }
 
+                else {
+
+                    $menu['entree'] = 'Aucun';
+                }
+
+                // Recuperation plat
+
+
+                if ($plat){
+
+                    if(!empty($menu['plat'])) {
+                        $menu['plat'] = $plat->getNom();
+                    }
+                }
+
+                else {
+
+                    $menu['plat'] = 'Aucun';
+                }
+
+                // Recuperation dessert
+
+                if ($dessert){
+
+                    if(!empty($menu['dessert'])) {
+                        $menu['dessert'] = $dessert->getNom();
+                    }
+                }
+
+                else {
+
+                    $menu['dessert'] = 'Aucun';
+                }
+
+
+                $view->assign('menu'  , $menu);
+
+
+                // Recuperation des reglages du site
+
+                $setting = new Settings();
+                $list_setting = $setting->getall();
+                $view->assign('list_setting'  , $list_setting);
+
+            } else {
+                header('Location: /inaccessible');
+            }
         }
     }
 
 
-    private function addImage ($image , $menu) {
+
+    private function addImage ($image , $menu , $callback) {
 
             $ImgExtensionAuthorized = ["png","jpg","jpeg","gif"];
             $ImgMaxSize = 10000000;
@@ -519,7 +569,7 @@ class MenuController {
                     $_SESSION["flash"]["type"] = "error";
                     $_SESSION["flash"]["message"] = "Extension invalide";
 
-                    header('Location: /menu/add');
+                    header('Location: /menu/'.$callback);
                     exit(0);
                 }
 
@@ -527,7 +577,7 @@ class MenuController {
                     $_SESSION["flash"]["type"] = "error";
                     $_SESSION["flash"]["message"] = "Image trop grande";
 
-                    header('Location: /menu/add');
+                    header('Location: /menu/'.$callback);
                     exit(0);
                 }
 
@@ -544,7 +594,7 @@ class MenuController {
                         $_SESSION["flash"]["type"] = "error";
                         $_SESSION["flash"]["message"] = "Dossier d'upload contenant une erreur";
 
-                        header('Location: /menu/add');
+                        header('Location: /menu/'.$callback);
                         exit(0);
                     }
 
@@ -557,30 +607,36 @@ class MenuController {
                 $error = true;
                 switch ($image["error"]) { 
                     case UPLOAD_ERR_INI_SIZE: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break; 
                     case UPLOAD_ERR_FORM_SIZE: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages  = "Erreur upload server";
                         break; 
                     case UPLOAD_ERR_PARTIAL: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break; 
                     case UPLOAD_ERR_NO_FILE: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break; 
                     case UPLOAD_ERR_NO_TMP_DIR: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break; 
                     case UPLOAD_ERR_CANT_WRITE: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break; 
                     case UPLOAD_ERR_EXTENSION: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break; 
                     default: 
-                        $messsages [] = "Erreur upload server";                        
+                        $messsages = "Erreur upload server";
                         break;
                 }
+
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Erreur upload server";
+
+                header('Location: /menu/'.$callback);
+                exit(0);
             }
     }
 

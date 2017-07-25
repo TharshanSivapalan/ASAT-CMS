@@ -27,8 +27,7 @@
                     <td data-label="prix"><?php echo htmlspecialchars ($menu['prix']); ?> &euro; </td>
                     <td data-label="action" class="actions">
                         <a href="menu/update/<?php echo htmlspecialchars ($menu['id']); ?>"><i class="fa fa-pencil edit update"></i></a>
-                        <a href="menu/delete/<?php echo htmlspecialchars ($menu['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
-
+                        <a href="menu/delete/<?php echo htmlspecialchars ($menu['id']); ?>/<?php echo $_SESSION['tokenCRSF']?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
                     </td>
                 </tr>
             <?php endforeach; ?>
