@@ -1,22 +1,22 @@
 <?php
 class InstallerController{
 
-	public function __construct(){
-
-		// Vérifier si le fichier config n'est pas configuré sinon rediriger vers l'accueil du site
-		if(Helper::checkConfig()){
-			header("Location: /index");
-		}
-	}
-
 	// Page d'accueil de l'installeur
 	public function indexAction(){
+		// Vérifier si le fichier config n'est pas configuré sinon rediriger vers l'accueil du site
+		if(Helper::checkConfig()){
+			header("Location: /");
+		}
 		$view = new View('welcome');
         $view->setTemplate('installer');
 	}
 
 	// Page formulaire de la base de données 
 	public function dbConfigAction(){
+		// Vérifier si le fichier config n'est pas configuré sinon rediriger vers l'accueil du site
+		if(Helper::checkConfig()){
+			header("Location: /");
+		}
 		// Condition si la session database existe - si oui --> détruire la session
 		if(isset($_SESSION['database'])){
 	        	session_unset($_SESSION['database']);
@@ -85,6 +85,10 @@ class InstallerController{
 	// Creation base de données
 	// Insertion groupuser & user dans base de données
 	public function siteconfigAction(){
+		// Vérifier si le fichier config n'est pas configuré sinon rediriger vers l'accueil du site
+		if(Helper::checkConfig()){
+			header("Location: /");
+		}
 		// Condition s'il existe une session database 
 		// sinon redirection page de formulaire base de données
 		if(!isset($_SESSION['database'])){
@@ -133,49 +137,48 @@ class InstallerController{
 			// Ensuite fermer le fichier
 			$config = fopen('../conf.inc.php', 'a+');
 			fwrite($config, PHP_EOL . PHP_EOL ."\t//DATABASE" . PHP_EOL . "\tdefine('DATABASE', '" . $_SESSION['database']['database_name'] . "'); " . PHP_EOL . "\tdefine('USERDB', '" . $_SESSION['database']['database_login'] . "'); " . PHP_EOL . "\tdefine('PASSDB', '" . $_SESSION['database']['database_password'] . "'); " . PHP_EOL . "\tdefine('DBHOST', '" . $_SESSION['database']['database_address'] . "');" . PHP_EOL . "\tdefine('DBPORT', '" . $_SESSION['database']['database_port'] . "');");
-			fwrite($config, PHP_EOL . PHP_EOL . "\t//EMAIL" . PHP_EOL . "\tdefine('HOSTMAIL', '" . $host . "'); " . PHP_EOL . "\tdefine('USERMAIL', '" . $address . "'); " . PHP_EOL . "\tdefine('PASSMAIL', '" . $password . "'); " . PHP_EOL . "\tdefine('PORTMAIL', '" . $port . "');");
+			fwrite($config, PHP_EOL . PHP_EOL . "\t//EMAIL" . PHP_EOL . "\tdefine('HOSTMAIL', '" . $host . "'); " . PHP_EOL . "\tdefine('USERMAIL', '" . $address . "'); " . PHP_EOL . "\tdefine('PASSMAIL', '" . $email_password . "'); " . PHP_EOL . "\tdefine('PORTMAIL', '" . $port . "');");
 			fclose($config);
 
 			// Rafraichir la page (Pour que le fichier conf.inc.php soit bien pris en compte)
-			header('Location: /installer/siteconfig');
+			header('Location: /installer/complete');
 			exit();
 		}
 
+		$view = new View('siteconfig');
+		$view->setTemplate('installer');
+	}
+
+	// Page formulaire configuration site web
+	// Creation base de données
+	// Insertion groupuser & user dans base de données
+	public function completeAction(){
+
 		// Condition si la session settings existe bien
-		if(isset($_SESSION['settings']) && empty($_POST)){
+		if(isset($_SESSION['settings'])){
+			
 			// Try catch --> Pour finaliser l'installeur
+			$one = 1;
 			try {
+			// Connexion à la base de données et installer la base de données
+			$db = new PDO("mysql:host=".$_SESSION['database']['database_address']."; port=".$_SESSION['database']['database_port'].";dbname=".$_SESSION['database']['database_name'].";", $_SESSION['database']['database_login'], $_SESSION['database']['database_password']);
+			$sql = stream_get_contents(fopen("db_structure.sql", 'r'));
+			$sql = str_replace("SITETITLE", $_SESSION['settings']['website'], $sql);
+			$db->exec($sql);
 
-				// Connexion à la base de données et installer la base de données
-				$db = new PDO("mysql:host=".DBHOST."; port=".DBPORT.";dbname=".DATABASE.";", USERDB, PASSDB);
-				$sql = stream_get_contents(fopen("db_structure.sql", 'r'));
-				$sql = str_replace("SITETITLE", $_SESSION['settings']['website'], $sql);
-				$db->exec($sql);
-
-				// Création groupe user dans la base de données
-				$groupuser = new GroupUser();
-				$groupuser->setId(-1);
-				$groupuser->setName('Administrateurs');
-				$groupuser->setPermission(1);
-                $groupuser->setDateCreated();
-                $groupuser->setDateUpdated();
-				$groupuser->save();
-				$groupuser = $groupuser->populate(["name"=>"Administrateurs"]);
-
-				// Création d'un utilisateur dans la base de données
-				$user = new User();
-				if(!$user->populate(['email' => $_SESSION['settings']['email']]) && !$user->populate(['login' => $_SESSION['settings']['login']])){
-					$user->setId(-1);
-	                $user->setEmail($_SESSION['settings']['email']);
-	                $user->setLogin($_SESSION['settings']['login']);
-	                $user->setPwd($_SESSION['settings']['password']);
-	                $user->setStatus(1);
-	                $user->setIdGroupUser($groupuser->getId());
-	                $user->setDateInserted();
-	                $user->setDateUpdated();
-	                $user->setToken(null);
-	                $user->save();
-				}
+			// Création d'un utilisateur dans la base de données
+			$stmt = $db->prepare ("INSERT INTO user (email, login, password, status, date_inserted, date_updated, id_groupuser) VALUES (:email, :login, :password, :status, :date_inserted, :date_updated, :id_groupuser)");
+			$stmt -> bindParam(':email', $_SESSION['settings']['email']);
+			$stmt -> bindParam(':login', $_SESSION['settings']['login']);
+			$stmt -> bindParam(':password', password_hash($_SESSION['settings']['password'], PASSWORD_DEFAULT));
+			$stmt -> bindParam(':status', $one);
+			$stmt -> bindParam(':date_inserted', date("Y-m-d H:i:s"));
+			$stmt -> bindParam(':date_updated', date("Y-m-d H:i:s"));
+			$stmt -> bindParam(':id_groupuser', $one);
+			$stmt -> execute();
+			$db = null;
+			// Détruire la session database
+			$_SESSION = [];
 
 			/* PERMET DE SUPPRIMER LES FICHIERS D'INSTALLATION
 				unlink("db_structure.sql");
@@ -183,22 +186,15 @@ class InstallerController{
 				foreach(glob('../app/views/Installer/*') as $file){
 					unlink($file);
 				}
-				rmdir("../app/views/Installer/");
+				rmdir("../app/views/Installer/"); 
 			*/
 
 			// Si erreur alors rediriger vers page d'erreur
 			} catch (Exception $e) {
 				header('Location: /installer/error');
 			}
-			// Détruire la session database
-			unset($_SESSION['database']);	
-			// Redigirer l'utilisateur vers la page d'accueil
-			header('Location: /index');
-			exit();
-
 		}
-
-		$view = new View('siteconfig');
+		$view = new View('complete');
 		$view->setTemplate('installer');
 	}
 
