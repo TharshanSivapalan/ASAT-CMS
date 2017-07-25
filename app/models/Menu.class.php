@@ -10,6 +10,32 @@ class Menu extends BaseSql{
     protected $dessert;
     protected $prix;
 
+    protected $validation = array(
+
+        'nom' => array(
+
+            "empty" => false,
+            "lenght" => array (3,255),
+            "alphanumeric" => true
+        ),
+
+        'description' => array(
+
+            "empty" => true,
+            "lenght" => array (0,1000)
+        ),
+
+        'entree' => array("empty" => true),
+        'plat' => array("empty" => true),
+        'dessert' => array("empty" => true),
+
+        'prix' => array(
+
+            "empty" => false,
+            "number" => true
+        )
+    );
+
     public function __construct($id=-1, $nom=null, $description=null, $image=null, $entree=0, $plat=0, $dessert=0, $prix=0 ){
 
         $this->setId($id)   ; 
@@ -20,8 +46,7 @@ class Menu extends BaseSql{
         $this->setPlat($plat)   ;
         $this->setDessert($dessert)   ;
         $this->setPrix($prix)   ;
-
-
+        
         parent::__construct();
     }
 
@@ -78,19 +103,19 @@ class Menu extends BaseSql{
     }
 
     public function getEntree(){
-        return $this->image;
+        return $this->entree;
     }
 
     public function getPlat(){
-        return $this->image;
+        return $this->plat;
     }
 
     public function getDessert(){
-        return $this->image;
+        return $this->dessert;
     }
 
     public function getPrix(){
-        return $this->image;
+        return $this->prix;
     }
     
     

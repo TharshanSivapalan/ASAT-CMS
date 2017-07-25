@@ -72,114 +72,155 @@ class MenuController {
     public function addAction () {
 
         self::checkadmin();
-        
-        $viewToShow = "";
-
-
-        $error = false;
-        
-
-        if ($_POST &&
-            isset($_POST['nom'])   &&  
-            isset($_POST['prix'])   && 
-            isset($_POST['description'])  &&  
-            isset($_POST['entre'])  &&
-            isset($_POST['plat'])   &&
-            isset($_POST['dessert'])) {
-
-                $id = $_POST['id'];
-                $nom = $_POST['nom'];
-                $prix = $_POST['prix'];
-                $description = $_POST['description'];
-                $entre = $_POST['entre'];
-                $plat = $_POST['plat'];
-                $dessert = $_POST['dessert'];
-
-                $menu = new Menu();
-
-                if(empty($nom)) {
-                    $messsages [] = "Veuillez renseigner le nom du menu !";
-                    $error = true;
-                } else {
-                    $menu->setNom($nom);
-                }
-
-                if(empty($prix) ) {
-                    $messsages [] = "Veuillez renseigner le prix du menu !";
-                    $error = true;
-                } else {
-                    $menu->setPrix($prix);
-                }
-
-                
-
-                if(!empty($description)) {
-                    $menu->setDescription($description);
-                }
-
-            
-                if(!empty($entre)) {
-                    $menu->setEntree($entre);
-                }
-
-                if(!empty($plat)) {
-                    $menu->setPlat($plat);
-                }
-
-                if(!empty($dessert)) {
-                    $menu->setDessert($dessert);
-                }
-
-                
-                 
-                
-
-
-                if(!empty($_FILES['image']['name'])){
-                    $image = $_FILES['image'];
-                    self::addImage($image ,  $menu);
-                }
-
-                if(!$error) {
-                    $viewToShow = "list";
-                    $menu->setId(-1);
-                    $menu->save();
-                }
-
-                
-        }
-
-        if($_POST && $viewToShow == "list") {
-            header('Location: /menu');
-        }
-
-        $view = new View('menu-add');
-        $view->setTemplate('backoffice');
 
         $entre = new Repas();
         $plat = new Repas();
         $dessert = new Repas();
-        
+
         $list_entre = $entre->getallBy(['category' => 1]);
-        $view->assign('list_entre'  , $list_entre);
-
         $list_plat = $plat->getallBy(['category' => 2]);
-        $view->assign('list_plat'  , $list_plat);
-
         $list_dessert = $dessert->getallBy(['category' => 3]);
-        $view->assign('list_dessert'  , $list_dessert);
+
+        if ($_POST) {
+
+            $menu = new Menu();
+
+            if ($menu->validate($_POST)) {
+
+                // Verifier entree , plat , dessert
+
+                // Verification entree
+
+                if (!empty($_POST['entree'])) {
+
+                    $findEntree = false;
+
+                    foreach ($list_entre as $entree) {
+
+                        if ($entree['id'] == $_POST['entree']) {
+                            $findEntree = true;
+                        }
+                    }
 
 
-        
+                    if (!$findEntree) {
+
+                        $_SESSION["flash"]["type"] = "error";
+                        $_SESSION["flash"]["message"] = "entree invalide";
+
+                        header('Location: /menu/add');
+                        exit(0);
+                    }
+                }
 
 
-        if($error) {
-            $_SESSION["messages"] = $messsages;
+                // Verification plat
+
+
+                if (!empty($_POST['plat'])) {
+
+                    $findPlat = false;
+
+                    foreach ($list_plat as $plat) {
+
+                        if ($plat['id'] == $_POST['plat']) {
+                            $findPlat = true;
+                        }
+                    }
+
+                    if (!$findPlat) {
+
+                        $_SESSION["flash"]["type"] = "error";
+                        $_SESSION["flash"]["message"] = "Plat invalide";
+
+                        header('Location: /menu/add');
+                        exit(0);
+                    }
+                }
+
+
+                // Verification dessert
+
+
+                if (!empty($_POST['dessert'])) {
+
+                    $findDessert = false;
+
+                    foreach ($list_dessert as $dessert) {
+
+                        if ($dessert['id'] == $_POST['dessert']) {
+                            $findDessert = true;
+                        }
+                    }
+
+                    if (!$findDessert) {
+
+                        $_SESSION["flash"]["type"] = "error";
+                        $_SESSION["flash"]["message"] = "dessert invalide";
+
+                        header('Location: /menu/add');
+                        exit(0);
+                    }
+                }
+
+                // Verifier image
+
+                if(!empty($_FILES['image']['name'])){
+                    $image = $_FILES['image'];
+                    self::addImage($image , $menu);
+                }
+
+                $nom = $_POST['nom'];
+                $prix = $_POST['prix'];
+                $description = $_POST['description'];
+                $entre = $_POST['entree'];
+                $plat = $_POST['plat'];
+                $dessert = $_POST['dessert'];
+                $image = $_FILES['image']['name'];
+
+
+                // Ajout
+
+                $menu->setId(-1);
+                $menu->setNom($nom);
+                $menu->setDescription($description);
+                $menu->setEntree($entre);
+                $menu->setPlat($plat);
+                $menu->setDessert($dessert);
+                $menu->setPrix($prix);
+                $menu->save();
+
+                $_SESSION["flash"]["type"] = "success";
+                $_SESSION["flash"]["message"] = "Le menu a bien été ajouté";
+
+                header('Location: /menu');
+                exit(0);
+            }
+
+            else {
+
+                $_SESSION["flash"]["type"] = "error";
+                $_SESSION["flash"]["message"] = "Champs invalide";
+
+                header('Location: /menu/add');
+                exit(0);
+            }
+
         }
- 
 
-            
-  
+        else {
+
+            $view = new View('menu-add');
+            $view->setTemplate('backoffice');
+
+            // Recuperation des repas
+
+            $view->assign('list_entre'  , $list_entre);
+            $view->assign('list_plat'  , $list_plat);
+            $view->assign('list_dessert'  , $list_dessert);
+
+        }
+
     }
 
     public function deleteAction ($params) {
@@ -216,105 +257,182 @@ class MenuController {
 
 
 
-     public function updateAction () {
+     public function updateAction ($params) {
 
-        self::checkadmin();
-        
+         if (empty($params[0])) {
+             header('Location: /inaccesible');
+             exit(0);
+         }
 
-        $error = false;
+         $id = $params[0];
 
-        if ($_POST ) {
+         $mMenu = new Menu();
 
-            $mMenu = new Menu();
-            $view = new View('menu-update');
+         $entre = new Repas();
+         $plat = new Repas();
+         $dessert = new Repas();
 
-            if (!empty($_POST['id']) ) {
+         $list_entre = $entre->getallBy(['category' => 1]);
+         $list_plat = $plat->getallBy(['category' => 2]);
+         $list_dessert = $dessert->getallBy(['category' => 3]);
 
-                if($mMenu->populate(["id"=>$_POST["id"]])) {
-                    
-                    self::assignement($mMenu, $view);
+         // Partie vue
 
-                } else {
-                    header('Location: /inaccessible');
-                }
+         if($mMenu->populate(["id"=> $id])) {
 
-            }
+             $view = new View('menu-update');
+             $view->setTemplate('backoffice');
 
-            if (
-                    !empty($_POST['id']) &&
-                    isset($_POST['nom'])   &&  
-                    isset($_POST['prix'])   && 
-                    isset($_POST['description'])  &&  
-                    isset($_POST['entre'])  &&
-                    isset($_POST['plat'])   &&
-                    isset($_POST['dessert'])) {
+             $menu = $mMenu->getallBy(['id' => $id]);
+             $view->assign('menu'  , $menu);
 
+             $view->assign('list_entre'  , $list_entre);
+             $view->assign('list_plat'  , $list_plat);
+             $view->assign('list_dessert'  , $list_dessert);
+         }
 
-                    $id = $_POST['id'];
-                    $nom = $_POST['nom'];
-                    $prix = $_POST['prix'];
-                    $description = $_POST['description'];
-                    $entre = $_POST['entre'];
-                    $plat = $_POST['plat'];
-                    $dessert = $_POST['dessert'];
+         else {
 
-                    if(empty($_POST['nom'])) {
-                        $messsages [] = "Veuillez renseigner le nom du menu !";
-                        $error = true;
-                    } else {
-                        $mMenu->setNom($nom); 
-                    }
+             header('Location: /inaccesible');
+             exit(0);
+         }
 
-                    if(empty($_POST['prix']) ) {
-                        $messsages [] = "Veuillez renseigner le prix du menu !";
-                        $error = true;
-                    } else {
-                        $mMenu->setPrix($prix);
-                    }
+         // Partie POST
 
+         if ($_POST) {
 
-                    if(!empty($description)) {
-                        $mMenu->setDescription($_POST["description"]);
-                    }
+             if($mMenu->populate(["id"=> $_POST['id']])) {
 
-                    if(!empty($entre)) {
-                        $mMenu->setEntree($_POST["entre"]);
-                    }
+                 if ($mMenu->validate($_POST)) {
 
-                    if(!empty($plat)) {
-                        $mMenu->setPlat($_POST["plat"]);
-                    }
+                     // Verifier entree , plat , dessert
 
-                    if(!empty($dessert)) {
-                        $mMenu->setDessert($_POST["dessert"]);
-                    }
+                     // Verification entree
 
-                    
-                    
-                    
+                     if (!empty($_POST['entree'])) {
+
+                         $findEntree = false;
+
+                         foreach ($list_entre as $entree) {
+
+                             if ($entree['id'] == $_POST['entree']) {
+                                 $findEntree = true;
+                             }
+                         }
 
 
-                    if(!empty($_FILES['image']['name'])){
-                        $image = $_FILES['image'];
-                        self::addImage($image ,  $mMenu);
-                    }
+                         if (!$findEntree) {
 
-                    if(!$error) {
-                        $mMenu->setId($id);
-                        $mMenu->save();
-                        self::assignement($mMenu, $view);
-                    }
-            } 
+                             $_SESSION["flash"]["type"] = "error";
+                             $_SESSION["flash"]["message"] = "Entree invalide";
 
-        } 
-
-       else {
-            header('Location: /inaccessible');
-        }
+                             header('Location: /menu/add');
+                             exit(0);
+                         }
+                     }
 
 
-        
+                     // Verification plat
 
+
+                     if (!empty($_POST['plat'])) {
+
+                         $findPlat = false;
+
+                         foreach ($list_plat as $plat) {
+
+                             if ($plat['id'] == $_POST['plat']) {
+                                 $findPlat = true;
+                             }
+                         }
+
+                         if (!$findPlat) {
+
+                             $_SESSION["flash"]["type"] = "error";
+                             $_SESSION["flash"]["message"] = "Plat invalide";
+
+                             header('Location: /menu/add');
+                             exit(0);
+                         }
+                     }
+
+
+                     // Verification dessert
+
+
+                     if (!empty($_POST['dessert'])) {
+
+                         $findDessert = false;
+
+                         foreach ($list_dessert as $dessert) {
+
+                             if ($dessert['id'] == $_POST['dessert']) {
+                                 $findDessert = true;
+                             }
+                         }
+
+                         if (!$findDessert) {
+
+                             $_SESSION["flash"]["type"] = "error";
+                             $_SESSION["flash"]["message"] = "Dessert invalide";
+
+                             header('Location: /menu/add');
+                             exit(0);
+                         }
+                     }
+
+                     // Verifier image
+
+                     if(!empty($_FILES['image']['name'])){
+                         $image = $_FILES['image'];
+                         self::addImage($image , $menu);
+                     }
+                     
+                     $nom = $_POST['nom'];
+                     $prix = $_POST['prix'];
+                     $description = $_POST['description'];
+                     $entre = $_POST['entree'];
+                     $plat = $_POST['plat'];
+                     $dessert = $_POST['dessert'];
+                     
+                     // Modification
+
+                     $mMenu->setId(intval($_POST['id']));
+                     $mMenu->setNom($nom);
+                     $mMenu->setDescription($description);
+                     $mMenu->setEntree($entre);
+                     $mMenu->setPlat($plat);
+                     $mMenu->setDessert($dessert);
+                     $mMenu->setPrix($prix);
+                     $mMenu->save();
+
+                     $_SESSION["flash"]["type"] = "success";
+                     $_SESSION["flash"]["message"] = "Le menu a bien été modifié";
+
+                 }
+
+                 else {
+
+                     $_SESSION["flash"]["type"] = "error";
+                     $_SESSION["flash"]["message"] = "Champs invalides";
+
+                     header('Location: /menu/update/' .$_POST['id']);
+                     exit(0);
+
+                 }
+
+             }
+
+             else {
+
+                 header('Location: /inaccesible');
+                 exit(0);
+             }
+
+             header('Location: /menu');
+             exit(0);
+
+         }
     }
 
 
@@ -386,7 +504,7 @@ class MenuController {
     }
 
 
-    private function addImage ($image , $menu, $error = false) {
+    private function addImage ($image , $menu) {
 
             $ImgExtensionAuthorized = ["png","jpg","jpeg","gif"];
             $ImgMaxSize = 10000000;
@@ -396,30 +514,42 @@ class MenuController {
                 $infoImg = pathinfo($image["name"]);
 
                 if( !in_array( strtolower($infoImg["extension"]), $ImgExtensionAuthorized) ){
-                    $messsages [] = "Mauvaise extension pour le image";
-                    $error = true;
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Extension invalide";
+
+                    header('Location: /menu/add');
+                    exit(0);
                 }
 
                 if($image["size"]>$ImgMaxSize){
-                    $messsages [] = "Le image est trop lourd";
-                    $error = true;
+                    $_SESSION["flash"]["type"] = "error";
+                    $_SESSION["flash"]["message"] = "Image trop grande";
+
+                    header('Location: /menu/add');
+                    exit(0);
                 }
 
-                if(!$error) {
-                    $uploadPath = dirname(__DIR__).DS."upload".DS."illustration";
+
+                // Pas d'erreur
+
+                    $uploadPath = dirname(dirname(dirname(__FILE__))).DS."public".DS."img".DS."Menus";
                     if( !file_exists($uploadPath) ){
                         mkdir($uploadPath);
                     }
                     $nameImg = uniqid().".".strtolower($infoImg["extension"]);
                     if(!move_uploaded_file($image["tmp_name"], $uploadPath.DS.$nameImg)){
-                            $messsages [] = "Dossier d'upload contenant une erreur";
-                            $error = true;
+
+                        $_SESSION["flash"]["type"] = "error";
+                        $_SESSION["flash"]["message"] = "Dossier d'upload contenant une erreur";
+
+                        header('Location: /menu/add');
+                        exit(0);
                     }
 
-                    if(!$error) {
+                    else {
+
                         $menu->setImage($nameImg);
                     }
-                }
 
             }else{
                 $error = true;

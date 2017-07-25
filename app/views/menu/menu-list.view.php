@@ -26,15 +26,7 @@
                     <td data-label="dessert"><?php echo htmlspecialchars ($menu['dessert']); ?></td>
                     <td data-label="prix"><?php echo htmlspecialchars ($menu['prix']); ?> &euro; </td>
                     <td data-label="action" class="actions">
-                   
-                        <form action="menu/update" id="updateMenu" method="POST">
-                            <input type="hidden" name="id" value="<?php echo intval($menu['id']); ?>">
-
-                            <button type="submit" class="action-button edit update">
-                                <i class="fa fa-pencil"></i>
-                            </button>
-                        </form>
-
+                        <a href="menu/update/<?php echo htmlspecialchars ($menu['id']); ?>"><i class="fa fa-pencil edit update"></i></a>
                         <a href="menu/delete/<?php echo htmlspecialchars ($menu['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
 
                     </td>

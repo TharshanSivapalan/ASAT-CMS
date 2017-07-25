@@ -281,6 +281,19 @@
                         }
 
                     }
+
+                    // Verification Numerique
+
+                    if (isset($validation[$key]['number'])){
+
+                        if (!is_numeric($data[$key])) {
+
+                            //echo "NUMBER";
+                            return false;
+                            break;
+                        }
+
+                    }
                     
                 }
             }
