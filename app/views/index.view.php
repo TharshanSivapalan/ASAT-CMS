@@ -37,16 +37,13 @@
 
                     <h2><?php echo htmlspecialchars($list_article[0]['titre']) ?></h2>
 
-                    <?php echo htmlspecialchars($list_article[0]['content']) ?>
+                    <?php echo $list_article[0]['content'] ?>
 
 
                 </article>
 
 
             </article>
-
-            
-
 
     </section>
 
@@ -57,7 +54,7 @@
 
             <h2><?php echo htmlspecialchars($list_article[1]['titre']) ?></h2>
 
-            <?php echo htmlspecialchars($list_article[1]['content']) ?>
+            <?php echo $list_article[1]['content']; ?>
 
         </article>
 
