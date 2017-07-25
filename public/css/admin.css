@@ -479,6 +479,11 @@ table th {
   padding: 0px;
 }
 
+.back-button {
+  display: block;
+  padding-bottom: 20px;
+}
+
 .action-button {
     background-color: initial;
     font-size: 1.4em!important;
@@ -624,21 +629,6 @@ table #pagination .pageNumber {
     flex-wrap:wrap;
 }
 
-#nbVisiteStart{
-  display: inline-block;
-  width: 50%;
-  height: 3em;
-
-}
-
-#nbVisiteFinish{
-  display: inline-block;
-  width: 50%;
-  height: 3em;
-}
-
-
-
 .theme-block-content{
     display: inline-block;
     margin:10px 0 0 10px;
@@ -758,4 +748,43 @@ hr {
     border-width: 3px;
     border: solid;
     color: #f05f40;
+}
+
+
+.fa-power-off:hover {
+  color: white;
+}
+
+
+.dashboard-top {
+  display: flex;
+}
+
+.dashboard-bottom {
+  
+}
+
+.dashboard-top-item {
+  display: flex;
+  width: 33.33%;
+}
+
+.dashboard-title-item {
+  display: block;
+  width: 70%;
+}
+
+.dashboard-nb-item {
+  display: block;
+  width: 30%;
+} 
+
+#nbVisiteStart{
+
+}
+
+#nbVisiteFinish{
+  display: inline-block;
+  width: 50%;
+  height: 3em;
 }

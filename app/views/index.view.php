@@ -55,7 +55,7 @@
         
         <article class="col center">
 
-            <h3><?php echo htmlspecialchars($list_article[1]['titre']) ?></h3>
+            <h2><?php echo htmlspecialchars($list_article[1]['titre']) ?></h2>
 
             <?php echo htmlspecialchars($list_article[1]['content']) ?>
 
@@ -283,7 +283,7 @@
                     <span class="menu-price"><?php echo $menu['prix']?> €</span>
                     <p><?php echo $menu['description'] ?> </p>
 
-                    <a href="#" titre="decouvrir" class="btn">MENU</a>
+                    <a href="menu/presentation/<?php echo htmlspecialchars($menu['id']); ?>" titre="decouvrir" class="btn">MENU</a>
 
                 </article>
 
@@ -299,7 +299,7 @@
                     <span class="menu-price"><?php echo $menu['prix']?> €</span>
                     <p><?php echo $menu['description'] ?> </p>
 
-                    <a href="#" titre="decouvrir" class="btn">MENU</a>
+                    <a href="menu/presentation/<?php echo htmlspecialchars($menu['id']); ?>" titre="decouvrir" class="btn">MENU</a>
 
                 </article>
                 <article class="col center">

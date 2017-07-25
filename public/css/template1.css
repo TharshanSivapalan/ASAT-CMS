@@ -87,6 +87,14 @@ h2{
     font-weight: bold;
 }
 
+.description {
+    text-align: left;
+}
+
+.description-content {
+    display: block;
+    padding: 10px 0px 45px 0px;
+}
 
 .carte-price-menu {
     color:#BA2204;
@@ -290,6 +298,11 @@ section .col:first-child{
 
 .center {
     text-align: center;
+    margin: 0 auto;
+}
+
+.justify {
+    text-align: justify;
     margin: 0 auto;
 }
 

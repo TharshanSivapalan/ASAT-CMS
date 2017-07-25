@@ -138,7 +138,8 @@ class SettingController{
                     }
 
                     if(!$error) {
-                        $uploadPath = dirname(__DIR__).DS."upload".DS."logo";
+                        $uploadPath = dirname(dirname(dirname(__FILE__))).DS."public".DS."img".DS."Logo";
+           
                         if( !file_exists($uploadPath) ){
                             mkdir($uploadPath);
                         }

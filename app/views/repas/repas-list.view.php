@@ -22,8 +22,8 @@
                     <td data-label="date"><?php echo htmlspecialchars ($repas['nom']) ?></td>
                     <td data-label="Catégorie"><?php echo REPAS_CATEGORIES[$repas['category']] ?></td>
                     <td data-label="Action" class="actions">
-                        <a href="repas/update/<?php echo htmlspecialchars ($repas['id']); ?>"><i class="action-button fa fa-pencil edit"></i>
-                        <a href="repas/delete/<?php echo htmlspecialchars ($repas['id']); ?>" class="confirmation"><i class="action-button fa fa-trash delete"></i>
+                        <a href="repas/update/<?php echo htmlspecialchars ($repas['id']); ?>"><i class="action-button fa fa-pencil faa-float animated-hover edit"></i>
+                        <a href="repas/delete/<?php echo htmlspecialchars ($repas['id']); ?>" class="confirmation"><i class="action-button fa fa-trash faa-float animated-hover delete"></i>
                     </td>
                 </tr>
 
