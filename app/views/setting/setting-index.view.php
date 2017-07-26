@@ -81,11 +81,9 @@
 
             <label>Itinéraire</label>
             <input required="required" type="text" class="input" name="itineraire" value="<?php echo htmlspecialchars($list_setting[10]['valeur']) ?>">
-
-
+            
             <br>
-
-
+            
             <input type="submit" class="bouton" id="bt1" name ="envoyer1" value="MODIFIER">
         </form>
     </div>

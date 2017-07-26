@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descrption" content="ma description">
 
-    <link rel="apple-touch-icon-precomposed" href="img/Apple-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="/img/Apple-icon.png" />
     <link rel="icon" href="/favicon.ico">
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Raleway" rel="stylesheet">
@@ -25,7 +25,7 @@
     <ul class="conteneur-colonnes">
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>
-        <li ><a href="/index/contact">Contact</a></li>
+        <li ><a href="/contact">Contact</a></li>
     </ul>
 </nav>
 
