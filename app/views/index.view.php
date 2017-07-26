@@ -136,22 +136,6 @@
             </address>
         </article>
 
-        <article class="col">
-            <form id="email-form" role="form" class="contact-form" action="/index/message" method="post">
-                <div class="form-group">
-
-                    <input type="email" name="email" id="email" placeholder="Email: " required="required">
-                    <span ></span>
-                </div>
-                <div class="form-group">
-
-                    <textarea  name="message" id="message" placeholder="Message: " rows="5" required="required" maxlength="1000"></textarea>
-                    <span ></span>
-                </div>
-                <button type="submit" class="btn"><i class="fa fa-envelope-o"></i> Envoyer</button>
-            </form>
-
-        </article>
     </section>
 </div>
 
@@ -367,22 +351,6 @@
             </address>
         </article>
 
-        <article class="col">
-            <form id="email-form" role="form" class="contact-form" action="/index/message" method="post">
-                <div class="form-group">
-
-                    <input type="email" name="email" id="email" placeholder="Email: " required="required">
-                    <span ></span>
-                </div>
-                <div class="form-group">
-
-                    <textarea  name="message" id="message" placeholder="Message: " rows="5" required="required" maxlength="1000"></textarea>
-                    <span ></span>
-                </div>
-                <button type="submit" class="btn"><i class="fa fa-envelope-o"></i> Envoyer</button>
-            </form>
-
-        </article>
     </section>
 </div>
 
