@@ -95,14 +95,14 @@
                         if(empty($menu['image'])) {
                     ?>
                                 <a href="menu/presentation/<?php echo htmlspecialchars($menu['id']); ?>">
-                                    <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                    <img src="/img/menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                                 </a>
                     <?php
                         } else {
 
                     ?>
                                 <a href="menu/presentation/<?php echo htmlspecialchars($menu['id']); ?>">
-                                    <img src="/img/Menus/<?php echo htmlspecialchars($menu['image']); ?>" alt="Menu <?php echo htmlspecialchars($menu['nom']); ?>" class="img-responsive">
+                                    <img src="/img/menus/<?php echo htmlspecialchars($menu['image']); ?>" alt="Menu <?php echo htmlspecialchars($menu['nom']); ?>" class="img-responsive">
                                 </a>
                     <?php
                         } 
@@ -262,12 +262,12 @@
                     <?php 
                         if(empty($menu['image'])) {
                     ?>
-                                <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <img src="/img/menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                     <?php
                         } else {
 
                     ?>
-                                <img src="/img/Menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <img src="/img/menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                              
                     <?php
                         } 
@@ -303,12 +303,12 @@
                 <?php 
                         if(empty($menu['image'])) {
                     ?>
-                                <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <img src="/img/menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                     <?php
                         } else {
 
                     ?>
-                                <img src="/img/Menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <img src="/img/menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                                 <span> Prix: <?php echo htmlspecialchars($menu['prix'])?> &euro;</span>
                     <?php
                         } 

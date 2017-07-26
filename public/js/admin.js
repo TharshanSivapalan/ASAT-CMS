@@ -30,10 +30,7 @@ function closeNav() {
 
 $(document).ready(function() {
 
-    tinymce.init({
-        selector: '.editor',
-        invalid_elements : "script"
-    });
+
 
     // Pour le menu : lorsqu'il est ouvert et que le visiteur redimentionne la page à < 600px
     $(window).resize(function() {

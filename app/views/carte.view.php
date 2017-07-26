@@ -66,13 +66,13 @@
                     <?php 
                         if(empty($menu['image'])) {
                     ?>
-                                <img src="/img/Menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <img src="/img/menus/default.jpg" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                                  <span class="carte-price-menu"><?php echo htmlspecialchars($menu['prix'])?> &euro;</span>
                     <?php
                         } else {
 
                     ?>
-                                <img src="/img/Menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
+                                <img src="/img/menus/<?php echo htmlspecialchars($menu['image'])?>" alt="image menu <?php echo htmlspecialchars($menu['nom'])?>">
                                 <span class="carte-price-menu"><?php echo htmlspecialchars($menu['prix'])?> &euro;</span>
                     <?php
                         } 

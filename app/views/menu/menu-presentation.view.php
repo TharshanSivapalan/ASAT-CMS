@@ -38,7 +38,7 @@
             </article>
 
             <article class="col center">
-                                                    <img src="/img/Menus/<?php echo $menu["image"] ?>" alt="image menu <?php echo $menu["nom"] ?>">
+                                                    <img src="/img/menus/<?php echo $menu["image"] ?>" alt="image menu <?php echo $menu["nom"] ?>">
                                 <span class="carte-price-menu"> Prix: <?php echo $menu["prix"]; ?> €</span>
                     
             </article>
