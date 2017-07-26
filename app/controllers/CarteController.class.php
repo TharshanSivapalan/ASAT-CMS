@@ -4,6 +4,8 @@ class CarteController
 
     public function indexAction() {
         
+        Helper::statistique();
+
             // Recuperation du template actif
 
             $theme = new Theme();

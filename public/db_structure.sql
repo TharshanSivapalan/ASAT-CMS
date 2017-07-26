@@ -49,13 +49,13 @@ INSERT INTO `settings` (`id`, `nom`, `valeur`) VALUES
 (1, 'nom du site', 'Buffalo grill'),
 (2, 'slogan', 'manger c est manger'),
 (3, 'logo', 'logo.png'),
-(4, 'google maps', '++++++++++++++++%3Ciframe+src%3D%22https%3A%2F%2Fwww.google.com%2Fmaps%2Fembed%3Fpb%3D%211m18%211m12%211m3%211d5272.2919181837515%212d2.357604020175256%213d48.64532289769136%212m3%211f0%212f0%213f0%213m2%211i1024%212i768%214f13.1%213m3%211m2%211s0x0%253A0x1783cf2150f7aaa2%212sBOUCHERIE%2BHALAL%215e0%213m2%211sfr%212sfr%214v1500120742880%22+width%3D%22600%22+height%3D%22450%22+frameborder%3D%220%22+style%3D%22border%3A0%22+allowfullscreen%3E%3C%2Fiframe%3E++++++++++++'),
+(4, 'google maps', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5272.2919181837515!2d2.357604020175256!3d48.64532289769136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1783cf2150f7aaa2!2sBOUCHERIE+HALAL!5e0!3m2!1sfr!2sfr!4v1500120742880\" w'),
 (5, 'pays', 'France'),
 (6, 'ville', 'Paris'),
 (7, 'adresse', '22 rue de Picpus'),
-(9, 'code postal', '609326621'),
-(10, 'telephone', 'effe@eefef.fr'),
-(11, 'email', 'metro 34 sortie 2'),
+(9, 'code postal', '75012'),
+(10, 'telephone', '0123456781'),
+(11, 'email', 'contact@asat-cms.com'),
 (12, 'itineraire', 'metro 34 sortie 2');
 
 
@@ -83,6 +83,21 @@ CREATE TABLE `user` (
   `token` char(60) DEFAULT NULL,
   `reset_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `statistique` (
+  `id` int(11) NOT NULL,
+  `ip` varchar(20) DEFAULT NULL,
+  `page_courante` varchar(60) DEFAULT NULL,
+  `navigateur` text,
+  `date_courante` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `statistique`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `statistique`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id`);

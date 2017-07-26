@@ -1,5 +1,5 @@
 <?php
-class MenuController {
+class MenuController{
 
     public function indexAction() {
 
@@ -463,6 +463,8 @@ class MenuController {
 
 
     public function presentationAction($id) {
+
+        Helper::statistique();
 
         // Recuperation du theme
 

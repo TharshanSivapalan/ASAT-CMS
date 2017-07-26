@@ -7,7 +7,7 @@
     <meta name="descrption" content="Espace d'administration d'ASAT">
 
     <link rel="apple-touch-icon-precomposed" href="/img/Apple-icon.png" />
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <link rel="stylesheet" href="/css/admin.css">
 
