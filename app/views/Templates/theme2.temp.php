@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="descrption" content="ma description">
 
-    <link rel="apple-touch-icon-precomposed" href="img/Apple-icon.png" />
+    <link rel="apple-touch-icon-precomposed" href="/img/Apple-icon.png" />
     <link rel="icon" href="/favicon.ico">
 
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Raleway" rel="stylesheet">
@@ -26,7 +26,7 @@
             <nav class="main-nav">
                 <div id="menu-logo-slogan-adresse">
                     <div id="slogan">
-                        <span>Slogan : manger c est manger </span>
+                        <span><?php echo htmlspecialchars($list_setting[1]['valeur']) ?> </span>
                     </div>
                     <div id="logo">
                         <img src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?> " class="logo" alt="logo">

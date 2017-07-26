@@ -89,9 +89,9 @@
 				<td>Mot de passe de base de données</td>
 					<?php
 						if(!empty($_POST['database_password'])){
-							echo "<td><input type='text' name='database_password' value='".$_POST['database_password']."' ></td>";
+							echo "<td><input type='password' name='database_password' value='".$_POST['database_password']."' ></td>";
 						}else{
-							echo "<td><input type='text' name='database_password' placeholder='mot de passe' ></td>";
+							echo "<td><input type='password' name='database_password' placeholder='mot de passe' ></td>";
 						}
 					?>
 			</tr>

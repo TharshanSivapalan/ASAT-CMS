@@ -20,36 +20,23 @@ CREATE TABLE `menu` (
   `prix` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `menu` (`id`, `nom`, `description`, `image`, `entree`, `plat`, `dessert`, `prix`) VALUES
-(12, 'menu 1', '', '59778880639eb.png', 4, 14, 15, 20.34),
-(13, 'menu 2', '<p>cococo</p>', '597788bdac3b0.png', 15, 14, NULL, 34567),
-(14, 'menu 3', '', 'default.jpg', NULL, NULL, NULL, 123),
-(20, 'menu 4', '', 'default.jpg', NULL, NULL, NULL, 1234);
-
-
 CREATE TABLE `repas` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `repas` (`id`, `nom`, `category`) VALUES
-(4, 'salade thai', 1),
-(14, 'boeuf aux piments', 2),
-(15, 'glace a la fraise', 3);
-
-
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `valeur` text NOT NULL
+  `valeur` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `settings` (`id`, `nom`, `valeur`) VALUES
-(1, 'nom du site', 'Buffalo grill'),
+(1, 'nom du site', 'SITETITLE'),
 (2, 'slogan', 'manger c est manger'),
 (3, 'logo', 'logo.png'),
-(4, 'google maps', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5272.2919181837515!2d2.357604020175256!3d48.64532289769136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1783cf2150f7aaa2!2sBOUCHERIE+HALAL!5e0!3m2!1sfr!2sfr!4v1500120742880\" w'),
+(4, 'google maps', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5272.2919181837515!2d2.357604020175256!3d48.64532289769136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1783cf2150f7aaa2!2sBOUCHERIE+HALAL!5e0!3m2!1sfr!2sfr!4v1500120742880'),
 (5, 'pays', 'France'),
 (6, 'ville', 'Paris'),
 (7, 'adresse', '22 rue de Picpus'),
@@ -121,10 +108,10 @@ ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `repas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;

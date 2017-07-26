@@ -586,7 +586,7 @@ class MenuController{
 
                 // Pas d'erreur
 
-                    $uploadPath = dirname(dirname(dirname(__FILE__))).DS."public".DS."img".DS."Menus";
+                    $uploadPath = dirname(dirname(dirname(__FILE__))).DS."public".DS."img".DS."menus";
                     if( !file_exists($uploadPath) ){
                         mkdir($uploadPath);
                     }
