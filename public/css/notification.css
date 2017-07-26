@@ -1,0 +1,128 @@
+.notifications {
+
+    position: fixed;
+    top : 100px;
+    right: 40px;
+    width: 300px;
+    z-index: 30;
+
+}
+
+.notification{
+    text-align: left;
+    position: relative;
+    margin:auto;
+    margin-top:20px;
+    background:rgba(51, 59, 70, 0.5);
+    border:1px solid #111;
+    border-radius:3px;
+    box-shadow:inset 0px 24px 0px rgba(255,255,255,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 10px 10px rgba(255,255,255,0.2),
+    inset 0 -5px 10px rgba(0,0,0,0.2),
+    0 3px 3px rgba(0,0,0,0.3);
+    width:100%;
+    height:auto;
+    padding:5px 10px;
+    color:white;
+    font-size:14px;
+    text-shadow:0 1px 1px rgba(0,0,0,0.8);
+    transition:all .5s ease;
+    backface-visibility:hidden;
+    cursor: pointer;
+}
+
+.notification-info {
+
+    background:rgba(90, 191, 221, 0.7);
+}
+
+.notification-success {
+
+    background:rgba(92, 183, 92, 0.7);
+}
+
+.notification-warning {
+
+    background:rgba(239, 172, 77, 0.7);
+}
+
+.notification-error {
+
+    background:rgba(169, 67, 66, 0.7);
+}
+
+
+.notification .left{
+    position: absolute;
+    width: 30px;
+    padding: 0 10px;
+    top: 1px;
+    left: 6px;
+
+
+}
+
+.notification .right {
+    margin-left: 50px;
+
+}
+
+
+.notification .fa{
+    margin-top: 40px;
+    font-size:2.3em;
+    width:1em;
+    height: 100%;
+    float:left;
+    margin:10px 10px 0 0px;
+    text-align:center;
+}
+
+.notification p{
+    margin:6px 0;
+}
+
+.notification .img{
+    width: 150%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left:0 ;
+    background-position: 50% 50%;
+    background-size: auto 100%;
+    background-repeat:no-repeat;
+    float:left;
+    text-align:center;
+}
+
+.notification:hover{
+    opacity:0.5;
+}
+
+@media only screen and (max-width: 450px) {
+
+    .notifications {
+
+        width: 100%;
+        top: 46px;
+        right: 0px;
+        margin-top: 20px;
+    }
+
+    .notification {
+
+        padding: 5px 30px;
+        padding-top: 10px;
+        margin-top: 0px;
+
+    }
+
+    .notification .fa {
+
+        margin: 15px 10px 0 0px;
+    }
+
+}
+
+
