@@ -140,6 +140,12 @@
             
         }
 
+        public function dateBetween($search = []){
+            $query = $this->db->prepare("SELECT count(*) as result FROM ".$this->table." where ".$search['column']." between '".$search['date_beginning']."' and '".$search['date_ending']."'");
+            $query->execute();
+            return $query->fetch(PDO::FETCH_ASSOC);
+        }
+
 
         public function deleteBy ($search = [] , $returnQuery = false) {
 

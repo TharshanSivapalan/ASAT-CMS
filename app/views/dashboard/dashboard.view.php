@@ -2,34 +2,34 @@
     <div class="titre">
         <h3>Dashboard</h3>
     </div>
-
+    
     <div class="onglet-contenu dashboard-top" >
 	      <div id="dashboard-top-item-1" class="dashboard-top-item" >
 		      <div class="dashboard-top-item-content">
-		      	<span class="dashboard-title-item">Menu</span>
+		      	<span class="dashboard-title-item">Menus</span>
 		      	<hr class="souligne">
-		      	<span class="dashboard-nb-item" >4</span>
+		      	<span class="dashboard-nb-item" ><?php echo $countMenu; ?></span>
 		      </div>
 	      </div>
 	      <div id="dashboard-top-item-2" class="dashboard-top-item">
 		      <div class="dashboard-top-item-content">
 		      	<span class="dashboard-title-item">Repas</span>
 		      	<hr class="souligne">
-		      	<span class="dashboard-nb-item"  >8</span>
+		      	<span class="dashboard-nb-item"  ><?php echo $countRepas; ?></span>
 		      </div>
 	      </div>
 	      <div id="dashboard-top-item-3" class="dashboard-top-item">
 		      <div class="dashboard-top-item-content">
-		      	<span class="dashboard-title-item">Un truc</span>
+		      	<span class="dashboard-title-item">Utilisateurs</span>
 		      	<hr class="souligne">
-		      	<span class="dashboard-nb-item" >9</span>
+		      	<span class="dashboard-nb-item" ><?php echo $countUser; ?></span>
 		      </div>
 	      </div>
     </div>
 
 
-    <div id="nbVisiteFinish"  >112</div>
-    <div id="nbVisiteStart"  >323</div>
+    <div id="nbVisiteFinish"  ><?php echo $moisActuel['result']; ?></div>
+    <div id="nbVisiteStart"  ><?php echo $moisDernier['result']; ?></div>
 
 
     <div class="onglet-contenu dashboard-bottom" >
@@ -81,14 +81,14 @@
 	  "type": "serial",
 
 	  "dataProvider": [ {
-	    "month": "Juin",
-	    "visits": 2
+	    "month": "<?php echo $deuxDernierMois['nom']; ?>",
+	    "visits": <?php echo $deuxDernierMois['result']; ?>
 	  }, {
-	    "month": "Juillet",
-	    "visits": 98
+	    "month": "<?php echo $moisDernier['nom']; ?>",
+	    "visits": <?php echo $moisDernier['result']; ?>
 	  }, {
-	    "month": "Aout",
-	    "visits": 0
+	    "month": "<?php echo $moisActuel['nom']; ?>",
+	    "visits": <?php echo $moisActuel['result']; ?>
 	  }],
 	  "valueAxes": [ {
 	  	"title": "Nombre de viste par mois",
