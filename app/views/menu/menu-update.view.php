@@ -4,18 +4,16 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
-        <a href="/menu" class="back-button"><i class="fa fa-arrow-left faa-horizontal animated-hover back-button-arrow" aria-hidden="true"> <span class="back-button-text">Retour</span>
-            </i></a>
-        <form class="" id="" action="/menu/update/<?php echo $menu[0]["id"] ?>" method="post" enctype="multipart/form-data" >
+        <a href="/menu" class="back-button"><i class="fa fa-arrow-left faa-horizontal animated-hover back-button-arrow" aria-hidden="true"> <span class="back-button-text">Retour</span></i></a>
+        <form action="/menu/update/<?php echo $menu[0]["id"] ?>" method="post" enctype="multipart/form-data" >
 
             <label>Titre du menu*</label>
-            <input type="text" class="input" id="" name="nom" value="<?php echo $menu[0]["nom"];?>" autocomplete="off">
-
-
+            <input required="required" pattern="[a-zA-Z0-9\s]+" minlength="3" maxlength="255" type="text" class="input" name="nom" value="<?php echo $menu[0]["nom"];?>">
+            
             <div class="multi-col-form">
                 <div class="half-form">
                     <label>Image</label>
-                    <input type="file" class="input" id="" name="image" accept="image/*" autocomplete="off">
+                    <input type="file" class="input" name="image" accept="image/*" autocomplete="off">
                 </div>
 
                 <div class="half-form">
@@ -27,7 +25,7 @@
 
             <label>Ajouter une entrée </label>
             <br>
-            <select name="entree" class="input" id="">
+            <select name="entree" class="input">
                 <option value="" >...</option>
                 <?php foreach ($list_entre as $entre):?>
                     <option value="<?php  echo $entre['id'] ?>" <?php if($menu[0]["entree"] == $entre['id']) echo 'selected="selected" '?> >
@@ -65,12 +63,11 @@
 
             <label>Prix*</label>
             <br>
-            <input type="text" class="input" name="prix" autocomplete="off" value="<?php echo $menu[0]["prix"];?>">
+            <input type="number" class="input" name="prix" required="required" value="<?php echo $menu[0]["prix"];?>" min="0" max="10000" step="0.01">
             <br>
-
             <label>Description du menu</label>
             <br>
-            <textarea class="input editor" name ="description"  id="description" cols="70" rows="15"><?php echo strip_tags($menu[0]["description"]);?></textarea>
+            <textarea class="input editor" name="description" id="description" cols="70" rows="15"><?php echo strip_tags($menu[0]["description"]);?></textarea>
 
             <input type="hidden" name="id" value="<?php echo $menu[0]["id"] ?>">
 
