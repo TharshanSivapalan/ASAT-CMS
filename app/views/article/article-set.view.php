@@ -14,8 +14,7 @@
 
                 <label>Contenu du premier article</label>
                 <br>
-                <textarea required="required" class="input editor" name="content" id="description1" cols="70" rows="15">
-                    <?php echo htmlspecialchars($article['content']) ?>
+                <textarea required="required" class="input editor" name="content" id="description1" cols="70" rows="15"><?php echo htmlspecialchars($article['content']) ?>
                 </textarea>
 
                 <input required="required" type="hidden" name="id" value="<?php echo htmlspecialchars($article['id']) ?>">
