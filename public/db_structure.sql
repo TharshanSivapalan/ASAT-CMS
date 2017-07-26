@@ -49,7 +49,7 @@ INSERT INTO `settings` (`id`, `nom`, `valeur`) VALUES
 (1, 'nom du site', 'SITETITLE'),
 (2, 'slogan', 'manger c est manger'),
 (3, 'logo', 'logo.png'),
-(4, 'google maps', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5272.2919181837515!2d2.357604020175256!3d48.64532289769136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1783cf2150f7aaa2!2sBOUCHERIE+HALAL!5e0!3m2!1sfr!2sfr!4v1500120742880\" w'),
+(4, 'google maps', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5272.2919181837515!2d2.357604020175256!3d48.64532289769136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1783cf2150f7aaa2!2sBOUCHERIE+HALAL!5e0!3m2!1sfr!2sfr!4v1500120742880'),
 (5, 'pays', 'France'),
 (6, 'ville', 'Paris'),
 (7, 'adresse', '22 rue de Picpus'),
