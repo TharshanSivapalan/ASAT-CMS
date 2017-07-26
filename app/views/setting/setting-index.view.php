@@ -20,12 +20,25 @@
                 </div>
             </div>
 
-            <label>Logo du site</label>
-            <input type="file" class="input" id="" name="logo" accept="image/*">
+            
+            <div class="multi-col-form">
+                <div class="half-form">
+                    <label><label>Logo du site</label></label>
+                    <input type="file" class="input" id="" name="logo" accept="image/*">
+                </div>
+
+                <div class="half-form">
+                    <div class="image-thumb">
+                        <img src="<?php echo "/img/Logo/".$list_setting[2]['valeur'];?>">
+                    </div>
+                </div>
+            </div>
+
+
+
 
             <label>Iframe Google MAPS</label>
-            <textarea class="input" name ="iframe" id=""  rows="5">
-                <?php echo htmlspecialchars($list_setting[3]['valeur']) ?>
+            <textarea class="input" name ="iframe" id=""  rows="5"><?php echo htmlspecialchars($list_setting[3]['valeur']) ?>
             </textarea>
 
             <label>Pays</label>

@@ -319,6 +319,12 @@ height: 50px;
     color: white;
 }
 
+
+
+#login-user { 
+    text-transform: capitalize ;
+}
+
 .fa-2x {
     color: #f4f4f4;
     font-size: 2em;
@@ -393,6 +399,50 @@ ul a {
     margin: 0 0 .8em 0;
     padding-right: 2em;
     width: 100%; 
+
+
+}
+
+
+.formulaire form input[type="text"], 
+.formulaire form input[type="number"], 
+.formulaire form input[type="password"],
+.formulaire form input[type="email"],
+.formulaire form input[type="tel"] {
+    font: 15px/24px "Lato", Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+
+    font: 15px/24px "Lato", Arial, sans-serif;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border: 0;
+    padding: 7px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.formulaire form select.input {
+  border: 0;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+}
+
+.formulaire form .image-thumb img {
+  max-width: 135px;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.formulaire form label {
+    font: 15px/24px "Lato", Arial, sans-serif;
+    color: #333;
 }
 
 .formulaire form  #liste {
@@ -575,7 +625,6 @@ table #pagination .pageNumber {
 }
 
 /** FIN TABLE POUR AFFICHER LES LISTES **/
-
 
 
 
@@ -817,14 +866,22 @@ hr {
     border: 2px solid #f05f40;
 }
 
+#chart1div {
+  margin-bottom: 20px;
+}
 
+#chart1div, #chart2div {
+  background-color: #F5F7FA;
+}
 
 #nbVisiteStart {
   visibility: hidden;
+  display: none;
 }
 
 #nbVisiteFinish {
   visibility: hidden;
+  display: none;
 }
 
 @media(max-width: 600px){
@@ -839,3 +896,24 @@ hr {
   }
 
 }
+
+
+#form-user-update  {
+    margin: 10px 0px 40px 0px;
+}
+
+#form-user-update #current-mail {
+  font-weight: bold;
+  color: #DA4453;
+}
+
+#form-user-update hr {
+    margin: 15px auto; 
+}
+
+#form-user-update h4 {
+    text-align: center;
+    margin: 15px auto; 
+}
+
+

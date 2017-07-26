@@ -85,9 +85,11 @@
     <img src="/img/logo_menu.png" class="lg_admin" alt="logo">
     <div class="user-detail">
         <span id="login-user"> <?php echo $_SESSION["user"]["login"]; ?>
+        </span>
         <a href="/user/logout"><i class="action-button fa faa-vertical animated-hover fa-power-off " style="
-    margin-left: 10px;
-"></i></a></span></div>
+            margin-left: 10px;
+        "></i></a>
+    </div>
     </div>
 
 

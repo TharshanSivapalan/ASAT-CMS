@@ -31,7 +31,8 @@ function closeNav() {
 $(document).ready(function() {
 
     tinymce.init({
-        selector: '.editor'
+        selector: '.editor',
+        invalid_elements : "script"
     });
 
     // Pour le menu : lorsqu'il est ouvert et que le visiteur redimentionne la page à < 600px
@@ -117,3 +118,22 @@ $(document).ready(function() {
 
 });
 
+
+
+function imageUpload(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.image-thumb img').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("input[type=file]").change(function(){
+    console.log("okok");
+    imageUpload(this);
+});
