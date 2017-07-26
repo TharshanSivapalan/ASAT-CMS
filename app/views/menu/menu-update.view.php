@@ -4,13 +4,26 @@
     </div><!--.onglets-->
 
     <div class="onglet-contenu" >
+        <a href="/menu" class="back-button"><i class="fa fa-arrow-left faa-horizontal animated-hover back-button-arrow" aria-hidden="true"> <span class="back-button-text">Retour</span>
+            </i></a>
         <form class="" id="" action="/menu/update/<?php echo $menu[0]["id"] ?>" method="post" enctype="multipart/form-data" >
 
             <label>Titre du menu*</label>
             <input type="text" class="input" id="" name="nom" value="<?php echo $menu[0]["nom"];?>" autocomplete="off">
 
-            <label>Image</label>
-            <input type="file" class="input" id="" name="image" accept="image/*" autocomplete="off">
+
+            <div class="multi-col-form">
+                <div class="half-form">
+                    <label>Image</label>
+                    <input type="file" class="input" id="" name="image" accept="image/*" autocomplete="off">
+                </div>
+
+                <div class="half-form">
+                    <div class="image-thumb">
+                        <img src="<?php echo "/img/Menus/".$menu[0]["image"];?>">
+                    </div>
+                </div>
+            </div>
 
             <label>Ajouter une entrée </label>
             <br>

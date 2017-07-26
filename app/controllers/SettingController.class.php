@@ -27,7 +27,7 @@ class SettingController{
 
 
             $name = $_POST['nom_site'] ;
-            $iframe = urlencode($_POST['iframe']);
+            $iframe = trim($_POST['iframe']);
             $slogan = $_POST['slogan'] ;
             $pays = $_POST['pays'] ;
             $adresse = $_POST['adresse'] ;
@@ -54,9 +54,14 @@ class SettingController{
             } 
 
             if(!empty($iframe)){
-                $mSettings->updateOneBy([
-                'id' => 4, 
-                'valeur' => $iframe]);
+                if(!preg_match("#^https?\:\/\/(www\.)?google\.(com|fr|de)\/maps\b# ", $iframe)) {
+                    $messsages [] = "Le lien de l'iframe est invalide ! ";
+                    $error = true;
+                } else {
+                    $mSettings->updateOneBy([
+                    'id' => 4, 
+                    'valeur' => $iframe]);
+                }  
             }
 
             if(!empty($pays)){            
@@ -83,7 +88,7 @@ class SettingController{
                     $error = true;
                 } else {
                     $mSettings->updateOneBy([
-                    'id' => 8, 
+                    'id' => 9, 
                     'valeur' => $codepostal]);
                 }
             }
@@ -95,7 +100,7 @@ class SettingController{
                     $error = true; 
                 } else {
                     $mSettings->updateOneBy([
-                    'id' => 9, 
+                    'id' => 10, 
                     'valeur' => $tel]);
                 }
                 
@@ -107,14 +112,14 @@ class SettingController{
                     $error = true;                
                 }else {
                     $mSettings->updateOneBy([
-                    'id' => 10, 
+                    'id' => 11, 
                     'valeur' => $email]);
                 }
             }
 
             if(!empty($itineraire)){
             $mSettings->updateOneBy([
-                'id' => 11, 
+                'id' => 12, 
                 'valeur' => $itineraire]);
             }
             

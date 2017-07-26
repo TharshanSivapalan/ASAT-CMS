@@ -88,7 +88,7 @@
 
     <section class="trois">
 
-        <?php foreach (array_slice($list_menu, 0, 3) as $menu): ?>
+        <?php foreach (array_slice(array_reverse($list_menu), 0, 3) as $menu): ?>
 
 
             <?php 
@@ -167,7 +167,7 @@
 
 
 <div class="map-container">
-    <?php echo $list_setting[3]['valeur'] ?>
+    <iframe frameborder="0" height="350" marginheight="0" marginwidth="0" scrolling="no" src="<?php echo $list_setting[3]['valeur'] ?>" width="640"></iframe>
 </div>
 <?php
 	}
@@ -252,7 +252,7 @@
 
     <?php $i= 0; ?>
 
-    <?php foreach (array_slice($list_menu, 0, 3)  as $menu): ?>
+    <?php foreach (array_slice(array_reverse($list_menu), 0, 3)  as $menu): ?>
 
         
 
@@ -408,7 +408,9 @@
 
 
 <div class="map-container">
-    <?php echo $list_setting[3]['valeur'] ?>
+
+<iframe frameborder="0" height="350" marginheight="0" marginwidth="0" scrolling="no" src="<?php echo $list_setting[3]['valeur'] ?>" width="640"></iframe>
+    
 </div>
 <?php
 	}

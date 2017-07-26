@@ -10,7 +10,7 @@
 <div class="container grey">
 
     
-    <?php foreach ($list_menu as $menu): ?>
+    <?php foreach (array_reverse($list_menu) as $menu): ?>
 
 
         <section class="deux carte-menu-block">
