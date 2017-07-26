@@ -29,7 +29,7 @@ CREATE TABLE `repas` (
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `valeur` text NOT NULL
+  `valeur` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `settings` (`id`, `nom`, `valeur`) VALUES
