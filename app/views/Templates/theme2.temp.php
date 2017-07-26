@@ -26,7 +26,7 @@
             <nav class="main-nav">
                 <div id="menu-logo-slogan-adresse">
                     <div id="slogan">
-                        <span>Slogan : manger c est manger </span>
+                        <span><?php echo htmlspecialchars($list_setting[1]['valeur']) ?> </span>
                     </div>
                     <div id="logo">
                         <img src="/img/Logo/<?php echo htmlspecialchars($list_setting[2]['valeur']) ?> " class="logo" alt="logo">
