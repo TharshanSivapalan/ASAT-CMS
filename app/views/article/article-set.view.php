@@ -10,15 +10,15 @@
                 <br>
 
                 <label>Titre de l'article</label>
-                <input type="text" class="input" id="" name="titre" autocomplete="off" value="<?php echo htmlspecialchars($article['titre']) ?>">
+                <input pattern="[a-zA-Z0-9\s]+" minlength="3" maxlength="255" required="required" type="text" class="input" name="titre" value="<?php echo htmlspecialchars($article['titre']) ?>">
 
                 <label>Contenu du premier article</label>
                 <br>
-                <textarea class="input editor" name="content" id="description1" cols="70" rows="15">
+                <textarea required="required" class="input editor" name="content" id="description1" cols="70" rows="15">
                     <?php echo htmlspecialchars($article['content']) ?>
                 </textarea>
 
-                <input type="hidden" name="id" value="<?php echo htmlspecialchars($article['id']) ?>">
+                <input required="required" type="hidden" name="id" value="<?php echo htmlspecialchars($article['id']) ?>">
 
                 <br><br>
 

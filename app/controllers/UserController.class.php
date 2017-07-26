@@ -97,7 +97,7 @@ class UserController{
                 $message->setFrom(array('noreply@asat-cms.com' => 'ASAT-CMS'));
                 $message->setTo($email);
                 $message->setSubject('Confirmation de votre compte');
-                $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a> <p> Une fois votre compte active connecté vous avec le mot de passe suivant : " . $password . " </p>");
+                $message->setBody("Merci de cliquer ici pour valider votre compte <a href='http://" . $_SERVER['SERVER_NAME'] . "/user/activate/" .$link ."'> Valider mon compte </a> <p> Une fois votre compte active connecté vous avec le mot de passe suivant : " . $password . " et le login : " . $login ."</p>");
 
                 $type = $message->getHeaders()->get('Content-Type');
                 $type->setValue('text/html');
