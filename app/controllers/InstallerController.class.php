@@ -144,7 +144,7 @@ class InstallerController{
 			header('Location: /installer/complete');
 			exit();
 		}
-
+		//Création de la page de vue
 		$view = new View('siteconfig');
 		$view->setTemplate('installer');
 	}
@@ -198,6 +198,7 @@ class InstallerController{
 				header('Location: /installer/error');
 			}
 		}
+		//Création de la page de vue
 		$view = new View('complete');
 		$view->setTemplate('installer');
 	}
