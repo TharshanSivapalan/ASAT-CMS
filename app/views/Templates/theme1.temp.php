@@ -25,7 +25,7 @@
     <ul class="conteneur-colonnes">
         <li ><a href="/">Accueil</a></li>
         <li ><a href="/carte">La Carte</a></li>
-        <li ><a href="/index/contact">Contact</a></li>
+        <li ><a href="/contact">Contact</a></li>
     </ul>
 </nav>
 
