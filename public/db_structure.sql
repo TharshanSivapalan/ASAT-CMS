@@ -20,24 +20,11 @@ CREATE TABLE `menu` (
   `prix` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `menu` (`id`, `nom`, `description`, `image`, `entree`, `plat`, `dessert`, `prix`) VALUES
-(12, 'menu 1', '', '59778880639eb.png', 4, 14, 15, 20.34),
-(13, 'menu 2', '<p>cococo</p>', '597788bdac3b0.png', 15, 14, NULL, 34567),
-(14, 'menu 3', '', 'default.jpg', NULL, NULL, NULL, 123),
-(20, 'menu 4', '', 'default.jpg', NULL, NULL, NULL, 1234);
-
-
 CREATE TABLE `repas` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `repas` (`id`, `nom`, `category`) VALUES
-(4, 'salade thai', 1),
-(14, 'boeuf aux piments', 2),
-(15, 'glace a la fraise', 3);
-
 
 CREATE TABLE `settings` (
   `id` int(11) NOT NULL,
@@ -121,10 +108,10 @@ ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `repas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
